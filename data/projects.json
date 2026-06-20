@@ -1,0 +1,25 @@
+{
+  "projects": [
+    {
+      "id": "escape2explore-billing-application-mqlrnuml",
+      "name": "Escape2explore Billing Application",
+      "description": "Maintain the daily sales, estimates, expenses based on every location and staff.",
+      "shortDesc": "Maintain the daily sales, estimates, expenses based on every location and staff.",
+      "createdAt": "2026-06-20T02:56:42.957Z",
+      "docs": [],
+      "prototypes": [
+        {
+          "name": "Complete UI Prototype Design",
+          "slug": "complete-ui-prototype-design",
+          "entryFile": "Escape2explore Billing - Standalone.html",
+          "files": [
+            {
+              "name": "Escape2explore Billing - Standalone.html",
+              "path": "projects/escape2explore-billing-application-mqlrnuml/prototypes/complete-ui-prototype-design/Escape2explore Billing - Standalone.html"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
