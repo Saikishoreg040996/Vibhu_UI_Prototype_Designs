@@ -47,7 +47,13 @@
       "description": "Maintain the daily sales, estimates, expenses based on every location and staff.",
       "shortDesc": "Maintain the daily sales, estimates, expenses based on every location and staff.",
       "createdAt": "2026-06-20T02:56:42.957Z",
-      "docs": [],
+      "docs": [
+        {
+          "name": "Escape2Explore_Titan_to_Google_Workspace_Migration_Guide.pdf",
+          "path": "projects/escape2explore-billing-application-mqlrnuml/docs/Escape2Explore_Titan_to_Google_Workspace_Migration_Guide.pdf",
+          "type": "application/pdf"
+        }
+      ],
       "prototypes": [
         {
           "name": "Complete UI Prototype Design",
@@ -60,7 +66,8 @@
             }
           ]
         }
-      ]
+      ],
+      "updatedAt": "2026-06-20T13:34:51.011Z"
     }
   ]
 }
