@@ -1,436 +1,1353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Life Again Foundation — Standing With India's Cancer Warriors</title>
-<meta name="description" content="Life Again Foundation, founded by cancer survivor Dr. Gautami Tadimalla, supports cancer patients across India through awareness, free screening camps & education. Donate today.">
-<meta property="og:title" content="Life Again Foundation — Standing With India’s Cancer Warriors">
-<meta property="og:description" content="Founded by cancer survivor Dr. Gautami Tadimalla, Life Again Foundation supports cancer patients across India through awareness, free screening camps and education.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --yellow:#FFC629;        /* primary */
-    --yellow-deep:#F4A700;   /* hover / depth */
-    --yellow-soft:#FFF6DC;   /* tints */
-    --ink:#1B1B17;           /* near-black text */
-    --slate:#5C5A50;         /* muted text */
-    --white:#FFFFFF;
-    --cream:#FFFCF4;         /* off-white section break */
-    --line:#EFE8D6;
-    --shadow:0 12px 40px -12px rgba(27,27,23,.18);
-    --shadow-sm:0 6px 20px -8px rgba(27,27,23,.16);
-    --radius:22px;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
-  h1,h2,h3,.display{font-family:'Fraunces',serif;line-height:1.08;letter-spacing:-.015em}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-  .eyebrow{font-family:'Inter';font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow-deep)}
-  a{text-decoration:none;color:inherit}
-  section{position:relative}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibhu Solutions Designs</title>
+  <meta name="description" content="Vibhu Solutions UI Prototype Designs for different clients — AI-powered design hub.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* Buttons */
-  .btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;padding:.95rem 1.7rem;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
-  .btn-primary{background:var(--yellow);color:var(--ink);box-shadow:0 8px 22px -8px rgba(244,167,0,.7)}
-  .btn-primary:hover{background:var(--yellow-deep);transform:translateY(-2px)}
-  .btn-outline{background:transparent;color:var(--ink);border-color:var(--ink)}
-  .btn-outline:hover{background:var(--ink);color:var(--white);transform:translateY(-2px)}
-  .btn-light{background:var(--white);color:var(--ink);box-shadow:var(--shadow-sm)}
-  .btn-light:hover{transform:translateY(-2px)}
-  .textlink{font-weight:600;color:var(--yellow-deep);display:inline-flex;align-items:center;gap:.4rem;transition:gap .2s}
-  .textlink:hover{gap:.7rem}
+    :root {
+      --bg:        #04050e;
+      --bg2:       #080c1a;
+      --bg3:       #0d1228;
+      --card-bg:   rgba(13,18,40,0.75);
+      --cyan:      #00d4ff;
+      --purple:    #7b2ff7;
+      --pink:      #ff2d78;
+      --green:     #00ff88;
+      --amber:     #ffaa00;
+      --text:      #c8d8f0;
+      --text2:     #6a7fa8;
+      --border:    rgba(0,212,255,0.12);
+      --border2:   rgba(123,47,247,0.18);
+      --gcyan:     0 0 18px rgba(0,212,255,0.28);
+      --gpurp:     0 0 18px rgba(123,47,247,0.28);
+      --grad:      linear-gradient(135deg,#00d4ff,#7b2ff7);
+      --grad3:     linear-gradient(135deg,#00d4ff,#7b2ff7,#ff2d78);
+    }
 
-  /* Nav */
-  header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
-  header.scrolled{border-color:var(--line);box-shadow:0 4px 20px -12px rgba(0,0,0,.25)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
-  .logo{display:flex;align-items:center;gap:.6rem;font-family:'Fraunces';font-weight:600;font-size:1.25rem}
-  .logo .mark{width:38px;height:38px;border-radius:11px;background:var(--yellow);display:grid;place-items:center;font-weight:700;color:var(--ink)}
-  .navlinks{display:flex;align-items:center;gap:2rem;list-style:none}
-  .navlinks a{font-weight:500;font-size:.96rem;color:var(--slate);transition:color .2s}
-  .navlinks a:hover{color:var(--ink)}
-  .nav-cta{display:flex;align-items:center;gap:1rem}
-  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
-  .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+    html { scroll-behavior: smooth; }
 
-  /* Hero */
-  .hero{padding:72px 0 90px;overflow:hidden}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-  .hero h1{font-size:clamp(2.5rem,5.2vw,4rem);font-weight:600}
-  .hero h1 .hl{position:relative;white-space:nowrap}
-  .hero h1 .hl:after{content:"";position:absolute;left:-2px;right:-2px;bottom:.08em;height:.32em;background:var(--yellow);z-index:-1;border-radius:4px}
-  .hero p.lead{font-size:1.15rem;color:var(--slate);margin:1.5rem 0 2.2rem;max-width:30rem}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem}
-  .hero-visual{position:relative;aspect-ratio:4/4.4;border-radius:30px;background:linear-gradient(150deg,var(--yellow-soft),#FFE9A8);box-shadow:var(--shadow);display:grid;place-items:center;overflow:hidden}
-  .hero-visual .ph{color:var(--yellow-deep);font-weight:600;font-size:.9rem;opacity:.8;text-align:center;padding:1rem}
-  .hero-visual:before{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:rgba(255,255,255,.45);top:-60px;right:-60px}
-  .floatcard{position:absolute;background:var(--white);border-radius:16px;box-shadow:var(--shadow);padding:.9rem 1.1rem;display:flex;align-items:center;gap:.7rem;font-size:.85rem;font-weight:600}
-  .floatcard .dot{width:34px;height:34px;border-radius:9px;background:var(--yellow-soft);display:grid;place-items:center}
-  .fc1{bottom:26px;left:-26px}
-  .fc2{top:34px;right:-22px}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* Founder */
-  .founder{background:var(--cream);padding:96px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .founder-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
-  .founder-photo{aspect-ratio:4/5;border-radius:var(--radius);background:linear-gradient(160deg,#FFE9A8,var(--yellow-soft));box-shadow:var(--shadow);display:grid;place-items:center;color:var(--yellow-deep);font-weight:600;font-size:.9rem}
-  .founder h2{font-size:clamp(2rem,3.6vw,2.8rem);font-weight:600;margin:.6rem 0 1.3rem}
-  .founder p{color:var(--slate);margin-bottom:1.1rem;max-width:34rem}
+    /* ── Background ── */
+    .bg-grid {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,0.028) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .bg-blob {
+      position: fixed; border-radius: 50%;
+      filter: blur(90px); pointer-events: none; z-index: 0;
+    }
+    .bg-blob-1 {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(0,212,255,0.055) 0%, transparent 70%);
+      top: -250px; left: -150px;
+    }
+    .bg-blob-2 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(123,47,247,0.055) 0%, transparent 70%);
+      bottom: -150px; right: -100px;
+    }
+    .bg-blob-3 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,45,120,0.03) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+    }
 
-  /* Pillars */
-  .pillars{padding:100px 0}
-  .sec-head{text-align:center;max-width:40rem;margin:0 auto 56px}
-  .sec-head h2{font-size:clamp(2rem,3.8vw,2.9rem);font-weight:600;margin:.7rem 0 0}
-  .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-  .pillar{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:38px 30px;transition:transform .25s,box-shadow .25s,border-color .25s}
-  .pillar:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:transparent}
-  .pillar .ic{width:62px;height:62px;border-radius:16px;background:var(--yellow-soft);display:grid;place-items:center;margin-bottom:22px}
-  .pillar .ic svg{width:30px;height:30px;stroke:var(--yellow-deep)}
-  .pillar h3{font-size:1.4rem;font-weight:600;margin-bottom:.6rem}
-  .pillar p{color:var(--slate);font-size:.97rem}
-  .center-cta{text-align:center;margin-top:48px}
+    /* ── Settings Btn ── */
+    .settings-btn {
+      position: fixed; top: 20px; right: 20px; z-index: 200;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid var(--border);
+      color: var(--cyan);
+      width: 44px; height: 44px;
+      border-radius: 11px;
+      cursor: pointer; font-size: 18px;
+      transition: all 0.3s; backdrop-filter: blur(12px);
+      display: grid; place-items: center;
+    }
+    .settings-btn:hover { background: rgba(0,212,255,0.18); box-shadow: var(--gcyan); }
 
-  /* Impact */
-  .impact{background:var(--ink);color:var(--white);padding:88px 0;border-radius:40px;margin:0 16px}
-  .impact .sec-head h2{color:var(--white)}
-  .impact .eyebrow{color:var(--yellow)}
-  .stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;text-align:center;margin-top:10px}
-  .stat .num{font-family:'Fraunces';font-size:clamp(2.1rem,4vw,3rem);font-weight:600;color:var(--yellow);line-height:1}
-  .stat .lbl{font-size:.86rem;color:#cfcdc4;margin-top:.6rem}
-  .impact .footnote{text-align:center;color:#84827a;font-size:.8rem;margin-top:42px}
+    /* ── Header ── */
+    header {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 88px 20px 64px;
+      background: linear-gradient(180deg, rgba(0,212,255,0.035) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+    }
 
-  /* Trust */
-  .trust{padding:96px 0;text-align:center}
-  .trust p{max-width:42rem;margin:1.2rem auto 2.2rem;color:var(--slate)}
-  .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
-  .badge{display:inline-flex;align-items:center;gap:.6rem;background:var(--yellow-soft);border:1px solid #F2E3B0;color:#7a5b00;font-weight:600;font-size:.92rem;padding:.7rem 1.3rem;border-radius:999px}
-  .badge svg{width:18px;height:18px;stroke:var(--yellow-deep)}
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg,rgba(0,212,255,0.08),rgba(123,47,247,0.08));
+      border: 1px solid rgba(0,212,255,0.25);
+      color: var(--cyan);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px; font-weight: 600; letter-spacing: 3px;
+      padding: 7px 18px; border-radius: 24px; margin-bottom: 28px;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cyan); animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.85)} }
 
-  /* Get involved */
-  .involve{background:var(--cream);padding:100px 0;border-top:1px solid var(--line)}
-  .involve-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:8px}
-  .ic-card{background:var(--white);border-radius:var(--radius);padding:36px 30px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:.7rem;border-top:4px solid var(--yellow)}
-  .ic-card h3{font-size:1.3rem;font-weight:600}
-  .ic-card p{color:var(--slate);font-size:.95rem;flex-grow:1}
-  .ic-card .btn{margin-top:1rem;align-self:flex-start}
+    .main-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(28px,5.5vw,68px);
+      font-weight: 900; letter-spacing: 5px; line-height: 1.1;
+      background: var(--grad3);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 35px rgba(0,212,255,0.28));
+      margin-bottom: 18px;
+    }
 
-  /* Testimonials */
-  .stories{padding:100px 0}
-  .quote-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:8px}
-  .quote{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:36px;position:relative}
-  .quote .mark{font-family:'Fraunces';font-size:4rem;color:var(--yellow);line-height:.6;height:30px}
-  .quote p{font-size:1.08rem;margin:1rem 0 1.4rem}
-  .quote .who{font-weight:600;color:var(--slate);font-size:.9rem}
+    .sub-title {
+      font-size: 15px; color: var(--text2); font-weight: 300;
+      letter-spacing: 1px; max-width: 560px; margin: 0 auto 44px;
+      line-height: 1.7;
+    }
 
-  /* Final CTA */
-  .finalcta{background:var(--yellow);padding:90px 0;text-align:center;margin:0 16px;border-radius:40px}
-  .finalcta h2{font-size:clamp(2rem,4vw,3rem);font-weight:600;max-width:34rem;margin:0 auto 2rem}
+    .header-stats {
+      display: inline-flex; align-items: center; gap: 0;
+      background: rgba(0,212,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 18px; overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+    .stat-item {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; padding: 18px 32px;
+    }
+    .stat-item + .stat-item { border-left: 1px solid var(--border); }
+    .stat-num {
+      font-family: 'Orbitron', sans-serif; font-size: 26px;
+      font-weight: 700; color: var(--cyan);
+      transition: all 0.4s;
+    }
+    .stat-lbl { font-size: 10px; color: var(--text2); letter-spacing: 1.5px; text-transform: uppercase; }
 
-  /* Footer */
-  footer{background:var(--ink);color:#cfcdc4;padding:72px 0 32px;margin-top:80px}
-  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:40px}
-  footer h4{font-family:'Fraunces';color:var(--white);font-size:1.15rem;margin-bottom:1.1rem;font-weight:600}
-  footer .logo{color:var(--white);margin-bottom:1rem}
-  footer ul{list-style:none}
-  footer ul li{margin-bottom:.6rem}
-  footer ul li a{color:#cfcdc4;font-size:.93rem;transition:color .2s}
-  footer ul li a:hover{color:var(--yellow)}
-  .foot-contact p{font-size:.92rem;margin-bottom:.55rem}
-  .socials{display:flex;gap:.7rem;margin-top:1rem}
-  .socials a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:background .2s}
-  .socials a:hover{background:var(--yellow)}
-  .socials svg{width:18px;height:18px;stroke:var(--white)}
-  .news{display:flex;gap:.5rem;margin-top:1rem}
-  .news input{flex:1;padding:.75rem 1rem;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--white);font-family:inherit}
-  .news input::placeholder{color:#84827a}
-  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:50px;padding-top:26px;text-align:center;font-size:.83rem;color:#84827a}
+    /* ── Main ── */
+    main {
+      position: relative; z-index: 1;
+      max-width: 1380px; margin: 0 auto; padding: 60px 24px 80px;
+    }
 
-  @media(max-width:900px){
-    .hero-grid,.founder-grid{grid-template-columns:1fr;gap:40px}
-    .hero-visual{max-width:420px;margin:0 auto}
-    .founder-photo{max-width:360px}
-    .pillar-grid,.involve-grid{grid-template-columns:1fr}
-    .stat-grid{grid-template-columns:repeat(2,1fr);gap:32px 20px}
-    .quote-grid{grid-template-columns:1fr}
-    .foot-grid{grid-template-columns:1fr 1fr}
-    .navlinks{display:none}
-    .navlinks.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:var(--white);padding:24px;gap:1.2rem;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
-    .burger{display:flex}
-  }
-  @media(max-width:560px){
-    .stat-grid{grid-template-columns:1fr}
-    .foot-grid{grid-template-columns:1fr}
-    .hero-actions .btn{width:100%;justify-content:center}
-  }
-  
-  /* Accessibility: visible keyboard focus */
-  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--yellow-deep);outline-offset:2px;border-radius:6px}
-  /* Scroll reveal */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
+    .section-bar {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 40px;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .section-title {
+      font-family: 'Orbitron', sans-serif; font-size: 22px;
+      font-weight: 700; color: var(--text); margin-bottom: 6px;
+    }
+    .section-sub { font-size: 13px; color: var(--text2); }
 
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
-</style>
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--grad); color: #fff;
+      border: none; padding: 12px 24px; border-radius: 10px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      transition: all 0.3s; font-family: 'Inter', sans-serif;
+      letter-spacing: 0.5px; position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg,rgba(255,255,255,0.18),transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .btn-primary:hover::after { opacity: 1; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,212,255,0.3),0 4px 12px rgba(123,47,247,0.2); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: transparent; color: var(--cyan);
+      border: 1px solid var(--border); padding: 9px 18px;
+      border-radius: 8px; font-size: 12px; font-weight: 600;
+      cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;
+    }
+    .btn-secondary:hover { background: rgba(0,212,255,0.08); border-color: rgba(0,212,255,0.35); box-shadow: var(--gcyan); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: transparent; color: var(--text2);
+      border: 1px solid rgba(255,255,255,0.08); padding: 9px 18px;
+      border-radius: 8px; font-size: 12px; cursor: pointer;
+      transition: all 0.3s; font-family: 'Inter', sans-serif;
+      text-decoration: none;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
+
+    /* ── Project Cards ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px; padding: 26px;
+      height: 220px; display: flex; flex-direction: column;
+      backdrop-filter: blur(20px); transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--grad); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s;
+    }
+    .project-card::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at 80% 10%, rgba(0,212,255,0.04), transparent 55%);
+    }
+    .project-card:hover {
+      border-color: rgba(0,212,255,0.28);
+      transform: translateY(-4px);
+      box-shadow: 0 22px 48px rgba(0,0,0,0.45), 0 0 35px rgba(0,212,255,0.07);
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+
+    .card-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .card-tag {
+      font-family: 'Orbitron', sans-serif; font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; color: var(--cyan); text-transform: uppercase;
+    }
+    .card-date { font-size: 10px; color: var(--text2); }
+
+    .card-title {
+      font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 700;
+      color: var(--text); margin-bottom: 9px; line-height: 1.4;
+    }
+    .card-desc {
+      font-size: 12px; color: var(--text2); line-height: 1.65; flex: 1;
+      overflow: hidden; display: -webkit-box;
+      -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;
+    }
+    .card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);
+    }
+    .card-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+    .cbadge {
+      font-size: 9px; padding: 3px 8px; border-radius: 5px; font-weight: 600;
+    }
+    .cbadge-doc  { background:rgba(0,255,136,0.08); color:var(--green); border:1px solid rgba(0,255,136,0.18); }
+    .cbadge-proto{ background:rgba(123,47,247,0.1); color:#b06bff;     border:1px solid rgba(123,47,247,0.2); }
+
+    .read-more {
+      font-size: 11px; font-weight: 700; color: var(--cyan);
+      background: transparent; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 0; transition: gap 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .read-more:hover { gap: 8px; }
+
+    /* ── Empty State ── */
+    .empty-state {
+      text-align: center; padding: 90px 20px;
+    }
+    .empty-icon { font-size: 56px; color: var(--border); margin-bottom: 18px; display: block; }
+    .empty-state h3 {
+      font-family: 'Orbitron', sans-serif; font-size: 18px;
+      color: var(--text2); margin-bottom: 9px;
+    }
+    .empty-state p { font-size: 13px; color: var(--text2); margin-bottom: 28px; }
+
+    /* ── Modals ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(4,5,14,0.88);
+      backdrop-filter: blur(10px); z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      width: 100%; max-width: 640px; max-height: 90vh;
+      overflow-y: auto; position: relative;
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.3s;
+    }
+    .modal-overlay.active .modal { transform: translateY(0) scale(1); }
+    .modal::-webkit-scrollbar { width: 4px; }
+    .modal::-webkit-scrollbar-track { background: transparent; }
+    .modal::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 26px 30px 20px;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: var(--bg2); z-index: 2;
+      border-radius: 22px 22px 0 0;
+    }
+    .modal-title {
+      font-family: 'Orbitron', sans-serif; font-size: 14px;
+      font-weight: 700; color: var(--text);
+    }
+    .modal-close {
+      width: 30px; height: 30px; border-radius: 7px;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      color: var(--text2); cursor: pointer; font-size: 14px;
+      display: grid; place-items: center; transition: all 0.2s;
+    }
+    .modal-close:hover { background: rgba(255,45,120,0.12); border-color: rgba(255,45,120,0.3); color: var(--pink); }
+
+    .modal-body { padding: 22px 30px; }
+    .modal-footer {
+      display: flex; align-items: center; justify-content: flex-end;
+      gap: 10px; padding: 18px 30px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Forms ── */
+    .form-group { margin-bottom: 18px; }
+    .form-label {
+      display: block; font-size: 10px; font-weight: 700;
+      color: var(--cyan); letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 7px; font-family: 'Orbitron', sans-serif;
+    }
+    .form-input, .form-textarea {
+      width: 100%; background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 11px 14px;
+      color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px;
+      transition: all 0.2s; outline: none; resize: vertical;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: rgba(0,212,255,0.38);
+      background: rgba(0,212,255,0.03);
+      box-shadow: 0 0 0 3px rgba(0,212,255,0.07);
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(106,127,168,0.5); }
+    .form-textarea { min-height: 100px; }
+    .form-hint { font-size: 10px; color: var(--text2); margin-top: 5px; line-height: 1.5; }
+
+    /* ── File Upload ── */
+    .upload-zone {
+      border: 2px dashed var(--border); border-radius: 12px;
+      padding: 26px; text-align: center; cursor: pointer;
+      transition: all 0.3s; position: relative;
+    }
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: rgba(0,212,255,0.38);
+      background: rgba(0,212,255,0.025);
+    }
+    .upload-zone input[type="file"] {
+      position: absolute; inset: 0; opacity: 0;
+      cursor: pointer; width: 100%; height: 100%;
+    }
+    .upload-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+    .upload-text { font-size: 13px; color: var(--text2); }
+    .upload-text strong { color: var(--cyan); }
+    .upload-hint { font-size: 11px; color: var(--text2); margin-top: 5px; }
+
+    .file-list { margin-top: 10px; display: flex; flex-direction: column; gap: 5px; }
+    .file-item {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(0,212,255,0.04); border: 1px solid var(--border);
+      border-radius: 7px; padding: 7px 11px; font-size: 11px;
+    }
+    .file-item-name { color: var(--text); font-weight: 500; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file-item-size { color: var(--text2); margin: 0 10px; flex-shrink: 0; }
+    .file-item-remove {
+      background: none; border: none; color: var(--text2);
+      cursor: pointer; font-size: 12px; padding: 0 3px;
+      line-height: 1; transition: color 0.2s; flex-shrink: 0;
+    }
+    .file-item-remove:hover { color: var(--pink); }
+
+    /* ── Prototype Entries ── */
+    .proto-entry {
+      background: rgba(123,47,247,0.04); border: 1px solid var(--border2);
+      border-radius: 12px; padding: 18px; margin-bottom: 14px;
+    }
+    .proto-entry-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .proto-entry-num {
+      font-size: 11px; font-weight: 700; color: #b06bff;
+      font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
+    }
+    .proto-remove {
+      background: none; border: none; color: var(--text2);
+      cursor: pointer; font-size: 16px; line-height: 1;
+      padding: 0; transition: color 0.2s;
+    }
+    .proto-remove:hover { color: var(--pink); }
+
+    .add-proto-btn {
+      width: 100%; background: rgba(123,47,247,0.06);
+      border: 1px dashed rgba(123,47,247,0.28);
+      border-radius: 10px; padding: 13px;
+      color: #b06bff; font-size: 12px; font-weight: 700;
+      cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif;
+    }
+    .add-proto-btn:hover { background: rgba(123,47,247,0.1); border-color: rgba(123,47,247,0.45); }
+
+    /* ── Detail Modal ── */
+    .modal-detail { max-width: 880px; }
+
+    .detail-section { margin-bottom: 28px; }
+    .detail-section-title {
+      font-family: 'Orbitron', sans-serif; font-size: 11px;
+      font-weight: 700; color: var(--cyan); letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .detail-section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .doc-item {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(0,255,136,0.03); border: 1px solid rgba(0,255,136,0.1);
+      border-radius: 10px; padding: 13px 16px; margin-bottom: 8px;
+      gap: 12px;
+    }
+    .doc-item-left { display: flex; align-items: center; gap: 11px; min-width: 0; }
+    .doc-icon { font-size: 22px; flex-shrink: 0; }
+    .doc-name { font-size: 13px; font-weight: 600; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .doc-meta { font-size: 10px; color: var(--text2); margin-top: 2px; }
+    .doc-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+    .proto-item {
+      background: rgba(123,47,247,0.04); border: 1px solid var(--border2);
+      border-radius: 12px; padding: 14px 18px; margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .proto-item-info { flex: 1; min-width: 0; }
+    .proto-item-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .proto-item-meta { font-size: 10px; color: var(--text2); }
+    .proto-item-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+    /* ── Viewer Modal ── */
+    .modal-viewer {
+      max-width: min(95vw, 1200px); width: 100%;
+      height: min(90vh, 820px);
+      display: flex; flex-direction: column;
+    }
+    .viewer-frame {
+      flex: 1; border: none;
+      border-radius: 0 0 22px 22px; background: #fff;
+    }
+
+    /* ── Loading ── */
+    .loading-overlay {
+      position: fixed; inset: 0;
+      background: rgba(4,5,14,0.88);
+      backdrop-filter: blur(10px); z-index: 9000;
+      display: none; flex-direction: column;
+      align-items: center; justify-content: center; gap: 18px;
+    }
+    .loading-overlay.active { display: flex; }
+
+    .spinner {
+      width: 46px; height: 46px;
+      border: 3px solid var(--border);
+      border-top-color: var(--cyan);
+      border-right-color: var(--purple);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-text {
+      font-family: 'Orbitron', sans-serif; font-size: 11px;
+      color: var(--text2); letter-spacing: 2.5px; text-transform: uppercase;
+    }
+    .progress-wrap {
+      width: 280px; height: 3px;
+      background: var(--border); border-radius: 2px; overflow: hidden; display: none;
+    }
+    .progress-fill {
+      height: 100%; background: var(--grad);
+      border-radius: 2px; width: 0%; transition: width 0.35s;
+    }
+    .loading-step { font-size: 11px; color: var(--text2); max-width: 280px; text-align: center; }
+
+    /* ── Toast ── */
+    .toast-wrap {
+      position: fixed; bottom: 24px; right: 24px;
+      z-index: 9999; display: flex; flex-direction: column; gap: 8px;
+    }
+    .toast {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 13px 16px; font-size: 12px;
+      color: var(--text); min-width: 260px; max-width: 360px;
+      display: flex; align-items: center; gap: 9px;
+      animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.8s forwards;
+      backdrop-filter: blur(20px);
+    }
+    .toast.success { border-color: rgba(0,255,136,0.28); }
+    .toast.error   { border-color: rgba(255,45,120,0.3); }
+    .toast.warning { border-color: rgba(255,170,0,0.3); }
+    .toast-icon { font-size: 16px; flex-shrink: 0; }
+    @keyframes slideIn  { from{transform:translateX(110%);opacity:0} to{transform:translateX(0);opacity:1} }
+    @keyframes fadeOut  { to{opacity:0;transform:translateX(8px)} }
+
+    /* ── Config prompt box ── */
+    .config-note {
+      background: rgba(255,170,0,0.05); border: 1px solid rgba(255,170,0,0.2);
+      border-radius: 10px; padding: 13px 16px; font-size: 12px;
+      color: rgba(255,170,0,0.9); line-height: 1.6; margin-top: 16px;
+    }
+
+    /* ── Detail meta tags ── */
+    .detail-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+    .detail-tag {
+      font-size: 10px; padding: 4px 10px; border-radius: 6px; font-weight: 600;
+    }
+    .dt-date  { background:rgba(0,212,255,0.08); color:var(--cyan); border:1px solid var(--border); }
+    .dt-docs  { background:rgba(0,255,136,0.06); color:var(--green); border:1px solid rgba(0,255,136,0.15); }
+    .dt-proto { background:rgba(123,47,247,0.08); color:#b06bff; border:1px solid var(--border2); }
+
+    /* ── Responsive ── */
+    @media(max-width:760px) {
+      .modal-body { padding: 18px; }
+      .modal-header { padding: 18px 18px 16px; }
+      .modal-footer { padding: 14px 18px; }
+      .section-bar { flex-direction: column; align-items: flex-start; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .stat-item { padding: 14px 20px; }
+      .stat-num { font-size: 20px; }
+      header { padding: 60px 16px 44px; }
+      .modal-viewer { height: 80vh; }
+    }
+
+    @media(prefers-reduced-motion:reduce) { *, *::before, *::after { animation:none!important; transition:none!important; } }
+
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<header id="hdr">
-  <div class="wrap nav">
-    <a href="index.html" class="logo"><span class="mark">LA</span> Life Again Foundation</a>
-    <ul class="navlinks" id="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="#pillars">Our Work</a></li>
-      <li><a href="#impact">Impact &amp; Stories</a></li>
-      <li><a href="#involve">Get Involved</a></li>
-    </ul>
-    <div class="nav-cta">
-      <a href="#finalcta" class="btn btn-primary">Donate Now</a>
-      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+<div class="bg-grid"></div>
+<div class="bg-blob bg-blob-1"></div>
+<div class="bg-blob bg-blob-2"></div>
+<div class="bg-blob bg-blob-3"></div>
+
+<button class="settings-btn" onclick="UI.openSettings()" title="GitHub Settings">⚙</button>
+
+<!-- ═══════════════════════ HEADER ═══════════════════════ -->
+<header>
+  <div class="header-badge"><span class="badge-dot"></span>AI POWERED DESIGN HUB</div>
+  <h1 class="main-title">VIBHU SOLUTIONS DESIGNS</h1>
+  <p class="sub-title">Vibhu Solutions UI Prototype Designs for Different Clients</p>
+  <div class="header-stats">
+    <div class="stat-item">
+      <span class="stat-num" id="statProjects">0</span>
+      <span class="stat-lbl">Projects</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" id="statProtos">0</span>
+      <span class="stat-lbl">Prototypes</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" id="statDocs">0</span>
+      <span class="stat-lbl">Documents</span>
     </div>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap hero-grid">
+<!-- ═══════════════════════ MAIN ═══════════════════════ -->
+<main>
+  <div class="section-bar">
     <div>
-      <span class="eyebrow">Cancer awareness &amp; support · India</span>
-      <h1 style="margin-top:1rem">Life Again Foundation — Standing With India's <span class="hl">Cancer Warriors</span></h1>
-      <p class="lead">Founded by cancer survivor and acclaimed actor Gautami Tadimalla, Life Again Foundation works to reduce the social and economic impact of cancer across India. Through awareness, early detection, and compassionate support, we walk alongside patients and their families — because no one should ever have to face cancer alone.</p>
-      <div class="hero-actions">
-        <a href="donate.html" class="btn btn-primary">Donate Now →</a>
-        <a href="get-involved.html" class="btn btn-outline">Become an LA Warrior</a>
+      <h2 class="section-title">Client Projects</h2>
+      <p class="section-sub">Explore UI prototypes and project documentation stored on GitHub</p>
+    </div>
+    <button class="btn-primary" onclick="UI.openAddProject()">
+      <span style="font-size:17px;line-height:1">+</span> Add Project
+    </button>
+  </div>
+
+  <div class="projects-grid" id="projectsGrid"></div>
+
+  <div class="empty-state" id="emptyState" style="display:none">
+    <span class="empty-icon">◈</span>
+    <h3>No Projects Yet</h3>
+    <p>Configure GitHub settings then add your first UI prototype project</p>
+    <button class="btn-primary" onclick="UI.openAddProject()">+ Add First Project</button>
+  </div>
+</main>
+
+<!-- ═══════════════════════ LOADING ═══════════════════════ -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <p class="loading-text" id="loadingText">LOADING</p>
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <p class="loading-step" id="loadingStep"></p>
+</div>
+
+<!-- ═══════════════════════ TOASTS ═══════════════════════ -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- ═══════════════════════ SETTINGS MODAL ═══════════════════════ -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">⚙ GitHub Configuration</span>
+      <button class="modal-close" onclick="UI.closeModal('settingsModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:18px">
+        Configure your public GitHub repository. All projects, documents, and UI prototype files
+        will be stored directly in your repo and served via GitHub Pages.
+      </p>
+      <div class="form-group">
+        <label class="form-label">GitHub Username / Owner</label>
+        <input class="form-input" id="cfg_owner" placeholder="e.g. Saikishoreg040996">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Repository Name</label>
+        <input class="form-input" id="cfg_repo" placeholder="e.g. Vibhu_UI_Prototype_Designs">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Default Branch</label>
+        <input class="form-input" id="cfg_branch" placeholder="main">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Personal Access Token</label>
+        <input class="form-input" id="cfg_token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+        <p class="form-hint">
+          Generate at: GitHub → Settings → Developer settings → Personal access tokens (Classic).<br>
+          Required scopes: <strong style="color:var(--cyan)">repo</strong> (full control of private repositories) or <strong style="color:var(--cyan)">public_repo</strong> for public repos.
+        </p>
+      </div>
+      <div class="config-note">
+        ⚠ Your token is stored only in this browser's localStorage and is sent exclusively to the GitHub API. It is never stored anywhere else.
       </div>
     </div>
-    <div class="hero-visual">
-      <span class="ph">[ Hero image — founder / camp photo ]</span>
-      <div class="floatcard fc1"><span class="dot">🎗️</span> 360+ camps conducted</div>
-      <div class="floatcard fc2"><span class="dot">❤️</span> Life begins again</div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="UI.closeModal('settingsModal')">Cancel</button>
+      <button class="btn-primary" onclick="Config.save()">Save &amp; Connect</button>
     </div>
   </div>
-</section>
+</div>
 
-<!-- FOUNDER -->
-<section class="founder" id="founder">
-  <div class="wrap founder-grid">
-    <div class="founder-photo">[ Founder portrait — Dr. Gautami Tadimalla ]</div>
-    <div>
-      <span class="eyebrow">From survivor to changemaker</span>
-      <h2>A journey that became a movement</h2>
-      <p>In 2004, at the height of her film career, Gautami Tadimalla was diagnosed with breast cancer. What followed was a journey of fear, resilience, and ultimately, transformation. She discovered firsthand how isolating a cancer diagnosis can be — and how profoundly a community of support can change the experience.</p>
-      <p>Life Again Foundation was born from that conviction: that life does not end with a diagnosis, it begins again. Today, the Foundation carries that belief to thousands of people across India — patients, survivors, families, and entire communities — offering not just medical awareness, but hope, dignity, and the courage to start over.</p>
-      <a href="about.html" class="textlink">Read Gautami's Story →</a>
+<!-- ═══════════════════════ ADD PROJECT MODAL ═══════════════════════ -->
+<div class="modal-overlay" id="addProjectModal">
+  <div class="modal" style="max-width:700px">
+    <div class="modal-header">
+      <span class="modal-title">◈ Add New Project</span>
+      <button class="modal-close" onclick="UI.closeModal('addProjectModal')">✕</button>
     </div>
-  </div>
-</section>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Project Name *</label>
+        <input class="form-input" id="proj_name" placeholder="e.g. Client Dashboard Redesign">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Project Description *</label>
+        <textarea class="form-textarea" id="proj_desc" style="min-height:110px"
+          placeholder="Describe the project, client name, objectives, scope of work..."></textarea>
+      </div>
 
-<!-- PILLARS -->
-<section class="pillars" id="pillars">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">What we do</span>
-      <h2>How we help communities live again</h2>
-      <p style="color:var(--slate);margin-top:1rem">Our work rests on three pillars — health, education, and agriculture — chosen to address the most pressing needs of the communities we serve.</p>
-    </div>
-    <div class="pillar-grid">
-      <div class="pillar">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></div>
-        <h3>Health</h3>
-        <p>We conduct free cancer screening and detection camps, awareness drives, and patient support programs across India. Early detection saves lives, and our mission is to make it accessible to every section of society — especially those who need it most. From motivational camps for cancer patients to wellness and preventive healthcare initiatives, we focus on the whole person, not just the diagnosis.</p>
-      </div>
-      <div class="pillar">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-        <h3>Education</h3>
-        <p>We believe financial hardship should never end a child's learning. The Foundation sponsors underprivileged students for higher education and runs supplementary education and vocational training centres, helping young people build the skills and confidence to shape their own futures.</p>
-      </div>
-      <div class="pillar">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9Z"/><path d="M12 22c0-4.97-4.03-9-9-9 0 4.97 4.03 9 9 9Z"/><path d="M12 22V8"/></svg></div>
-        <h3>Agriculture</h3>
-        <p>We support rural and farming communities through sustainable livelihood and welfare initiatives, strengthening the foundations of the communities that feed the nation.</p>
-      </div>
-    </div>
-    <div class="center-cta"><a href="our-work.html" class="btn btn-outline">Explore Our Work →</a></div>
-  </div>
-</section>
-
-<!-- IMPACT -->
-<section class="impact" id="impact">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Our impact so far</span>
-      <h2>Behind every number, a life</h2>
-    </div>
-    <div class="stat-grid">
-      <div class="stat"><div class="num" data-target="360" data-suffix="+">0</div><div class="lbl">Awareness camps &amp; screening drives conducted</div></div>
-      <div class="stat"><div class="num" data-target="25000" data-suffix="+">0</div><div class="lbl">People reached through cancer awareness initiatives</div></div>
-      <div class="stat"><div class="num" data-target="5000" data-suffix="+">0</div><div class="lbl">Patients screened for early detection</div></div>
-      <div class="stat"><div class="num" data-target="500" data-suffix="+">0</div><div class="lbl">Students supported through education</div></div>
-      <div class="stat"><div class="num" data-target="15" data-suffix="+">0</div><div class="lbl">Years of service to communities across India</div></div>
-    </div>
-    <p style="text-align:center;color:#cfcdc4;max-width:42rem;margin:38px auto 0">Behind every number is a person who found support when they needed it most — and a community that learned cancer is not the end of the story.</p>
-    <p class="footnote">[ All figures are placeholders — to be confirmed with verified data ]</p>
-  </div>
-</section>
-
-<!-- TRUST -->
-<section class="trust">
-  <div class="wrap">
-    <span class="eyebrow">Your support, in trusted hands</span>
-    <h2 style="font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;margin-top:.7rem">Your Support, In Trusted Hands</h2>
-    <p>Life Again Foundation is a registered charitable trust. Donations made to the Foundation are eligible for tax exemption under Section 80G of the Income Tax Act.</p>
-    <p style="margin-top:-.6rem">We are committed to complete transparency in how every contribution is received and used. Our founder's work has been recognised on national and global platforms, including the Union for International Cancer Control (UICC) and World Cancer Day — a reflection of the credibility and care that guide everything we do.</p>
-    <div class="badges">
-      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 80G Registered</span>
-      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 12A Registered</span>
-      <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5z"/></svg> Trusted by donors across India</span>
-    </div>
-  </div>
-</section>
-
-<!-- GET INVOLVED -->
-<section class="involve" id="involve">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Be part of the movement</span>
-      <h2>Be Part of the Movement</h2>
-      <p style="color:var(--slate);margin-top:1rem">Change happens when people come together. There are many ways to join the Life Again family — choose the one that's right for you.</p>
-    </div>
-    <div class="involve-grid">
-      <div class="ic-card">
-        <h3>Donate</h3>
-        <p>Your contribution funds free screening camps, patient support, and education for those who need it most. Every rupee makes a difference.</p>
-        <a href="donate.html" class="btn btn-primary">Donate →</a>
-      </div>
-      <div class="ic-card">
-        <h3>Volunteer as an LA Warrior</h3>
-        <p>Join our nationwide community of volunteers who drive change on the ground — coordinating events, running camps, and spreading awareness in their own cities and beyond.</p>
-        <a href="get-involved.html" class="btn btn-outline">Join In →</a>
-      </div>
-      <div class="ic-card">
-        <h3>Partner With Us</h3>
-        <p>Corporates and institutions can create lasting, measurable social impact through CSR partnerships and cause collaborations with the Foundation.</p>
-        <a href="get-involved.html" class="btn btn-outline">Partner →</a>
-      </div>
-    </div>
-    <div class="center-cta"><a href="get-involved.html" class="btn btn-outline">Get Involved →</a></div>
-  </div>
-</section>
-
-<!-- STORIES -->
-<section class="stories">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Voices of hope</span>
-      <h2>Voices of Hope</h2>
-    </div>
-    <div class="quote-grid">
-      <div class="quote">
-        <div class="mark">&ldquo;</div>
-        <p>Life Again Foundation gave me more than treatment — it gave me the belief that I could live fully again.</p>
-        <div class="who">— [ Beneficiary name, location ]</div>
-      </div>
-      <div class="quote">
-        <div class="mark">&ldquo;</div>
-        <p>The awareness camp in our community helped detect my mother's illness early. We will always be grateful.</p>
-        <div class="who">— [ Beneficiary name, location ]</div>
-      </div>
-    </div>
-    <div class="center-cta"><a href="impact.html" class="textlink">Read More Stories →</a></div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="finalcta" id="finalcta">
-  <div class="wrap">
-    <h2>Together, We Can Help More People Find Life Again</h2>
-    <p style="max-width:36rem;margin:-1rem auto 2rem;color:#5a4300;font-size:1.08rem">Whether you give, volunteer, or simply spread the word — you become part of a movement that turns difficult diagnoses into new beginnings. Join us today.</p>
-    <a href="donate.html" class="btn btn-light">Donate Now →</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-contact">
-        <a href="index.html" class="logo"><span class="mark">LA</span> Life Again Foundation</a>
-        <p>32/33, 6th Street, Sri Venkateswara Nagar, Kottivakkam, Chennai – 600041</p>
-        <p>📞 +91 8939070809</p>
-        <p>✉️ info@lifeagainfoundation.org</p>
-        <div class="socials">
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
-          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
-          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 8a3 3 0 0 0-2-2c-2-.5-8-.5-8-.5s-6 0-8 .5a3 3 0 0 0-2 2 31 31 0 0 0 0 8 3 3 0 0 0 2 2c2 .5 8 .5 8 .5s6 0 8-.5a3 3 0 0 0 2-2 31 31 0 0 0 0-8z"/><path d="m10 15 5-3-5-3z"/></svg></a>
+      <div class="form-group">
+        <label class="form-label">Project Documents (PDF / DOC)</label>
+        <div class="upload-zone" id="docZone">
+          <input type="file" id="docInput" accept=".pdf,.doc,.docx" multiple
+                 onchange="FH.onDocFiles(this.files)">
+          <span class="upload-icon">📄</span>
+          <div class="upload-text">Drop files or <strong>click to browse</strong></div>
+          <div class="upload-hint">PDF, DOC, DOCX — multiple files supported</div>
         </div>
+        <div class="file-list" id="docFileList"></div>
       </div>
-      <div>
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="#pillars">Our Work</a></li>
-          <li><a href="#impact">Impact &amp; Stories</a></li>
-          <li><a href="#involve">Get Involved</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Support</h4>
-        <ul>
-          <li><a href="#finalcta">Donate</a></li>
-          <li><a href="#involve">Volunteer</a></li>
-          <li><a href="#involve">CSR Partnership</a></li>
-          <li><a href="donate.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Stay connected</h4>
-        <p style="font-size:.92rem">Updates, stories, and upcoming camps.</p>
-        <div class="news">
-          <input type="email" placeholder="Your email" aria-label="Email">
-          <button class="btn btn-primary" style="padding:.7rem 1.2rem">Subscribe</button>
-        </div>
+
+      <div class="form-group">
+        <label class="form-label">UI Prototypes</label>
+        <div id="protoEntries"></div>
+        <button type="button" class="add-proto-btn" onclick="FH.addProtoEntry()">
+          + Add UI Prototype
+        </button>
       </div>
     </div>
-    <div class="foot-bottom">
-      © 2026 Life Again Foundation. Registered charitable trust. Donations eligible for 80G tax exemption. · [ Registration details to be confirmed ]
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="UI.closeModal('addProjectModal')">Cancel</button>
+      <button class="btn-primary" onclick="Projects.save()">
+        ↑ Upload &amp; Save
+      </button>
     </div>
   </div>
-</footer>
+</div>
+
+<!-- ═══════════════════════ DETAIL MODAL ═══════════════════════ -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal modal-detail">
+    <div class="modal-header">
+      <span class="modal-title" id="detailTitle">Project Details</span>
+      <button class="modal-close" onclick="UI.closeModal('detailModal')">✕</button>
+    </div>
+    <div class="modal-body" id="detailBody"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ VIEWER MODAL ═══════════════════════ -->
+<div class="modal-overlay" id="viewerModal">
+  <div class="modal modal-viewer">
+    <div class="modal-header">
+      <span class="modal-title" id="viewerTitle">Viewer</span>
+      <div style="display:flex;gap:8px">
+        <button class="btn-secondary" id="viewerNewTabBtn" onclick="UI.viewerNewTab()">↗ New Tab</button>
+        <button class="modal-close" onclick="UI.closeViewer()">✕</button>
+      </div>
+    </div>
+    <iframe class="viewer-frame" id="viewerFrame"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+  </div>
+</div>
 
 <script>
-  // Navbar shadow on scroll
-  const hdr=document.getElementById('hdr');
-  addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>10));
-  // Mobile menu
-  document.getElementById('burger').onclick=()=>document.getElementById('menu').classList.toggle('open');
-  document.querySelectorAll('#menu a').forEach(a=>a.onclick=()=>document.getElementById('menu').classList.remove('open'));
-  // Animated counters
-  const fmt=n=>n>=1000?Math.floor(n/1000)+(n%1000?'.'+Math.round((n%1000)/100):'')+'K':n;
-  const animate=el=>{
-    const target=+el.dataset.target,suf=el.dataset.suffix||'',dur=1400,t0=performance.now();
-    const step=t=>{const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3),val=Math.floor(e*target);
-      el.textContent=(target>=1000?fmt(val):val)+suf;
-      if(p<1)requestAnimationFrame(step);else el.textContent=(target>=1000?fmt(target):target)+suf;};
-    requestAnimationFrame(step);
-  };
-  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}}),{threshold:.5});
-  document.querySelectorAll('.num').forEach(n=>io.observe(n));
+// ════════════════════════════════════════════════════════════════
+// CONFIG
+// ════════════════════════════════════════════════════════════════
+const Config = {
+  keys: { owner:'vsd_owner', repo:'vsd_repo', branch:'vsd_branch', token:'vsd_token' },
 
-  // Scroll-reveal
-  const rv=document.querySelectorAll('.pillar,.prog,.ic-card,.quote,.story,.val,.mv-card,.media-card,.info-card,.stat,.way-grid,.donate-card,.form-card,.reach-item');
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-    rv.forEach(el=>el.classList.add('reveal'));
-    const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}}),{threshold:.12});
-    rv.forEach(el=>rio.observe(el));
+  get() {
+    return {
+      owner:  localStorage.getItem(this.keys.owner)  || '',
+      repo:   localStorage.getItem(this.keys.repo)   || '',
+      branch: localStorage.getItem(this.keys.branch) || 'main',
+      token:  localStorage.getItem(this.keys.token)  || ''
+    };
+  },
+
+  isReady() {
+    const c = this.get();
+    return !!(c.owner && c.repo && c.token);
+  },
+
+  save() {
+    const owner  = document.getElementById('cfg_owner').value.trim();
+    const repo   = document.getElementById('cfg_repo').value.trim();
+    const branch = document.getElementById('cfg_branch').value.trim() || 'main';
+    const token  = document.getElementById('cfg_token').value.trim();
+
+    if (!owner || !repo || !token) { UI.toast('Owner, repository and token are required', 'error'); return; }
+
+    localStorage.setItem(this.keys.owner,  owner);
+    localStorage.setItem(this.keys.repo,   repo);
+    localStorage.setItem(this.keys.branch, branch);
+    localStorage.setItem(this.keys.token,  token);
+
+    UI.closeModal('settingsModal');
+    UI.toast('GitHub configured! Loading projects…', 'success');
+    App.loadProjects();
+  },
+
+  populate() {
+    const c = this.get();
+    document.getElementById('cfg_owner').value  = c.owner;
+    document.getElementById('cfg_repo').value   = c.repo;
+    document.getElementById('cfg_branch').value = c.branch;
+    document.getElementById('cfg_token').value  = c.token;
   }
+};
+
+// ════════════════════════════════════════════════════════════════
+// GITHUB API
+// ════════════════════════════════════════════════════════════════
+const GH = {
+  BASE: 'https://api.github.com',
+
+  async req(endpoint, method = 'GET', body = null) {
+    const { owner, repo, token } = Config.get();
+    const headers = {
+      'Accept':        'application/vnd.github.v3+json',
+      'Content-Type':  'application/json',
+      'Authorization': `Bearer ${token}`
+    };
+    const url  = `${this.BASE}/repos/${owner}/${repo}${endpoint}`;
+    const opts = { method, headers };
+    if (body) opts.body = JSON.stringify(body);
+
+    const res = await fetch(url, opts);
+    if (res.status === 404) return null;
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || `GitHub API ${res.status}`);
+    }
+    if (res.status === 204) return null;
+    return res.json();
+  },
+
+  async sha(path) {
+    const { branch } = Config.get();
+    const r = await this.req(`/contents/${path}?ref=${branch}`);
+    return r?.sha || null;
+  },
+
+  async put(filePath, b64, message) {
+    const { branch } = Config.get();
+    const sha  = await this.sha(filePath);
+    const body = { message, content: b64, branch };
+    if (sha) body.sha = sha;
+    return this.req(`/contents/${filePath}`, 'PUT', body);
+  },
+
+  async putText(filePath, text, message) {
+    const b64 = btoa(unescape(encodeURIComponent(text)));
+    return this.put(filePath, b64, message);
+  },
+
+  async readJson(filePath) {
+    const { branch } = Config.get();
+    const r = await this.req(`/contents/${filePath}?ref=${branch}`);
+    if (!r) return null;
+    const text = decodeURIComponent(escape(atob(r.content.replace(/\n/g,''))));
+    return JSON.parse(text);
+  },
+
+  rawUrl(path) {
+    const { owner, repo, branch } = Config.get();
+    return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
+  },
+
+  pagesUrl(path) {
+    const { owner, repo } = Config.get();
+    return `https://${owner}.github.io/${repo}/${path}`;
+  }
+};
+
+// ════════════════════════════════════════════════════════════════
+// FILE HANDLERS
+// ════════════════════════════════════════════════════════════════
+const FH = {
+  docFiles: [],
+  protoSeq: 0,
+
+  // ── Documents ──
+  onDocFiles(files) {
+    this.docFiles = Array.from(files);
+    this._renderDocs();
+  },
+
+  _renderDocs() {
+    document.getElementById('docFileList').innerHTML =
+      this.docFiles.map((f, i) => `
+        <div class="file-item">
+          <span class="file-item-name">${this._icon(f.name)} ${this._esc(f.name)}</span>
+          <span class="file-item-size">${this._size(f.size)}</span>
+          <button class="file-item-remove" onclick="FH.removeDoc(${i})">✕</button>
+        </div>`).join('');
+  },
+
+  removeDoc(i) {
+    this.docFiles.splice(i, 1);
+    this._renderDocs();
+  },
+
+  // ── Prototypes ──
+  addProtoEntry() {
+    this.protoSeq++;
+    const id  = `pe${this.protoSeq}`;
+    const div = document.createElement('div');
+    div.className = 'proto-entry'; div.id = id;
+    div.innerHTML = `
+      <div class="proto-entry-head">
+        <span class="proto-entry-num">◈ PROTOTYPE ${this.protoSeq}</span>
+        <button class="proto-remove" onclick="FH.removeProto('${id}')">✕</button>
+      </div>
+      <div class="form-group" style="margin-bottom:12px">
+        <input class="form-input" id="${id}_name" placeholder="Prototype name (e.g. Dashboard UI, Login Flow)">
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <div class="upload-zone" style="padding:20px">
+          <input type="file" id="${id}_input"
+                 accept=".html,.htm,.css,.js,.mjs,.json,.png,.jpg,.jpeg,.svg,.ico,.woff,.woff2,.ttf,.eot,.gif,.webp,.map"
+                 multiple onchange="FH.onProtoFiles('${id}', this.files)">
+          <span class="upload-icon" style="font-size:24px;margin-bottom:6px">💻</span>
+          <div class="upload-text">Drop prototype files or <strong>click to browse</strong></div>
+          <div class="upload-hint">HTML · CSS · JS · Images — select ALL files for this prototype</div>
+        </div>
+        <div class="file-list" id="${id}_list"></div>
+      </div>`;
+    document.getElementById('protoEntries').appendChild(div);
+    window[`${id}_data`] = [];
+  },
+
+  onProtoFiles(id, files) {
+    window[`${id}_data`] = Array.from(files);
+    this._renderProtoList(id);
+  },
+
+  _renderProtoList(id) {
+    const files = window[`${id}_data`] || [];
+    const list  = document.getElementById(`${id}_list`);
+    if (!list) return;
+    list.innerHTML = files.map((f, i) => `
+      <div class="file-item">
+        <span class="file-item-name">${this._icon(f.name)} ${this._esc(f.name)}</span>
+        <span class="file-item-size">${this._size(f.size)}</span>
+        <button class="file-item-remove" onclick="FH.removeProtoFile('${id}',${i})">✕</button>
+      </div>`).join('');
+  },
+
+  removeProtoFile(id, i) {
+    window[`${id}_data`].splice(i, 1);
+    this._renderProtoList(id);
+  },
+
+  removeProto(id) {
+    document.getElementById(id)?.remove();
+    delete window[`${id}_data`];
+  },
+
+  collectProtos() {
+    return Array.from(document.querySelectorAll('.proto-entry')).map(el => ({
+      id:    el.id,
+      name:  (document.getElementById(`${el.id}_name`)?.value?.trim()) || `Prototype ${el.id}`,
+      files: window[`${el.id}_data`] || []
+    })).filter(p => p.name || p.files.length);
+  },
+
+  reset() {
+    this.docFiles = []; this.protoSeq = 0;
+    ['proj_name','proj_desc'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+    document.getElementById('docFileList').innerHTML   = '';
+    document.getElementById('protoEntries').innerHTML  = '';
+    const inp = document.getElementById('docInput'); if(inp) inp.value='';
+  },
+
+  async toBase64(file) {
+    return new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload  = () => res(r.result.split(',')[1]);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
+  },
+
+  _icon(name) {
+    const ext = (name.split('.').pop() || '').toLowerCase();
+    return { html:'🌐', htm:'🌐', css:'🎨', js:'⚡', mjs:'⚡', png:'🖼', jpg:'🖼', jpeg:'🖼', svg:'🎭', pdf:'📄', json:'📋', ico:'🔵', woff:'🔤', woff2:'🔤', ttf:'🔤' }[ext] || '📁';
+  },
+
+  _size(b) {
+    if (b < 1024) return `${b} B`;
+    if (b < 1048576) return `${(b/1024).toFixed(1)} KB`;
+    return `${(b/1048576).toFixed(1)} MB`;
+  },
+
+  _esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+};
+
+// ════════════════════════════════════════════════════════════════
+// PROJECTS
+// ════════════════════════════════════════════════════════════════
+let _projects = [];
+
+const Projects = {
+  INDEX: 'data/projects.json',
+
+  slug(text) {
+    return text.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').substring(0,48);
+  },
+
+  async load() {
+    const data = await GH.readJson(this.INDEX).catch(() => null);
+    _projects  = data?.projects || [];
+    return _projects;
+  },
+
+  async _writeIndex() {
+    await GH.putText(this.INDEX, JSON.stringify({ projects: _projects }, null, 2), 'chore: update projects index');
+  },
+
+  async save() {
+    const name = document.getElementById('proj_name').value.trim();
+    const desc = document.getElementById('proj_desc').value.trim();
+
+    if (!name || !desc) { UI.toast('Project name and description are required', 'error'); return; }
+    if (!Config.isReady()) { UI.toast('Configure GitHub settings first', 'warning'); UI.openSettings(); return; }
+
+    const protos = FH.collectProtos();
+    const id     = this.slug(name) + '-' + Date.now().toString(36);
+
+    const docCount   = FH.docFiles.length;
+    const protoFiles = protos.reduce((s, p) => s + p.files.length, 0);
+    const total      = docCount + protoFiles + 1;
+    let   done       = 0;
+
+    UI.showLoading('Uploading to GitHub…');
+
+    try {
+      const meta = {
+        id, name, description: desc,
+        shortDesc: desc.length > 148 ? desc.substring(0,148)+'…' : desc,
+        createdAt: new Date().toISOString(),
+        docs: [], prototypes: []
+      };
+
+      // Upload documents
+      if (docCount) {
+        UI.setStep('Uploading documents…');
+        for (const file of FH.docFiles) {
+          const b64 = await FH.toBase64(file);
+          const fp  = `projects/${id}/docs/${file.name}`;
+          await GH.put(fp, b64, `docs: add ${file.name}`);
+          meta.docs.push({ name: file.name, path: fp, type: file.type || 'application/octet-stream' });
+          UI.setProgress(Math.round((++done / total) * 100));
+        }
+      }
+
+      // Upload prototype files
+      for (const proto of protos) {
+        const pslug = this.slug(proto.name) || `prototype-${Date.now().toString(36)}`;
+        UI.setStep(`Uploading "${proto.name}"…`);
+
+        const hasIndex = proto.files.some(f => f.name.toLowerCase() === 'index.html');
+        const entry    = hasIndex ? 'index.html'
+          : (proto.files.find(f => /\.html?$/i.test(f.name))?.name || (proto.files[0]?.name || 'index.html'));
+
+        const pData = { name: proto.name, slug: pslug, entryFile: entry, files: [] };
+
+        for (const file of proto.files) {
+          const b64 = await FH.toBase64(file);
+          const fp  = `projects/${id}/prototypes/${pslug}/${file.name}`;
+          await GH.put(fp, b64, `prototype: add ${file.name}`);
+          pData.files.push({ name: file.name, path: fp });
+          UI.setProgress(Math.round((++done / total) * 100));
+        }
+
+        meta.prototypes.push(pData);
+      }
+
+      // Write index
+      UI.setStep('Saving project index…');
+      _projects.unshift(meta);
+      await this._writeIndex();
+      UI.setProgress(100);
+
+      UI.hideLoading();
+      UI.closeModal('addProjectModal');
+      FH.reset();
+      UI.toast(`Project "${name}" uploaded successfully!`, 'success');
+      Render.all();
+
+    } catch (err) {
+      UI.hideLoading();
+      console.error(err);
+      UI.toast(`Upload failed: ${err.message}`, 'error');
+    }
+  }
+};
+
+// ════════════════════════════════════════════════════════════════
+// RENDER
+// ════════════════════════════════════════════════════════════════
+const Render = {
+  all() {
+    const grid  = document.getElementById('projectsGrid');
+    const empty = document.getElementById('emptyState');
+
+    if (!_projects.length) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+    } else {
+      empty.style.display = 'none';
+      grid.innerHTML = _projects.map(p => this.card(p)).join('');
+    }
+
+    document.getElementById('statProjects').textContent = _projects.length;
+    document.getElementById('statProtos').textContent   = _projects.reduce((s,p)=>s+(p.prototypes?.length||0),0);
+    document.getElementById('statDocs').textContent     = _projects.reduce((s,p)=>s+(p.docs?.length||0),0);
+  },
+
+  card(p) {
+    const d   = new Date(p.createdAt);
+    const dt  = isNaN(d) ? '' : d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
+    const docs = p.docs?.length     ? `<span class="cbadge cbadge-doc">📄 ${p.docs.length}</span>` : '';
+    const pts  = p.prototypes?.length ? `<span class="cbadge cbadge-proto">💻 ${p.prototypes.length}</span>` : '';
+    return `
+      <div class="project-card">
+        <div class="card-top">
+          <span class="card-tag">◈ Project</span>
+          <span class="card-date">${this._esc(dt)}</span>
+        </div>
+        <div class="card-title">${this._esc(p.name)}</div>
+        <div class="card-desc">${this._esc(p.shortDesc || p.description)}</div>
+        <div class="card-footer">
+          <div class="card-badges">${docs}${pts}</div>
+          <button class="read-more" onclick="UI.openDetail('${this._esc(p.id)}')">Read More →</button>
+        </div>
+      </div>`;
+  },
+
+  _esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+};
+
+// ════════════════════════════════════════════════════════════════
+// UI
+// ════════════════════════════════════════════════════════════════
+const UI = {
+  openModal(id) {
+    document.getElementById(id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+  },
+
+  closeModal(id) {
+    document.getElementById(id).classList.remove('active');
+    document.body.style.overflow = '';
+  },
+
+  openSettings() {
+    Config.populate();
+    this.openModal('settingsModal');
+  },
+
+  openAddProject() {
+    if (!Config.isReady()) {
+      this.toast('Configure GitHub settings first', 'warning');
+      this.openSettings();
+      return;
+    }
+    FH.reset();
+    this.openModal('addProjectModal');
+  },
+
+  openDetail(projectId) {
+    const p = _projects.find(x => x.id === projectId);
+    if (!p) return;
+
+    document.getElementById('detailTitle').textContent = p.name;
+    document.getElementById('detailBody').innerHTML = this._buildDetail(p);
+    this.openModal('detailModal');
+  },
+
+  _buildDetail(p) {
+    const dt = new Date(p.createdAt);
+    const ds = isNaN(dt) ? '' : dt.toLocaleString();
+
+    const docRows = (p.docs || []).length
+      ? (p.docs || []).map(d => `
+          <div class="doc-item">
+            <div class="doc-item-left">
+              <span class="doc-icon">${this._docIcon(d.name)}</span>
+              <div>
+                <div class="doc-name">${this._esc(d.name)}</div>
+                <div class="doc-meta">${d.type || 'Document'}</div>
+              </div>
+            </div>
+            <div class="doc-actions">
+              <button class="btn-secondary" onclick="UI.viewDoc('${this._esc(d.path)}','${this._esc(d.name)}')">👁 View</button>
+              <a class="btn-ghost" href="${GH.rawUrl(d.path)}" download="${this._esc(d.name)}" target="_blank">↓ Download</a>
+            </div>
+          </div>`).join('')
+      : '<p style="font-size:12px;color:var(--text2)">No documents uploaded for this project.</p>';
+
+    const protoRows = (p.prototypes || []).length
+      ? (p.prototypes || []).map(pt => `
+          <div class="proto-item">
+            <div class="proto-item-info">
+              <div class="proto-item-name">💻 ${this._esc(pt.name)}</div>
+              <div class="proto-item-meta">${pt.files?.length||0} file(s) · Entry: ${this._esc(pt.entryFile)}</div>
+            </div>
+            <div class="proto-item-actions">
+              <button class="btn-primary" style="padding:8px 16px;font-size:11px"
+                      onclick="UI.viewProto('${this._esc(p.id)}','${this._esc(pt.slug)}','${this._esc(pt.name)}','${this._esc(pt.entryFile)}')">
+                ▶ View Design
+              </button>
+            </div>
+          </div>`).join('')
+      : '<p style="font-size:12px;color:var(--text2)">No prototypes uploaded for this project.</p>';
+
+    return `
+      <div class="detail-tags">
+        <span class="detail-tag dt-date">Created: ${this._esc(ds)}</span>
+        <span class="detail-tag dt-docs">${(p.docs||[]).length} Document(s)</span>
+        <span class="detail-tag dt-proto">${(p.prototypes||[]).length} Prototype(s)</span>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Description</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.75">${this._esc(p.description)}</p>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">Documents</div>
+        ${docRows}
+      </div>
+      <div class="detail-section" style="margin-bottom:0">
+        <div class="detail-section-title">UI Prototypes</div>
+        ${protoRows}
+      </div>`;
+  },
+
+  async viewDoc(filePath, name) {
+    this.showLoading('Loading document…');
+    try {
+      const { token } = Config.get();
+      const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
+      const res  = await fetch(GH.rawUrl(filePath), { headers });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const blob = await res.blob();
+      const url  = URL.createObjectURL(blob);
+
+      this.hideLoading();
+      document.getElementById('viewerTitle').textContent = `📄 ${name}`;
+      document.getElementById('viewerFrame').src = url;
+      document.getElementById('viewerNewTabBtn').dataset.url = url;
+      this.openModal('viewerModal');
+    } catch (err) {
+      this.hideLoading();
+      this.toast(`Failed to load document: ${err.message}`, 'error');
+    }
+  },
+
+  viewProto(projId, protoSlug, protoName, entryFile) {
+    const url = GH.pagesUrl(`projects/${projId}/prototypes/${protoSlug}/${entryFile}`);
+    document.getElementById('viewerTitle').textContent = `💻 ${protoName}`;
+    document.getElementById('viewerFrame').src = url;
+    document.getElementById('viewerNewTabBtn').dataset.url = url;
+    this.openModal('viewerModal');
+  },
+
+  closeViewer() {
+    const frame = document.getElementById('viewerFrame');
+    frame.src = 'about:blank';
+    this.closeModal('viewerModal');
+  },
+
+  viewerNewTab() {
+    const url = document.getElementById('viewerNewTabBtn').dataset.url;
+    if (url) window.open(url, '_blank');
+  },
+
+  showLoading(text) {
+    document.getElementById('loadingText').textContent = text || 'LOADING';
+    document.getElementById('loadingOverlay').classList.add('active');
+  },
+
+  setStep(text) { document.getElementById('loadingStep').textContent = text; },
+
+  setProgress(pct) {
+    const w = document.getElementById('progressWrap');
+    w.style.display = 'block';
+    document.getElementById('progressFill').style.width = pct + '%';
+  },
+
+  hideLoading() {
+    document.getElementById('loadingOverlay').classList.remove('active');
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('progressFill').style.width   = '0%';
+    document.getElementById('loadingStep').textContent    = '';
+  },
+
+  toast(msg, type = 'info') {
+    const icons = { success:'✓', error:'✕', warning:'⚠', info:'ℹ' };
+    const el    = document.createElement('div');
+    el.className = `toast ${type}`;
+    el.innerHTML = `<span class="toast-icon">${icons[type]||'ℹ'}</span><span>${msg}</span>`;
+    document.getElementById('toastWrap').appendChild(el);
+    setTimeout(() => el.remove(), 3200);
+  },
+
+  _docIcon(name) {
+    const ext = (name.split('.').pop()||'').toLowerCase();
+    return { pdf:'📄', doc:'📝', docx:'📝' }[ext] || '📁';
+  },
+
+  _esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+};
+
+// ════════════════════════════════════════════════════════════════
+// APP INIT
+// ════════════════════════════════════════════════════════════════
+const App = {
+  async loadProjects() {
+    if (!Config.isReady()) {
+      Render.all();
+      return;
+    }
+    UI.showLoading('Loading projects from GitHub…');
+    try {
+      await Projects.load();
+      Render.all();
+    } catch (err) {
+      console.error(err);
+      UI.toast(`Could not load projects: ${err.message}`, 'error');
+      Render.all();
+    } finally {
+      UI.hideLoading();
+    }
+  },
+
+  init() {
+    // Close modals on backdrop click
+    document.querySelectorAll('.modal-overlay').forEach(el => {
+      el.addEventListener('click', e => {
+        if (e.target === el) {
+          if (el.id === 'viewerModal') { UI.closeViewer(); }
+          else { el.classList.remove('active'); document.body.style.overflow=''; }
+        }
+      });
+    });
+
+    // Drag & drop for doc zone
+    const dz = document.getElementById('docZone');
+    if (dz) {
+      dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+      dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+      dz.addEventListener('drop', e => {
+        e.preventDefault(); dz.classList.remove('drag-over');
+        FH.onDocFiles(e.dataTransfer.files);
+      });
+    }
+
+    // Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key !== 'Escape') return;
+      const active = document.querySelector('.modal-overlay.active');
+      if (!active) return;
+      if (active.id === 'viewerModal') UI.closeViewer();
+      else { active.classList.remove('active'); document.body.style.overflow=''; }
+    });
+
+    if (!Config.isReady()) {
+      setTimeout(() => UI.toast('⚡ Click ⚙ to configure your GitHub repository', 'warning'), 600);
+    }
+
+    this.loadProjects();
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => App.init());
 </script>
 </body>
 </html>
