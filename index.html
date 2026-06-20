@@ -70,19 +70,25 @@
       top: 50%; left: 50%; transform: translate(-50%,-50%);
     }
 
-    /* ── Settings Btn ── */
-    .settings-btn {
-      position: fixed; top: 20px; right: 20px; z-index: 200;
-      background: rgba(0,212,255,0.08);
-      border: 1px solid var(--border);
-      color: var(--cyan);
-      width: 44px; height: 44px;
-      border-radius: 11px;
-      cursor: pointer; font-size: 18px;
-      transition: all 0.3s; backdrop-filter: blur(12px);
-      display: grid; place-items: center;
+    /* ── Token Banner ── */
+    .token-banner {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      background: linear-gradient(90deg,rgba(123,47,247,0.18),rgba(0,212,255,0.12));
+      border-bottom: 1px solid var(--border2);
+      backdrop-filter: blur(14px);
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; padding: 10px 20px; flex-wrap: wrap;
     }
-    .settings-btn:hover { background: rgba(0,212,255,0.18); box-shadow: var(--gcyan); }
+    .token-banner p { font-size: 12px; color: var(--text2); }
+    .token-banner p strong { color: var(--cyan); }
+    .token-banner-form { display: flex; gap: 8px; align-items: center; }
+    .token-input {
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      border-radius: 8px; padding: 7px 13px; color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 12px; width: 260px;
+      outline: none; transition: border-color 0.2s;
+    }
+    .token-input:focus { border-color: rgba(0,212,255,0.38); }
 
     /* ── Header ── */
     header {
@@ -514,13 +520,6 @@
     @keyframes slideIn  { from{transform:translateX(110%);opacity:0} to{transform:translateX(0);opacity:1} }
     @keyframes fadeOut  { to{opacity:0;transform:translateX(8px)} }
 
-    /* ── Config prompt box ── */
-    .config-note {
-      background: rgba(255,170,0,0.05); border: 1px solid rgba(255,170,0,0.2);
-      border-radius: 10px; padding: 13px 16px; font-size: 12px;
-      color: rgba(255,170,0,0.9); line-height: 1.6; margin-top: 16px;
-    }
-
     /* ── Detail meta tags ── */
     .detail-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
     .detail-tag {
@@ -557,7 +556,15 @@
 <div class="bg-blob bg-blob-2"></div>
 <div class="bg-blob bg-blob-3"></div>
 
-<button class="settings-btn" onclick="UI.openSettings()" title="GitHub Settings">⚙</button>
+<!-- Token banner — only rendered when PAT is absent -->
+<div class="token-banner" id="tokenBanner" style="display:none">
+  <p><strong>One-time setup:</strong> Enter your GitHub Personal Access Token to enable uploads.</p>
+  <div class="token-banner-form">
+    <input class="token-input" id="tokenInput" type="password" placeholder="ghp_xxxxxxxxxxxx"
+           onkeydown="if(event.key==='Enter') Config.saveToken()">
+    <button class="btn-primary" style="padding:7px 16px;font-size:12px" onclick="Config.saveToken()">Activate</button>
+  </div>
+</div>
 
 <!-- ═══════════════════════ HEADER ═══════════════════════ -->
 <header>
@@ -597,7 +604,7 @@
   <div class="empty-state" id="emptyState" style="display:none">
     <span class="empty-icon">◈</span>
     <h3>No Projects Yet</h3>
-    <p>Configure GitHub settings then add your first UI prototype project</p>
+    <p>Add your first UI prototype project to get started</p>
     <button class="btn-primary" onclick="UI.openAddProject()">+ Add First Project</button>
   </div>
 </main>
@@ -614,49 +621,6 @@
 
 <!-- ═══════════════════════ TOASTS ═══════════════════════ -->
 <div class="toast-wrap" id="toastWrap"></div>
-
-<!-- ═══════════════════════ SETTINGS MODAL ═══════════════════════ -->
-<div class="modal-overlay" id="settingsModal">
-  <div class="modal">
-    <div class="modal-header">
-      <span class="modal-title">⚙ GitHub Configuration</span>
-      <button class="modal-close" onclick="UI.closeModal('settingsModal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <p style="font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:18px">
-        Configure your public GitHub repository. All projects, documents, and UI prototype files
-        will be stored directly in your repo and served via GitHub Pages.
-      </p>
-      <div class="form-group">
-        <label class="form-label">GitHub Username / Owner</label>
-        <input class="form-input" id="cfg_owner" placeholder="e.g. Saikishoreg040996">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Repository Name</label>
-        <input class="form-input" id="cfg_repo" placeholder="e.g. Vibhu_UI_Prototype_Designs">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Default Branch</label>
-        <input class="form-input" id="cfg_branch" placeholder="main">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Personal Access Token</label>
-        <input class="form-input" id="cfg_token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-        <p class="form-hint">
-          Generate at: GitHub → Settings → Developer settings → Personal access tokens (Classic).<br>
-          Required scopes: <strong style="color:var(--cyan)">repo</strong> (full control of private repositories) or <strong style="color:var(--cyan)">public_repo</strong> for public repos.
-        </p>
-      </div>
-      <div class="config-note">
-        ⚠ Your token is stored only in this browser's localStorage and is sent exclusively to the GitHub API. It is never stored anywhere else.
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn-ghost" onclick="UI.closeModal('settingsModal')">Cancel</button>
-      <button class="btn-primary" onclick="Config.save()">Save &amp; Connect</button>
-    </div>
-  </div>
-</div>
 
 <!-- ═══════════════════════ ADD PROJECT MODAL ═══════════════════════ -->
 <div class="modal-overlay" id="addProjectModal">
@@ -733,49 +697,38 @@
 
 <script>
 // ════════════════════════════════════════════════════════════════
-// CONFIG
+// CONFIG — repo details are hardcoded; only the PAT lives in localStorage
 // ════════════════════════════════════════════════════════════════
 const Config = {
-  keys: { owner:'vsd_owner', repo:'vsd_repo', branch:'vsd_branch', token:'vsd_token' },
+  OWNER:  'Saikishoreg040996',
+  REPO:   'Vibhu_UI_Prototype_Designs',
+  BRANCH: 'main',
+  _KEY:   'vsd_token',
 
   get() {
     return {
-      owner:  localStorage.getItem(this.keys.owner)  || '',
-      repo:   localStorage.getItem(this.keys.repo)   || '',
-      branch: localStorage.getItem(this.keys.branch) || 'main',
-      token:  localStorage.getItem(this.keys.token)  || ''
+      owner:  this.OWNER,
+      repo:   this.REPO,
+      branch: this.BRANCH,
+      token:  localStorage.getItem(this._KEY) || ''
     };
   },
 
-  isReady() {
-    const c = this.get();
-    return !!(c.owner && c.repo && c.token);
+  hasToken() {
+    return !!localStorage.getItem(this._KEY);
   },
 
-  save() {
-    const owner  = document.getElementById('cfg_owner').value.trim();
-    const repo   = document.getElementById('cfg_repo').value.trim();
-    const branch = document.getElementById('cfg_branch').value.trim() || 'main';
-    const token  = document.getElementById('cfg_token').value.trim();
-
-    if (!owner || !repo || !token) { UI.toast('Owner, repository and token are required', 'error'); return; }
-
-    localStorage.setItem(this.keys.owner,  owner);
-    localStorage.setItem(this.keys.repo,   repo);
-    localStorage.setItem(this.keys.branch, branch);
-    localStorage.setItem(this.keys.token,  token);
-
-    UI.closeModal('settingsModal');
-    UI.toast('GitHub configured! Loading projects…', 'success');
+  saveToken() {
+    const val = document.getElementById('tokenInput')?.value?.trim();
+    if (!val) { UI.toast('Please paste your GitHub Personal Access Token', 'error'); return; }
+    localStorage.setItem(this._KEY, val);
+    document.getElementById('tokenBanner').style.display = 'none';
+    UI.toast('Token saved — loading projects…', 'success');
     App.loadProjects();
   },
 
-  populate() {
-    const c = this.get();
-    document.getElementById('cfg_owner').value  = c.owner;
-    document.getElementById('cfg_repo').value   = c.repo;
-    document.getElementById('cfg_branch').value = c.branch;
-    document.getElementById('cfg_token').value  = c.token;
+  showBannerIfNeeded() {
+    document.getElementById('tokenBanner').style.display = this.hasToken() ? 'none' : 'flex';
   }
 };
 
@@ -996,7 +949,11 @@ const Projects = {
     const desc = document.getElementById('proj_desc').value.trim();
 
     if (!name || !desc) { UI.toast('Project name and description are required', 'error'); return; }
-    if (!Config.isReady()) { UI.toast('Configure GitHub settings first', 'warning'); UI.openSettings(); return; }
+    if (!Config.hasToken()) {
+      document.getElementById('tokenBanner').style.display = 'flex';
+      UI.toast('Enter your GitHub token in the banner above', 'warning');
+      return;
+    }
 
     const protos = FH.collectProtos();
     const id     = this.slug(name) + '-' + Date.now().toString(36);
@@ -1128,15 +1085,11 @@ const UI = {
     document.body.style.overflow = '';
   },
 
-  openSettings() {
-    Config.populate();
-    this.openModal('settingsModal');
-  },
-
   openAddProject() {
-    if (!Config.isReady()) {
-      this.toast('Configure GitHub settings first', 'warning');
-      this.openSettings();
+    if (!Config.hasToken()) {
+      document.getElementById('tokenBanner').style.display = 'flex';
+      document.getElementById('tokenInput')?.focus();
+      this.toast('Enter your GitHub token in the banner above', 'warning');
       return;
     }
     FH.reset();
@@ -1291,10 +1244,7 @@ const UI = {
 // ════════════════════════════════════════════════════════════════
 const App = {
   async loadProjects() {
-    if (!Config.isReady()) {
-      Render.all();
-      return;
-    }
+    Config.showBannerIfNeeded();
     UI.showLoading('Loading projects from GitHub…');
     try {
       await Projects.load();
@@ -1338,10 +1288,6 @@ const App = {
       if (active.id === 'viewerModal') UI.closeViewer();
       else { active.classList.remove('active'); document.body.style.overflow=''; }
     });
-
-    if (!Config.isReady()) {
-      setTimeout(() => UI.toast('⚡ Click ⚙ to configure your GitHub repository', 'warning'), 600);
-    }
 
     this.loadProjects();
   }
