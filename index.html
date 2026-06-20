@@ -264,6 +264,8 @@
     .cbadge-doc  { background:rgba(0,255,136,0.08); color:var(--green); border:1px solid rgba(0,255,136,0.18); }
     .cbadge-proto{ background:rgba(123,47,247,0.1); color:#b06bff;     border:1px solid rgba(123,47,247,0.2); }
 
+    .card-actions { display: flex; align-items: center; gap: 10px; }
+
     .read-more {
       font-size: 11px; font-weight: 700; color: var(--cyan);
       background: transparent; border: none; cursor: pointer;
@@ -271,6 +273,27 @@
       padding: 4px 0; transition: gap 0.2s; font-family: 'Inter', sans-serif;
     }
     .read-more:hover { gap: 8px; }
+
+    .card-edit-btn {
+      font-size: 11px; font-weight: 600; color: var(--text2);
+      background: transparent; border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 6px; cursor: pointer; padding: 4px 10px;
+      transition: all 0.2s; font-family: 'Inter', sans-serif;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .card-edit-btn:hover { color: var(--amber); border-color: rgba(255,170,0,0.3); background: rgba(255,170,0,0.06); }
+
+    /* ── Existing item chips in edit modal ── */
+    .existing-item {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 12px; margin-bottom: 6px; font-size: 12px;
+    }
+    .existing-item-name { color: var(--text2); display: flex; align-items: center; gap: 7px; }
+    .existing-badge {
+      font-size: 9px; padding: 2px 7px; border-radius: 4px; font-weight: 600;
+      background: rgba(0,212,255,0.07); color: var(--cyan); border: 1px solid var(--border);
+    }
 
     /* ── Empty State ── */
     .empty-state {
@@ -680,6 +703,67 @@
   </div>
 </div>
 
+<!-- ═══════════════════════ EDIT PROJECT MODAL ═══════════════════════ -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal" style="max-width:700px">
+    <div class="modal-header">
+      <span class="modal-title">✏ Edit Project</span>
+      <button class="modal-close" onclick="UI.closeModal('editModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="edit_id">
+
+      <div class="form-group">
+        <label class="form-label">Project Name *</label>
+        <input class="form-input" id="edit_name" placeholder="Project name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Project Description *</label>
+        <textarea class="form-textarea" id="edit_desc" style="min-height:110px"
+          placeholder="Project description…"></textarea>
+      </div>
+
+      <!-- Existing docs -->
+      <div class="form-group" id="edit_existingDocsGroup">
+        <label class="form-label">Existing Documents</label>
+        <div id="edit_existingDocs"></div>
+      </div>
+
+      <!-- Add new docs -->
+      <div class="form-group">
+        <label class="form-label">Add More Documents</label>
+        <div class="upload-zone" id="edit_docZone">
+          <input type="file" id="edit_docInput" accept=".pdf,.doc,.docx" multiple
+                 onchange="Edit.onDocFiles(this.files)">
+          <span class="upload-icon">📄</span>
+          <div class="upload-text">Drop files or <strong>click to browse</strong></div>
+          <div class="upload-hint">PDF, DOC, DOCX — multiple files supported</div>
+        </div>
+        <div class="file-list" id="edit_docFileList"></div>
+      </div>
+
+      <!-- Existing prototypes -->
+      <div class="form-group" id="edit_existingProtosGroup">
+        <label class="form-label">Existing Prototypes</label>
+        <div id="edit_existingProtos"></div>
+      </div>
+
+      <!-- Add new prototypes -->
+      <div class="form-group">
+        <label class="form-label">Add More Prototypes</label>
+        <div id="edit_protoEntries"></div>
+        <button type="button" class="add-proto-btn" onclick="Edit.addProtoEntry()">
+          + Add UI Prototype
+        </button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="UI.closeModal('editModal')">Cancel</button>
+      <button class="btn-primary" onclick="Projects.update()">↑ Save Changes</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════════ VIEWER MODAL ═══════════════════════ -->
 <div class="modal-overlay" id="viewerModal">
   <div class="modal modal-viewer">
@@ -923,6 +1007,104 @@ const FH = {
 };
 
 // ════════════════════════════════════════════════════════════════
+// EDIT MODAL HANDLERS  (parallel to FH but scoped to edit_ IDs)
+// ════════════════════════════════════════════════════════════════
+const Edit = {
+  newDocFiles: [],
+  protoSeq: 0,
+
+  onDocFiles(files) {
+    this.newDocFiles = Array.from(files);
+    this._renderDocList();
+  },
+
+  _renderDocList() {
+    document.getElementById('edit_docFileList').innerHTML =
+      this.newDocFiles.map((f, i) => `
+        <div class="file-item">
+          <span class="file-item-name">${FH._icon(f.name)} ${FH._esc(f.name)}</span>
+          <span class="file-item-size">${FH._size(f.size)}</span>
+          <button class="file-item-remove" onclick="Edit.removeDoc(${i})">✕</button>
+        </div>`).join('');
+  },
+
+  removeDoc(i) {
+    this.newDocFiles.splice(i, 1);
+    this._renderDocList();
+  },
+
+  addProtoEntry() {
+    this.protoSeq++;
+    const id  = `ep${this.protoSeq}`;
+    const div = document.createElement('div');
+    div.className = 'proto-entry'; div.id = id;
+    div.innerHTML = `
+      <div class="proto-entry-head">
+        <span class="proto-entry-num">◈ NEW PROTOTYPE ${this.protoSeq}</span>
+        <button class="proto-remove" onclick="Edit.removeProto('${id}')">✕</button>
+      </div>
+      <div class="form-group" style="margin-bottom:12px">
+        <input class="form-input" id="${id}_name" placeholder="Prototype name">
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <div class="upload-zone" style="padding:20px">
+          <input type="file" id="${id}_input"
+                 accept=".html,.htm,.css,.js,.mjs,.json,.png,.jpg,.jpeg,.svg,.ico,.woff,.woff2,.ttf,.eot,.gif,.webp,.map"
+                 multiple onchange="Edit.onProtoFiles('${id}', this.files)">
+          <span class="upload-icon" style="font-size:24px;margin-bottom:6px">💻</span>
+          <div class="upload-text">Drop prototype files or <strong>click to browse</strong></div>
+          <div class="upload-hint">HTML · CSS · JS · Images — select ALL files for this prototype</div>
+        </div>
+        <div class="file-list" id="${id}_list"></div>
+      </div>`;
+    document.getElementById('edit_protoEntries').appendChild(div);
+    window[`${id}_data`] = [];
+  },
+
+  onProtoFiles(id, files) {
+    window[`${id}_data`] = Array.from(files);
+    this._renderProtoList(id);
+  },
+
+  _renderProtoList(id) {
+    const files = window[`${id}_data`] || [];
+    const list  = document.getElementById(`${id}_list`);
+    if (!list) return;
+    list.innerHTML = files.map((f, i) => `
+      <div class="file-item">
+        <span class="file-item-name">${FH._icon(f.name)} ${FH._esc(f.name)}</span>
+        <span class="file-item-size">${FH._size(f.size)}</span>
+        <button class="file-item-remove" onclick="Edit.removeProtoFile('${id}',${i})">✕</button>
+      </div>`).join('');
+  },
+
+  removeProtoFile(id, i) {
+    window[`${id}_data`].splice(i, 1);
+    this._renderProtoList(id);
+  },
+
+  removeProto(id) {
+    document.getElementById(id)?.remove();
+    delete window[`${id}_data`];
+  },
+
+  collectProtos() {
+    return Array.from(document.querySelectorAll('#edit_protoEntries .proto-entry')).map(el => ({
+      id:    el.id,
+      name:  document.getElementById(`${el.id}_name`)?.value?.trim() || `Prototype ${el.id}`,
+      files: window[`${el.id}_data`] || []
+    })).filter(p => p.name || p.files.length);
+  },
+
+  reset() {
+    this.newDocFiles = []; this.protoSeq = 0;
+    document.getElementById('edit_docFileList').innerHTML  = '';
+    document.getElementById('edit_protoEntries').innerHTML = '';
+    const inp = document.getElementById('edit_docInput'); if (inp) inp.value = '';
+  }
+};
+
+// ════════════════════════════════════════════════════════════════
 // PROJECTS
 // ════════════════════════════════════════════════════════════════
 let _projects = [];
@@ -1024,6 +1206,89 @@ const Projects = {
       console.error(err);
       UI.toast(`Upload failed: ${err.message}`, 'error');
     }
+  },
+
+  async update() {
+    const id   = document.getElementById('edit_id').value;
+    const name = document.getElementById('edit_name').value.trim();
+    const desc = document.getElementById('edit_desc').value.trim();
+
+    if (!name || !desc) { UI.toast('Project name and description are required', 'error'); return; }
+    if (!Config.hasToken()) {
+      document.getElementById('tokenBanner').style.display = 'flex';
+      UI.toast('Enter your GitHub token in the banner above', 'warning');
+      return;
+    }
+
+    const idx = _projects.findIndex(p => p.id === id);
+    if (idx === -1) { UI.toast('Project not found', 'error'); return; }
+
+    const newDocs   = Edit.newDocFiles;
+    const newProtos = Edit.collectProtos();
+    const total     = newDocs.length + newProtos.reduce((s, p) => s + p.files.length, 0) + 1;
+    let   done      = 0;
+
+    UI.showLoading('Saving changes…');
+
+    try {
+      const meta = { ..._projects[idx], name, description: desc,
+        shortDesc: desc.length > 148 ? desc.substring(0,148)+'…' : desc,
+        updatedAt: new Date().toISOString()
+      };
+
+      // Upload new documents
+      if (newDocs.length) {
+        UI.setStep('Uploading new documents…');
+        for (const file of newDocs) {
+          const b64 = await FH.toBase64(file);
+          const fp  = `projects/${id}/docs/${file.name}`;
+          await GH.put(fp, b64, `docs: add ${file.name}`);
+          meta.docs = meta.docs || [];
+          if (!meta.docs.find(d => d.name === file.name)) {
+            meta.docs.push({ name: file.name, path: fp, type: file.type || 'application/octet-stream' });
+          }
+          UI.setProgress(Math.round((++done / total) * 100));
+        }
+      }
+
+      // Upload new prototypes
+      for (const proto of newProtos) {
+        const pslug = this.slug(proto.name) || `prototype-${Date.now().toString(36)}`;
+        UI.setStep(`Uploading "${proto.name}"…`);
+
+        const hasIndex = proto.files.some(f => f.name.toLowerCase() === 'index.html');
+        const entry    = hasIndex ? 'index.html'
+          : (proto.files.find(f => /\.html?$/i.test(f.name))?.name || (proto.files[0]?.name || 'index.html'));
+
+        const pData = { name: proto.name, slug: pslug, entryFile: entry, files: [] };
+        for (const file of proto.files) {
+          const b64 = await FH.toBase64(file);
+          const fp  = `projects/${id}/prototypes/${pslug}/${file.name}`;
+          await GH.put(fp, b64, `prototype: add ${file.name}`);
+          pData.files.push({ name: file.name, path: fp });
+          UI.setProgress(Math.round((++done / total) * 100));
+        }
+        meta.prototypes = meta.prototypes || [];
+        meta.prototypes.push(pData);
+      }
+
+      // Write updated index
+      UI.setStep('Saving project index…');
+      _projects[idx] = meta;
+      await this._writeIndex();
+      UI.setProgress(100);
+
+      UI.hideLoading();
+      UI.closeModal('editModal');
+      Edit.reset();
+      UI.toast(`Project "${name}" updated successfully!`, 'success');
+      Render.all();
+
+    } catch (err) {
+      UI.hideLoading();
+      console.error(err);
+      UI.toast(`Update failed: ${err.message}`, 'error');
+    }
   }
 };
 
@@ -1063,7 +1328,10 @@ const Render = {
         <div class="card-desc">${this._esc(p.shortDesc || p.description)}</div>
         <div class="card-footer">
           <div class="card-badges">${docs}${pts}</div>
-          <button class="read-more" onclick="UI.openDetail('${this._esc(p.id)}')">Read More →</button>
+          <div class="card-actions">
+            <button class="card-edit-btn" onclick="UI.openEdit('${this._esc(p.id)}')">✏ Edit</button>
+            <button class="read-more" onclick="UI.openDetail('${this._esc(p.id)}')">Read More →</button>
+          </div>
         </div>
       </div>`;
   },
@@ -1083,6 +1351,55 @@ const UI = {
   closeModal(id) {
     document.getElementById(id).classList.remove('active');
     document.body.style.overflow = '';
+  },
+
+  openEdit(projectId) {
+    const p = _projects.find(x => x.id === projectId);
+    if (!p) return;
+
+    if (!Config.hasToken()) {
+      document.getElementById('tokenBanner').style.display = 'flex';
+      this.toast('Enter your GitHub token in the banner above', 'warning');
+      return;
+    }
+
+    Edit.reset();
+
+    document.getElementById('edit_id').value   = p.id;
+    document.getElementById('edit_name').value = p.name;
+    document.getElementById('edit_desc').value = p.description;
+
+    // Render existing docs as read-only chips
+    const docsEl = document.getElementById('edit_existingDocs');
+    const docsGrp = document.getElementById('edit_existingDocsGroup');
+    if (p.docs?.length) {
+      docsEl.innerHTML = p.docs.map(d => `
+        <div class="existing-item">
+          <span class="existing-item-name">${this._docIcon(d.name)} ${this._esc(d.name)}</span>
+          <span class="existing-badge">Uploaded</span>
+        </div>`).join('');
+      docsGrp.style.display = 'block';
+    } else {
+      docsGrp.style.display = 'none';
+    }
+
+    // Render existing prototypes as read-only chips
+    const protosEl  = document.getElementById('edit_existingProtos');
+    const protosGrp = document.getElementById('edit_existingProtosGroup');
+    if (p.prototypes?.length) {
+      protosEl.innerHTML = p.prototypes.map(pt => `
+        <div class="existing-item">
+          <span class="existing-item-name">💻 ${this._esc(pt.name)}
+            <span style="font-size:10px;color:var(--text2)">(${pt.files?.length||0} files)</span>
+          </span>
+          <span class="existing-badge">Uploaded</span>
+        </div>`).join('');
+      protosGrp.style.display = 'block';
+    } else {
+      protosGrp.style.display = 'none';
+    }
+
+    this.openModal('editModal');
   },
 
   openAddProject() {
@@ -1143,10 +1460,16 @@ const UI = {
       : '<p style="font-size:12px;color:var(--text2)">No prototypes uploaded for this project.</p>';
 
     return `
-      <div class="detail-tags">
-        <span class="detail-tag dt-date">Created: ${this._esc(ds)}</span>
-        <span class="detail-tag dt-docs">${(p.docs||[]).length} Document(s)</span>
-        <span class="detail-tag dt-proto">${(p.prototypes||[]).length} Prototype(s)</span>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+        <div class="detail-tags" style="margin-bottom:0">
+          <span class="detail-tag dt-date">Created: ${this._esc(ds)}</span>
+          <span class="detail-tag dt-docs">${(p.docs||[]).length} Document(s)</span>
+          <span class="detail-tag dt-proto">${(p.prototypes||[]).length} Prototype(s)</span>
+        </div>
+        <button class="card-edit-btn" style="padding:6px 14px;font-size:12px"
+                onclick="UI.closeModal('detailModal');UI.openEdit('${this._esc(p.id)}')">
+          ✏ Edit Project
+        </button>
       </div>
       <div class="detail-section">
         <div class="detail-section-title">Description</div>
@@ -1269,7 +1592,7 @@ const App = {
       });
     });
 
-    // Drag & drop for doc zone
+    // Drag & drop for add-project doc zone
     const dz = document.getElementById('docZone');
     if (dz) {
       dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
@@ -1277,6 +1600,17 @@ const App = {
       dz.addEventListener('drop', e => {
         e.preventDefault(); dz.classList.remove('drag-over');
         FH.onDocFiles(e.dataTransfer.files);
+      });
+    }
+
+    // Drag & drop for edit modal doc zone
+    const edz = document.getElementById('edit_docZone');
+    if (edz) {
+      edz.addEventListener('dragover', e => { e.preventDefault(); edz.classList.add('drag-over'); });
+      edz.addEventListener('dragleave', () => edz.classList.remove('drag-over'));
+      edz.addEventListener('drop', e => {
+        e.preventDefault(); edz.classList.remove('drag-over');
+        Edit.onDocFiles(e.dataTransfer.files);
       });
     }
 
