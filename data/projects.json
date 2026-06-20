@@ -1,6 +1,47 @@
 {
   "projects": [
     {
+      "id": "life-again-foundation-website-mqlrs9pc",
+      "name": "Life Again Foundation Website",
+      "description": "Life Again Foundation Website",
+      "shortDesc": "Life Again Foundation Website",
+      "createdAt": "2026-06-20T03:00:09.120Z",
+      "docs": [],
+      "prototypes": [
+        {
+          "name": "Website UI Prototype Designs",
+          "slug": "website-ui-prototype-designs",
+          "entryFile": "index.html",
+          "files": [
+            {
+              "name": "about.html",
+              "path": "projects/life-again-foundation-website-mqlrs9pc/prototypes/website-ui-prototype-designs/about.html"
+            },
+            {
+              "name": "donate.html",
+              "path": "projects/life-again-foundation-website-mqlrs9pc/prototypes/website-ui-prototype-designs/donate.html"
+            },
+            {
+              "name": "get-involved.html",
+              "path": "projects/life-again-foundation-website-mqlrs9pc/prototypes/website-ui-prototype-designs/get-involved.html"
+            },
+            {
+              "name": "impact.html",
+              "path": "projects/life-again-foundation-website-mqlrs9pc/prototypes/website-ui-prototype-designs/impact.html"
+            },
+            {
+              "name": "index.html",
+              "path": "projects/life-again-foundation-website-mqlrs9pc/prototypes/website-ui-prototype-designs/index.html"
+            },
+            {
+              "name": "our-work.html",
+              "path": "projects/life-again-foundation-website-mqlrs9pc/prototypes/website-ui-prototype-designs/our-work.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "escape2explore-billing-application-mqlrnuml",
       "name": "Escape2explore Billing Application",
       "description": "Maintain the daily sales, estimates, expenses based on every location and staff.",

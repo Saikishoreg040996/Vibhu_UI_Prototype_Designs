@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Life Again Foundation</title>
+<meta name="description" content="Life Again Foundation, founded by cancer survivor Dr. Gautami Tadimalla, works to reduce the social and economic impact of cancer in India through health, education and community welfare.">
+<meta property="og:title" content="About Us — Life Again Foundation">
+<meta property="og:description" content="Born from one woman’s journey through cancer, built for every person who needs to know they are not alone.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFC629;--yellow-deep:#F4A700;--yellow-soft:#FFF6DC;
+    --ink:#1B1B17;--slate:#5C5A50;--white:#FFFFFF;--cream:#FFFCF4;--line:#EFE8D6;
+    --shadow:0 12px 40px -12px rgba(27,27,23,.18);--shadow-sm:0 6px 20px -8px rgba(27,27,23,.16);
+    --radius:22px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.display{font-family:'Fraunces',serif;line-height:1.1;letter-spacing:-.015em}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow-deep)}
+  a{text-decoration:none;color:inherit}
+  section{position:relative}
+
+  .btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;padding:.95rem 1.7rem;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+  .btn-primary{background:var(--yellow);color:var(--ink);box-shadow:0 8px 22px -8px rgba(244,167,0,.7)}
+  .btn-primary:hover{background:var(--yellow-deep);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--white);transform:translateY(-2px)}
+  .btn-light{background:var(--white);color:var(--ink);box-shadow:var(--shadow-sm)}
+  .btn-light:hover{transform:translateY(-2px)}
+  .btn-ghost-light{background:transparent;color:var(--white);border-color:rgba(255,255,255,.4)}
+  .btn-ghost-light:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+  .textlink{font-weight:600;color:var(--yellow-deep);display:inline-flex;align-items:center;gap:.4rem;transition:gap .2s}
+  .textlink:hover{gap:.7rem}
+
+  /* Nav */
+  header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+  header.scrolled{border-color:var(--line);box-shadow:0 4px 20px -12px rgba(0,0,0,.25)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo{display:flex;align-items:center;gap:.6rem;font-family:'Fraunces';font-weight:600;font-size:1.25rem}
+  .logo .mark{width:38px;height:38px;border-radius:11px;background:var(--yellow);display:grid;place-items:center;font-weight:700;color:var(--ink)}
+  .navlinks{display:flex;align-items:center;gap:2rem;list-style:none}
+  .navlinks a{font-weight:500;font-size:.96rem;color:var(--slate);transition:color .2s}
+  .navlinks a:hover,.navlinks a.active{color:var(--ink)}
+  .navlinks a.active{color:var(--yellow-deep)}
+  .nav-cta{display:flex;align-items:center;gap:1rem}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+
+  /* Page hero */
+  .pagehero{background:var(--cream);padding:80px 0 72px;text-align:center;border-bottom:1px solid var(--line);overflow:hidden;position:relative}
+  .pagehero:before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,var(--yellow-soft),transparent 70%);top:-120px;left:50%;transform:translateX(-50%);z-index:0}
+  .pagehero .wrap{position:relative;z-index:1}
+  .pagehero h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:600;margin:1rem 0 1.1rem}
+  .pagehero p{font-size:1.15rem;color:var(--slate);max-width:38rem;margin:0 auto}
+
+  /* Two-column block */
+  .twocol{padding:96px 0}
+  .twocol .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  .twocol.flip .grid{grid-template-columns:.9fr 1.1fr}
+  .twocol.flip .media{order:-1}
+  .twocol h2{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;margin:.6rem 0 1.3rem}
+  .twocol p{color:var(--slate);margin-bottom:1.1rem;max-width:34rem}
+  .media{aspect-ratio:4/5;border-radius:var(--radius);background:linear-gradient(160deg,#FFE9A8,var(--yellow-soft));box-shadow:var(--shadow);display:grid;place-items:center;color:var(--yellow-deep);font-weight:600;font-size:.9rem;text-align:center;padding:1rem}
+  .media.wide{aspect-ratio:4/3.4}
+
+  /* Story */
+  .story{background:var(--cream);padding:96px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .story .inner{max-width:48rem;margin:0 auto;text-align:center}
+  .story h2{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;margin:.7rem 0 1.6rem}
+  .story p{color:var(--slate);margin-bottom:1.2rem;font-size:1.05rem;text-align:left}
+
+  /* Mission / Vision / Values */
+  .mvv{padding:100px 0}
+  .sec-head{text-align:center;max-width:40rem;margin:0 auto 56px}
+  .sec-head h2{font-size:clamp(2rem,3.8vw,2.9rem);font-weight:600;margin:.7rem 0 0}
+  .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:28px}
+  .mv-card{border-radius:var(--radius);padding:40px;border:1px solid var(--line)}
+  .mv-card.mission{background:var(--ink);color:var(--white)}
+  .mv-card.mission h3{color:var(--white)}
+  .mv-card.vision{background:var(--yellow-soft);border-color:#F2E3B0}
+  .mv-card h3{font-size:1.5rem;font-weight:600;margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem}
+  .mv-card p{font-size:1.02rem}
+  .mv-card.mission p{color:#d9d7ce}
+  .mv-card.vision p{color:#6e5a1f}
+  .val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .val{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:28px 22px;text-align:center;transition:transform .25s,box-shadow .25s}
+  .val:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm)}
+  .val .ic{width:54px;height:54px;border-radius:14px;background:var(--yellow-soft);display:grid;place-items:center;margin:0 auto 16px}
+  .val .ic svg{width:26px;height:26px;stroke:var(--yellow-deep)}
+  .val h4{font-family:'Fraunces';font-size:1.2rem;font-weight:600;margin-bottom:.4rem}
+  .val p{color:var(--slate);font-size:.9rem}
+
+  /* Pillars */
+  .pillars{background:var(--cream);padding:100px 0;border-top:1px solid var(--line)}
+  .pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .pillar{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:38px 30px;transition:transform .25s,box-shadow .25s,border-color .25s}
+  .pillar:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:transparent}
+  .pillar .ic{width:62px;height:62px;border-radius:16px;background:var(--yellow-soft);display:grid;place-items:center;margin-bottom:22px}
+  .pillar .ic svg{width:30px;height:30px;stroke:var(--yellow-deep)}
+  .pillar h3{font-size:1.4rem;font-weight:600;margin-bottom:.6rem}
+  .pillar p{color:var(--slate);font-size:.97rem}
+
+  /* Transparency */
+  .transparency{background:var(--ink);color:var(--white);padding:88px 0;border-radius:40px;margin:80px 16px 0;text-align:center}
+  .transparency .eyebrow{color:var(--yellow)}
+  .transparency h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:600;color:var(--white);margin:.7rem 0 1.3rem}
+  .transparency p{max-width:42rem;margin:0 auto 2rem;color:#d9d7ce}
+  .reg-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-bottom:2.4rem}
+  .reg-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#e7e5dc;font-weight:600;font-size:.9rem;padding:.7rem 1.3rem;border-radius:999px}
+  .t-actions{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+
+  /* Final CTA */
+  .finalcta{background:var(--yellow);padding:90px 0;text-align:center;margin:80px 16px 0;border-radius:40px}
+  .finalcta h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:600;max-width:34rem;margin:0 auto 2rem}
+  .finalcta .row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+
+  /* Footer */
+  footer{background:var(--ink);color:#cfcdc4;padding:72px 0 32px;margin-top:80px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:40px}
+  footer h4{font-family:'Fraunces';color:var(--white);font-size:1.15rem;margin-bottom:1.1rem;font-weight:600}
+  footer .logo{color:var(--white);margin-bottom:1rem}
+  footer ul{list-style:none}
+  footer ul li{margin-bottom:.6rem}
+  footer ul li a{color:#cfcdc4;font-size:.93rem;transition:color .2s}
+  footer ul li a:hover{color:var(--yellow)}
+  .foot-contact p{font-size:.92rem;margin-bottom:.55rem}
+  .socials{display:flex;gap:.7rem;margin-top:1rem}
+  .socials a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:background .2s}
+  .socials a:hover{background:var(--yellow)}
+  .socials svg{width:18px;height:18px;stroke:var(--white)}
+  .news{display:flex;gap:.5rem;margin-top:1rem}
+  .news input{flex:1;padding:.75rem 1rem;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--white);font-family:inherit}
+  .news input::placeholder{color:#84827a}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:50px;padding-top:26px;text-align:center;font-size:.83rem;color:#84827a}
+
+  @media(max-width:900px){
+    .twocol .grid,.twocol.flip .grid{grid-template-columns:1fr;gap:40px}
+    .twocol.flip .media{order:0}
+    .media{max-width:380px;margin:0 auto}
+    .mv-grid{grid-template-columns:1fr}
+    .val-grid{grid-template-columns:1fr 1fr}
+    .pillar-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .navlinks{display:none}
+    .navlinks.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:var(--white);padding:24px;gap:1.2rem;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+    .burger{display:flex}
+  }
+  @media(max-width:560px){
+    .val-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .t-actions .btn,.finalcta .row .btn{width:100%;justify-content:center}
+  }
+  
+  /* Accessibility: visible keyboard focus */
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--yellow-deep);outline-offset:2px;border-radius:6px}
+  /* Scroll reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="index.html" class="logo"><span class="mark">LA</span> Life Again Foundation</a>
+    <ul class="navlinks" id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#" class="active">About Us</a></li>
+      <li><a href="our-work.html">Our Work</a></li>
+      <li><a href="impact.html">Impact &amp; Stories</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="donate.html" class="btn btn-primary">Donate Now</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="pagehero">
+  <div class="wrap">
+    <span class="eyebrow">About us</span>
+    <h1>About Life Again Foundation</h1>
+    <p>Born from one woman's journey through cancer, built for every person who needs to know they are not alone.</p>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section class="twocol">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow">Who we are</span>
+      <h2>Who We Are</h2>
+      <p>Life Again Foundation is a charitable organisation working to reduce the social and economic impact of cancer in India. We exist to ensure that a cancer diagnosis is never faced in isolation — and that recovery is supported not just medically, but emotionally, financially, and socially.</p>
+      <p>Founded by acclaimed actor and cancer survivor Dr. Gautami Tadimalla, the Foundation channels her personal experience into a mission far larger than herself: building a connected, compassionate ecosystem of care that reaches the people who need it most, across every section of society.</p>
+      <p>Our work spans three deeply connected areas — health, education, and agriculture — because we believe that lasting change comes from strengthening the whole community, not treating a single problem in isolation.</p>
+    </div>
+    <div class="media wide">[ Image — community camp / volunteers ]</div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="twocol flip" style="background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap grid">
+    <div class="media">[ Founder portrait — Dr. Gautami Tadimalla ]</div>
+    <div>
+      <span class="eyebrow">Our founder</span>
+      <h2>Dr. Gautami Tadimalla</h2>
+      <p>For over three decades, Gautami Tadimalla has been one of India's most recognised and respected figures in cinema, appearing in more than a hundred films across Tamil, Telugu, Malayalam, Kannada, and Hindi. But it was a chapter far away from the screen that would define her most enduring legacy.</p>
+      <p>In 2004, Gautami was diagnosed with breast cancer. The experience changed everything. Moving through diagnosis, treatment, and recovery, she came face to face with a truth that statistics rarely capture — how lonely, frightening, and isolating cancer can be, and how much the presence of a supportive community can transform that journey.</p>
+      <p>She also recognised a harder reality: that the support she was able to access was out of reach for millions of Indians, simply because of where they lived or what they could afford. Cancer, she realised, was not only a medical crisis — it was a social and economic one.</p>
+      <p>Out of that understanding, Life Again Foundation was created. Gautami's belief is simple and unwavering: life does not end with a diagnosis — it begins again. In 2022, in recognition of her social activism, she was conferred an Honorary Doctorate in Social Welfare and Community Health by Asia Metropolitan University, Malaysia, and appointed Adjunct Professor. A TEDx speaker who has lectured at universities, corporates, and social organisations across India and abroad, she continues to use her voice, her recognition, and her lived experience to advocate for equitable cancer care, early detection, and dignity for patients and survivors across the country.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section class="story">
+  <div class="wrap inner">
+    <span class="eyebrow">Our story</span>
+    <h2>Our Story</h2>
+    <p>Life Again Foundation began with a single conviction — that no one should have to face cancer alone — and grew into a movement.</p>
+    <p>Recognising the need for community, Gautami founded the Foundation with Ms Hyma Reddy to provide compassionate, functional support and to bring existing welfare policies within reach of disadvantaged communities. What started as the sharing of one survivor's experience has become a sustained effort to consolidate the patient-care ecosystem in India: spreading awareness, encouraging early detection, supporting patients through treatment and beyond, and extending help into education and rural livelihoods. Over the years, the Foundation has conducted hundreds of motivational camps, cancer awareness campaigns, and health and screening camps, while championing wellness, preventive care, and traditional approaches to health and healing.</p>
+    <p>Every initiative is guided by the same idea that founded us: that recovery is not just about surviving, but about reclaiming a full, hopeful, meaningful life.</p>
+  </div>
+</section>
+
+<!-- MISSION / VISION / VALUES -->
+<section class="mvv">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What drives us</span>
+      <h2>Mission, Vision &amp; Values</h2>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card mission">
+        <h3>Our Mission</h3>
+        <p>To reduce the social and economic impact of cancer in India by making awareness, early detection, and compassionate support accessible to every section of society — and to extend that spirit of care into education and community welfare.</p>
+      </div>
+      <div class="mv-card vision">
+        <h3>Our Vision</h3>
+        <p>A society where no one faces cancer alone, where early detection reaches even the most underserved communities, and where every person — regardless of background — has the support, dignity, and hope to begin again.</p>
+      </div>
+    </div>
+    <div class="val-grid">
+      <div class="val">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></div>
+        <h4>Compassion</h4>
+        <p>We treat every person we serve with empathy, dignity, and respect.</p>
+      </div>
+      <div class="val">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 7l9-4 9 4M5 10v8M19 10v8M3 18h18"/></svg></div>
+        <h4>Equity</h4>
+        <p>We bring care to those too often left out, across every section of society.</p>
+      </div>
+      <div class="val">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h4>Transparency</h4>
+        <p>We are committed to honesty and accountability in how every rupee is used.</p>
+      </div>
+      <div class="val">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h4>Hope</h4>
+        <p>We believe in the human capacity to rebuild, recover, and begin again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What we do</span>
+      <h2>What We Do</h2>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></div>
+        <h3>Health</h3>
+        <p>Free cancer screening and detection camps, awareness drives, motivational camps, and preventive healthcare across India.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <h3>Education</h3>
+        <p>Sponsoring underprivileged students and running supplementary education and vocational training centres.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9Z"/><path d="M12 22c0-4.97-4.03-9-9-9 0 4.97 4.03 9 9 9Z"/><path d="M12 22V8"/></svg></div>
+        <h3>Agriculture</h3>
+        <p>Supporting rural and farming communities through sustainable livelihood and welfare initiatives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARENCY -->
+<section class="transparency">
+  <div class="wrap">
+    <span class="eyebrow">Trusted &amp; accountable</span>
+    <h2>Our commitment to transparency</h2>
+    <p>Life Again Foundation is a registered charitable trust. Donations to the Foundation are eligible for tax exemption under Section 80G of the Income Tax Act. We maintain the highest standards of accountability, ensuring every contribution creates real, measurable impact.</p>
+    <div class="reg-badges">
+      <span class="reg-badge">[ Legal entity name ]</span>
+      <span class="reg-badge">[ 80G Registration No. ]</span>
+      <span class="reg-badge">[ 12A Registration No. ]</span>
+    </div>
+    <div class="t-actions">
+      <a href="#" class="btn btn-primary">View Our Annual Report</a>
+      <a href="#" class="btn btn-ghost-light">Download Our Profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN US -->
+<section class="finalcta">
+  <div class="wrap">
+    <h2>Join Us</h2>
+    <p style="max-width:40rem;margin:-1rem auto 2rem;color:#5a4300;font-size:1.08rem">Behind Life Again Foundation is a growing community of supporters, volunteers, and partners who believe that compassion, when organised, can change lives. There is a place for you in it.</p>
+    <div class="row">
+      <a href="donate.html" class="btn btn-light">Donate</a>
+      <a href="get-involved.html" class="btn btn-outline">Become an LA Warrior</a>
+      <a href="get-involved.html" class="btn btn-outline">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-contact">
+        <a href="index.html" class="logo"><span class="mark">LA</span> Life Again Foundation</a>
+        <p>32/33, 6th Street, Sri Venkateswara Nagar, Kottivakkam, Chennai – 600041</p>
+        <p>📞 +91 8939070809</p>
+        <p>✉️ info@lifeagainfoundation.org</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 8a3 3 0 0 0-2-2c-2-.5-8-.5-8-.5s-6 0-8 .5a3 3 0 0 0-2 2 31 31 0 0 0 0 8 3 3 0 0 0 2 2c2 .5 8 .5 8 .5s6 0 8-.5a3 3 0 0 0 2-2 31 31 0 0 0 0-8z"/><path d="m10 15 5-3-5-3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="our-work.html">Our Work</a></li>
+          <li><a href="impact.html">Impact &amp; Stories</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="get-involved.html">Volunteer</a></li>
+          <li><a href="get-involved.html">CSR Partnership</a></li>
+          <li><a href="donate.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay connected</h4>
+        <p style="font-size:.92rem">Updates, stories, and upcoming camps.</p>
+        <div class="news">
+          <input type="email" placeholder="Your email" aria-label="Email">
+          <button class="btn btn-primary" style="padding:.7rem 1.2rem">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      © 2026 Life Again Foundation. Registered charitable trust. Donations eligible for 80G tax exemption. · [ Registration details to be confirmed ]
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hdr=document.getElementById('hdr');
+  addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>10));
+  document.getElementById('burger').onclick=()=>document.getElementById('menu').classList.toggle('open');
+  document.querySelectorAll('#menu a').forEach(a=>a.onclick=()=>document.getElementById('menu').classList.remove('open'));
+
+  // Scroll-reveal
+  const rv=document.querySelectorAll('.pillar,.prog,.ic-card,.quote,.story,.val,.mv-card,.media-card,.info-card,.stat,.way-grid,.donate-card,.form-card,.reach-item');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    rv.forEach(el=>el.classList.add('reveal'));
+    const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}}),{threshold:.12});
+    rv.forEach(el=>rio.observe(el));
+  }
+</script>
+</body>
+</html>

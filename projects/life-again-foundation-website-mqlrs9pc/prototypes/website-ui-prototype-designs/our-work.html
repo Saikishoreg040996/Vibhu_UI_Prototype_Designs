@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Work — Life Again Foundation</title>
+<meta name="description" content="Life Again Foundation works across three pillars — health, education, and agriculture — bringing cancer screening, awareness, education, and rural welfare to communities across India.">
+<meta property="og:title" content="Our Work — Life Again Foundation">
+<meta property="og:description" content="Three pillars. One belief — that every person, in every community, deserves the chance to live again.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFC629;--yellow-deep:#F4A700;--yellow-soft:#FFF6DC;
+    --ink:#1B1B17;--slate:#5C5A50;--white:#FFFFFF;--cream:#FFFCF4;--line:#EFE8D6;
+    --shadow:0 12px 40px -12px rgba(27,27,23,.18);--shadow-sm:0 6px 20px -8px rgba(27,27,23,.16);
+    --radius:22px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.display{font-family:'Fraunces',serif;line-height:1.1;letter-spacing:-.015em}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow-deep)}
+  a{text-decoration:none;color:inherit}
+  section{position:relative}
+
+  .btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;padding:.95rem 1.7rem;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+  .btn-primary{background:var(--yellow);color:var(--ink);box-shadow:0 8px 22px -8px rgba(244,167,0,.7)}
+  .btn-primary:hover{background:var(--yellow-deep);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--white);transform:translateY(-2px)}
+  .btn-light{background:var(--white);color:var(--ink);box-shadow:var(--shadow-sm)}
+  .btn-light:hover{transform:translateY(-2px)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+
+  /* Nav */
+  header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+  header.scrolled{border-color:var(--line);box-shadow:0 4px 20px -12px rgba(0,0,0,.25)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo{display:flex;align-items:center;gap:.6rem;font-family:'Fraunces';font-weight:600;font-size:1.25rem}
+  .logo .mark{width:38px;height:38px;border-radius:11px;background:var(--yellow);display:grid;place-items:center;font-weight:700;color:var(--ink)}
+  .navlinks{display:flex;align-items:center;gap:2rem;list-style:none}
+  .navlinks a{font-weight:500;font-size:.96rem;color:var(--slate);transition:color .2s}
+  .navlinks a:hover,.navlinks a.active{color:var(--ink)}
+  .navlinks a.active{color:var(--yellow-deep)}
+  .nav-cta{display:flex;align-items:center;gap:1rem}
+
+  /* Page hero */
+  .pagehero{background:var(--cream);padding:80px 0 72px;text-align:center;border-bottom:1px solid var(--line);overflow:hidden;position:relative}
+  .pagehero:before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,var(--yellow-soft),transparent 70%);top:-120px;left:50%;transform:translateX(-50%);z-index:0}
+  .pagehero .wrap{position:relative;z-index:1}
+  .pagehero h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:600;margin:1rem 0 1.1rem}
+  .pagehero p{font-size:1.18rem;color:var(--slate);max-width:40rem;margin:0 auto}
+
+  /* Intro */
+  .intro{padding:90px 0 30px}
+  .intro .inner{max-width:50rem;margin:0 auto;text-align:center}
+  .intro h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:600;margin:.7rem 0 1.3rem}
+  .intro p{color:var(--slate);font-size:1.08rem}
+
+  /* Pillar block */
+  .pillar-block{padding:80px 0}
+  .pillar-block.alt{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pillar-head{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:start;max-width:62rem;margin:0 auto 46px}
+  .pillar-badge{width:74px;height:74px;border-radius:20px;background:var(--yellow);display:grid;place-items:center;box-shadow:0 10px 24px -10px rgba(244,167,0,.8)}
+  .pillar-badge svg{width:36px;height:36px;stroke:var(--ink)}
+  .pillar-head .num{font-family:'Fraunces';font-size:.95rem;font-weight:600;color:var(--yellow-deep);letter-spacing:.05em}
+  .pillar-head h2{font-size:clamp(2rem,4vw,2.9rem);font-weight:600;margin:.2rem 0 .8rem}
+  .pillar-head p{color:var(--slate);font-size:1.06rem;max-width:42rem}
+  .prog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:62rem;margin:0 auto}
+  .prog-grid.single{grid-template-columns:1fr}
+  /* center a lone third card in a 2-col grid */
+  .prog-grid.odd3 > .prog:last-child{grid-column:1 / -1;max-width:calc(50% - 12px);justify-self:center}
+  .prog{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:30px 28px;transition:transform .25s,box-shadow .25s,border-color .25s}
+  .pillar-block.alt .prog{background:var(--white)}
+  .prog:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm);border-color:transparent}
+  .prog .tic{width:46px;height:46px;border-radius:12px;background:var(--yellow-soft);display:grid;place-items:center;margin-bottom:16px}
+  .prog .tic svg{width:24px;height:24px;stroke:var(--yellow-deep)}
+  .prog h3{font-size:1.22rem;font-weight:600;margin-bottom:.5rem}
+  .prog p{color:var(--slate);font-size:.96rem}
+
+  /* Impact */
+  .impact{background:var(--ink);color:var(--white);padding:88px 0;border-radius:40px;margin:80px 16px 0}
+  .sec-head{text-align:center;max-width:42rem;margin:0 auto 46px}
+  .sec-head h2{font-size:clamp(2rem,3.8vw,2.8rem);font-weight:600;margin:.7rem 0 0}
+  .impact .sec-head h2{color:var(--white)}
+  .impact .eyebrow{color:var(--yellow)}
+  .impact .lead{text-align:center;color:#d9d7ce;max-width:46rem;margin:-30px auto 46px}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+  .stat .num{font-family:'Fraunces';font-size:clamp(2.1rem,4vw,3rem);font-weight:600;color:var(--yellow);line-height:1}
+  .stat .lbl{font-size:.86rem;color:#cfcdc4;margin-top:.6rem}
+  .impact .footnote{text-align:center;color:#84827a;font-size:.8rem;margin-top:42px}
+
+  /* Final CTA */
+  .finalcta{background:var(--yellow);padding:90px 0;text-align:center;margin:80px 16px 0;border-radius:40px}
+  .finalcta h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:600;max-width:34rem;margin:0 auto 1rem}
+  .finalcta p{max-width:38rem;margin:0 auto 2rem;color:#5a4300;font-size:1.08rem}
+  .finalcta .row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+
+  /* Footer */
+  footer{background:var(--ink);color:#cfcdc4;padding:72px 0 32px;margin-top:80px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:40px}
+  footer h4{font-family:'Fraunces';color:var(--white);font-size:1.15rem;margin-bottom:1.1rem;font-weight:600}
+  footer .logo{color:var(--white);margin-bottom:1rem}
+  footer ul{list-style:none}
+  footer ul li{margin-bottom:.6rem}
+  footer ul li a{color:#cfcdc4;font-size:.93rem;transition:color .2s}
+  footer ul li a:hover{color:var(--yellow)}
+  .foot-contact p{font-size:.92rem;margin-bottom:.55rem}
+  .socials{display:flex;gap:.7rem;margin-top:1rem}
+  .socials a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:background .2s}
+  .socials a:hover{background:var(--yellow)}
+  .socials svg{width:18px;height:18px;stroke:var(--white)}
+  .news{display:flex;gap:.5rem;margin-top:1rem}
+  .news input{flex:1;padding:.75rem 1rem;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--white);font-family:inherit}
+  .news input::placeholder{color:#84827a}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:50px;padding-top:26px;text-align:center;font-size:.83rem;color:#84827a}
+
+  @media(max-width:900px){
+    .pillar-head{grid-template-columns:1fr;gap:18px}
+    .prog-grid{grid-template-columns:1fr}
+    .prog-grid.odd3 > .prog:last-child{max-width:100%}
+    .stat-grid{grid-template-columns:repeat(2,1fr);gap:32px 20px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .navlinks{display:none}
+    .navlinks.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:var(--white);padding:24px;gap:1.2rem;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+    .burger{display:flex}
+  }
+  @media(max-width:560px){
+    .stat-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .finalcta .row .btn{width:100%;justify-content:center}
+  }
+  
+  /* Accessibility: visible keyboard focus */
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--yellow-deep);outline-offset:2px;border-radius:6px}
+  /* Scroll reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="index.html" class="logo"><span class="mark">LA</span> Life Again Foundation</a>
+    <ul class="navlinks" id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="#" class="active">Our Work</a></li>
+      <li><a href="impact.html">Impact &amp; Stories</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="donate.html" class="btn btn-primary">Donate Now</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="pagehero">
+  <div class="wrap">
+    <span class="eyebrow">Our work</span>
+    <h1>Our Work</h1>
+    <p>Three pillars. One belief — that every person, in every community, deserves the chance to live again.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="wrap inner">
+    <span class="eyebrow">How we create change</span>
+    <h2>A holistic approach to empowerment</h2>
+    <p>Cancer does not exist in isolation, and neither does recovery. A diagnosis affects a person's health, their family's finances, a child's education, and an entire community's sense of security. That is why Life Again Foundation works across three connected pillars — health, education, and agriculture — designed to strengthen communities as a whole, not to treat a single problem in isolation. Together, they form a holistic approach to empowerment that reaches people where they are and walks with them toward a fuller life.</p>
+  </div>
+</section>
+
+<!-- HEALTH -->
+<section class="pillar-block">
+  <div class="wrap">
+    <div class="pillar-head">
+      <div class="pillar-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg></div>
+      <div>
+        <div class="num">Pillar 01</div>
+        <h2>Health</h2>
+        <p>Health is at the heart of everything we do. Our health programmes are built around a simple, life-saving principle: early detection and timely support change outcomes. We bring screening, awareness, and compassionate care directly to the communities that need them most — especially those for whom quality cancer care has always been out of reach.</p>
+      </div>
+    </div>
+    <div class="prog-grid">
+      <div class="prog">
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>Cancer Screening &amp; Detection Camps</h3>
+        <p>We organise free cancer screening and detection camps that make early diagnosis accessible across urban and rural India. By catching the warning signs early, we give patients the best possible chance at recovery.</p>
+      </div>
+      <div class="prog">
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
+        <h3>Awareness Campaigns</h3>
+        <p>Through community awareness drives, we educate people about cancer risk factors, the importance of regular checkups, early warning signs, and the lifestyle changes that support prevention — replacing fear and stigma with knowledge and action.</p>
+      </div>
+      <div class="prog">
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Patient Support &amp; Motivational Camps</h3>
+        <p>Beyond medical care, we run motivational camps for cancer patients and survivors, offering the emotional strength, peer support, and sense of community that are so essential to healing. We focus on the whole person, not just the diagnosis.</p>
+      </div>
+      <div class="prog">
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9Z"/><path d="M12 22c0-4.97-4.03-9-9-9 0 4.97 4.03 9 9 9Z"/><path d="M12 22V8"/></svg></div>
+        <h3>Wellness &amp; Preventive Care</h3>
+        <p>We promote wellness, preventive healthcare, and traditional approaches to health and healing, encouraging sustainable lifestyle changes that help communities stay healthier for longer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="pillar-block alt">
+  <div class="wrap">
+    <div class="pillar-head">
+      <div class="pillar-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+      <div>
+        <div class="num">Pillar 02</div>
+        <h2>Education</h2>
+        <p>We believe that financial hardship should never decide a child's future. Education is one of the most powerful tools for breaking cycles of disadvantage, and our programmes are designed to keep doors open for young people who would otherwise be left behind.</p>
+      </div>
+    </div>
+    <div class="prog-grid odd3">
+      <div class="prog">
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.26 6.86.6-5.2 4.52 1.56 6.7L12 16.5l-6.12 3.58 1.56-6.7-5.2-4.52 6.86-.6L12 2z"/></svg></div>
+        <h3>Student Sponsorship</h3>
+        <p>We sponsor underprivileged students for higher education, ensuring that talent and determination — not income — decide how far a young person can go.</p>
+      </div>
+      <div class="prog">
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <h3>Supplementary Education Centres</h3>
+        <p>Many students enter college without the foundational competencies they need to succeed. Our supplementary education centres bridge that gap, equipping students with the skills and confidence to thrive in their studies.</p>
+      </div>
+      <div class="prog">
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l7 7-7 7"/><path d="M3 6l7 7-7 7"/></svg></div>
+        <h3>Vocational Training</h3>
+        <p>Through vocational training centres, we help young people build practical, employable skills — opening pathways to stable livelihoods and independent futures.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGRICULTURE -->
+<section class="pillar-block">
+  <div class="wrap">
+    <div class="pillar-head">
+      <div class="pillar-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9Z"/><path d="M12 22c0-4.97-4.03-9-9-9 0 4.97 4.03 9 9 9Z"/><path d="M12 22V8"/></svg></div>
+      <div>
+        <div class="num">Pillar 03</div>
+        <h2>Agriculture</h2>
+        <p>Healthy communities are built on secure livelihoods and safe, nourishing food. Our agriculture initiatives support rural and farming communities through sustainable livelihood and welfare programmes, strengthening the foundations of the communities that feed the nation and helping ensure that wellbeing extends from the field to the family table.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The impact of our work</span>
+      <h2>Thousands of lives, one step at a time</h2>
+    </div>
+    <p class="lead">Across these three pillars, the Foundation has touched thousands of lives — conducting hundreds of camps and campaigns, supporting patients and survivors, and helping students and communities build stronger futures.</p>
+    <div class="stat-grid">
+      <div class="stat"><div class="num" data-target="360" data-suffix="+">0</div><div class="lbl">Awareness camps &amp; screening drives conducted</div></div>
+      <div class="stat"><div class="num" data-target="25000" data-suffix="+">0</div><div class="lbl">People reached through awareness initiatives</div></div>
+      <div class="stat"><div class="num" data-target="5000" data-suffix="+">0</div><div class="lbl">Patients screened for early detection</div></div>
+      <div class="stat"><div class="num" data-target="500" data-suffix="+">0</div><div class="lbl">Students supported through education</div></div>
+    </div>
+    <p class="footnote">[ All figures above are placeholders pending client confirmation ]</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="finalcta">
+  <div class="wrap">
+    <h2>Help Us Do More</h2>
+    <p>Every camp we run, every student we support, and every community we reach is made possible by people who choose to get involved. Join us.</p>
+    <div class="row">
+      <a href="donate.html" class="btn btn-light">Donate</a>
+      <a href="get-involved.html" class="btn btn-outline">Become an LA Warrior</a>
+      <a href="get-involved.html" class="btn btn-outline">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-contact">
+        <a href="index.html" class="logo"><span class="mark">LA</span> Life Again Foundation</a>
+        <p>32/33, 6th Street, Sri Venkateswara Nagar, Kottivakkam, Chennai – 600041</p>
+        <p>📞 +91 8939070809</p>
+        <p>✉️ info@lifeagainfoundation.org</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 8a3 3 0 0 0-2-2c-2-.5-8-.5-8-.5s-6 0-8 .5a3 3 0 0 0-2 2 31 31 0 0 0 0 8 3 3 0 0 0 2 2c2 .5 8 .5 8 .5s6 0 8-.5a3 3 0 0 0 2-2 31 31 0 0 0 0-8z"/><path d="m10 15 5-3-5-3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="our-work.html">Our Work</a></li>
+          <li><a href="impact.html">Impact &amp; Stories</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="get-involved.html">Volunteer</a></li>
+          <li><a href="get-involved.html">CSR Partnership</a></li>
+          <li><a href="donate.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay connected</h4>
+        <p style="font-size:.92rem">Updates, stories, and upcoming camps.</p>
+        <div class="news">
+          <input type="email" placeholder="Your email" aria-label="Email">
+          <button class="btn btn-primary" style="padding:.7rem 1.2rem">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      © 2026 Life Again Foundation. Registered charitable trust. Donations eligible for 80G tax exemption. · [ Registration details to be confirmed ]
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hdr=document.getElementById('hdr');
+  addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>10));
+  document.getElementById('burger').onclick=()=>document.getElementById('menu').classList.toggle('open');
+  document.querySelectorAll('#menu a').forEach(a=>a.onclick=()=>document.getElementById('menu').classList.remove('open'));
+  const fmt=n=>n>=1000?Math.floor(n/1000)+(n%1000?'.'+Math.round((n%1000)/100):'')+'K':n;
+  const animate=el=>{
+    const target=+el.dataset.target,suf=el.dataset.suffix||'',dur=1400,t0=performance.now();
+    const step=t=>{const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3),val=Math.floor(e*target);
+      el.textContent=(target>=1000?fmt(val):val)+suf;
+      if(p<1)requestAnimationFrame(step);else el.textContent=(target>=1000?fmt(target):target)+suf;};
+    requestAnimationFrame(step);
+  };
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}}),{threshold:.5});
+  document.querySelectorAll('.stat .num').forEach(n=>io.observe(n));
+
+  // Scroll-reveal
+  const rv=document.querySelectorAll('.pillar,.prog,.ic-card,.quote,.story,.val,.mv-card,.media-card,.info-card,.stat,.way-grid,.donate-card,.form-card,.reach-item');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    rv.forEach(el=>el.classList.add('reveal'));
+    const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}}),{threshold:.12});
+    rv.forEach(el=>rio.observe(el));
+  }
+</script>
+</body>
+</html>
