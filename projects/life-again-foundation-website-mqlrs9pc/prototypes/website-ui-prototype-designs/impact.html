@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impact &amp; Stories — Life Again Foundation</title>
+<meta name="description" content="Real people, real change. See the impact of Life Again Foundation's cancer awareness, screening, and education work across India — and the stories of those whose lives were touched.">
+<meta property="og:title" content="Impact & Stories — Life Again Foundation">
+<meta property="og:description" content="Real people. Real change. The proof that life truly does begin again.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFC629;--yellow-deep:#F4A700;--yellow-soft:#FFF6DC;
+    --ink:#1B1B17;--slate:#5C5A50;--white:#FFFFFF;--cream:#FFFCF4;--line:#EFE8D6;
+    --shadow:0 12px 40px -12px rgba(27,27,23,.18);--shadow-sm:0 6px 20px -8px rgba(27,27,23,.16);
+    --radius:22px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.display{font-family:'Fraunces',serif;line-height:1.1;letter-spacing:-.015em}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow-deep)}
+  a{text-decoration:none;color:inherit}
+  section{position:relative}
+
+  .btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;padding:.95rem 1.7rem;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+  .btn-primary{background:var(--yellow);color:var(--ink);box-shadow:0 8px 22px -8px rgba(244,167,0,.7)}
+  .btn-primary:hover{background:var(--yellow-deep);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--white);transform:translateY(-2px)}
+  .btn-light{background:var(--white);color:var(--ink);box-shadow:var(--shadow-sm)}
+  .btn-light:hover{transform:translateY(-2px)}
+  .textlink{font-weight:600;color:var(--yellow-deep);display:inline-flex;align-items:center;gap:.4rem;transition:gap .2s}
+  .textlink:hover{gap:.7rem}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+
+  /* Nav */
+  header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+  header.scrolled{border-color:var(--line);box-shadow:0 4px 20px -12px rgba(0,0,0,.25)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo{display:flex;align-items:center;gap:.6rem;font-family:'Fraunces';font-weight:600;font-size:1.25rem}
+  .logo .mark{width:38px;height:38px;border-radius:11px;background:var(--yellow);display:grid;place-items:center;font-weight:700;color:var(--ink)}
+  .navlinks{display:flex;align-items:center;gap:2rem;list-style:none}
+  .navlinks a{font-weight:500;font-size:.96rem;color:var(--slate);transition:color .2s}
+  .navlinks a:hover,.navlinks a.active{color:var(--ink)}
+  .navlinks a.active{color:var(--yellow-deep)}
+  .nav-cta{display:flex;align-items:center;gap:1rem}
+
+  /* Page hero */
+  .pagehero{background:var(--cream);padding:80px 0 72px;text-align:center;border-bottom:1px solid var(--line);overflow:hidden;position:relative}
+  .pagehero:before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,var(--yellow-soft),transparent 70%);top:-120px;left:50%;transform:translateX(-50%);z-index:0}
+  .pagehero .wrap{position:relative;z-index:1}
+  .pagehero h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:600;margin:1rem 0 1.1rem}
+  .pagehero p{font-size:1.18rem;color:var(--slate);max-width:40rem;margin:0 auto}
+
+  /* Intro */
+  .intro{padding:90px 0 70px}
+  .intro .inner{max-width:50rem;margin:0 auto;text-align:center}
+  .intro h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:600;margin:.7rem 0 1.3rem}
+  .intro p{color:var(--slate);font-size:1.08rem}
+
+  /* Impact numbers */
+  .impact{background:var(--ink);color:var(--white);padding:84px 0;border-radius:40px;margin:0 16px}
+  .sec-head{text-align:center;max-width:42rem;margin:0 auto 46px}
+  .sec-head h2{font-size:clamp(2rem,3.8vw,2.8rem);font-weight:600;margin:.7rem 0 0}
+  .impact .sec-head h2{color:var(--white)}
+  .impact .eyebrow{color:var(--yellow)}
+  .stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;text-align:center}
+  .stat .num{font-family:'Fraunces';font-size:clamp(2.1rem,4vw,3rem);font-weight:600;color:var(--yellow);line-height:1}
+  .stat .lbl{font-size:.84rem;color:#cfcdc4;margin-top:.6rem}
+  .impact .footnote{text-align:center;color:#84827a;font-size:.8rem;margin-top:42px}
+
+  /* Stories */
+  .stories{padding:100px 0}
+  .story-list{display:flex;flex-direction:column;gap:26px;max-width:60rem;margin:0 auto}
+  .story{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:40px;display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:start;transition:transform .25s,box-shadow .25s,border-color .25s}
+  .story:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent}
+  .story .qmark{font-family:'Fraunces';font-size:5rem;line-height:.7;color:var(--yellow);height:48px}
+  .story .label{font-family:'Fraunces';font-size:1.2rem;font-weight:600;margin-bottom:.7rem}
+  .story blockquote{font-size:1.18rem;color:var(--ink);margin-bottom:1rem;font-style:italic}
+  .story .who{font-weight:600;color:var(--slate);font-size:.9rem}
+  .story-note{text-align:center;color:var(--slate);font-size:.82rem;margin-top:28px;font-style:italic;opacity:.75}
+
+  /* Founder voice */
+  .voice{background:var(--cream);padding:96px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .voice-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:center}
+  .voice-photo{aspect-ratio:1/1;border-radius:var(--radius);background:linear-gradient(160deg,#FFE9A8,var(--yellow-soft));box-shadow:var(--shadow);display:grid;place-items:center;color:var(--yellow-deep);font-weight:600;text-align:center;padding:1rem;font-size:.9rem}
+  .voice h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:600;margin:.6rem 0 1.2rem}
+  .voice p{color:var(--slate);font-size:1.08rem}
+
+  /* Media */
+  .media-sec{padding:100px 0}
+  .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:60rem;margin:40px auto 0}
+  .media-card{border:1.5px dashed #E3D7B5;border-radius:var(--radius);padding:44px 36px;text-align:center;background:var(--cream)}
+  .media-card .mic{width:58px;height:58px;border-radius:15px;background:var(--yellow-soft);display:grid;place-items:center;margin:0 auto 18px}
+  .media-card .mic svg{width:28px;height:28px;stroke:var(--yellow-deep)}
+  .media-card h3{font-size:1.25rem;font-weight:600;margin-bottom:.5rem}
+  .media-card p{color:var(--slate);font-size:.95rem}
+  .media-card .ph{display:inline-block;margin-top:12px;color:var(--yellow-deep);font-weight:600;font-size:.9rem}
+
+  /* Final CTA */
+  .finalcta{background:var(--yellow);padding:90px 0;text-align:center;margin:80px 16px 0;border-radius:40px}
+  .finalcta h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:600;max-width:34rem;margin:0 auto 1rem}
+  .finalcta p{max-width:38rem;margin:0 auto 2rem;color:#5a4300;font-size:1.08rem}
+  .finalcta .row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+
+  /* Footer */
+  footer{background:var(--ink);color:#cfcdc4;padding:72px 0 32px;margin-top:80px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:40px}
+  footer h4{font-family:'Fraunces';color:var(--white);font-size:1.15rem;margin-bottom:1.1rem;font-weight:600}
+  footer .logo{color:var(--white);margin-bottom:1rem}
+  footer ul{list-style:none}
+  footer ul li{margin-bottom:.6rem}
+  footer ul li a{color:#cfcdc4;font-size:.93rem;transition:color .2s}
+  footer ul li a:hover{color:var(--yellow)}
+  .foot-contact p{font-size:.92rem;margin-bottom:.55rem}
+  .socials{display:flex;gap:.7rem;margin-top:1rem}
+  .socials a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:background .2s}
+  .socials a:hover{background:var(--yellow)}
+  .socials svg{width:18px;height:18px;stroke:var(--white)}
+  .news{display:flex;gap:.5rem;margin-top:1rem}
+  .news input{flex:1;padding:.75rem 1rem;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--white);font-family:inherit}
+  .news input::placeholder{color:#84827a}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:50px;padding-top:26px;text-align:center;font-size:.83rem;color:#84827a}
+
+  @media(max-width:900px){
+    .stat-grid{grid-template-columns:repeat(2,1fr);gap:32px 20px}
+    .story{grid-template-columns:1fr;gap:8px;padding:32px}
+    .story .qmark{height:34px}
+    .voice-grid{grid-template-columns:1fr;gap:34px}
+    .voice-photo{max-width:320px;margin:0 auto}
+    .media-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .navlinks{display:none}
+    .navlinks.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:var(--white);padding:24px;gap:1.2rem;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+    .burger{display:flex}
+  }
+  @media(max-width:560px){
+    .stat-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .finalcta .row .btn{width:100%;justify-content:center}
+  }
+  
+  /* Accessibility: visible keyboard focus */
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--yellow-deep);outline-offset:2px;border-radius:6px}
+  /* Scroll reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="index.html" class="logo"><span class="mark">LA</span> Life Again Foundation</a>
+    <ul class="navlinks" id="menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="our-work.html">Our Work</a></li>
+      <li><a href="#" class="active">Impact &amp; Stories</a></li>
+      <li><a href="get-involved.html">Get Involved</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="donate.html" class="btn btn-primary">Donate Now</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="pagehero">
+  <div class="wrap">
+    <span class="eyebrow">Impact &amp; stories</span>
+    <h1>Impact &amp; Stories</h1>
+    <p>Real people. Real change. The proof that life truly does begin again.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="wrap inner">
+    <span class="eyebrow">The difference we make</span>
+    <h2>A glimpse of the journey so far</h2>
+    <p>Numbers tell part of our story — but behind every statistic is a person who found hope when they needed it most. For nearly two decades, Life Again Foundation has worked to reduce the social and economic impact of cancer in India, one camp, one student, and one community at a time. Here is a glimpse of that journey so far.</p>
+  </div>
+</section>
+
+<!-- IMPACT NUMBERS -->
+<section class="impact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Our impact in numbers</span>
+      <h2>Measured in lives, not just figures</h2>
+    </div>
+    <div class="stat-grid">
+      <div class="stat"><div class="num" data-target="360" data-suffix="+">0</div><div class="lbl">Awareness camps &amp; screening drives conducted</div></div>
+      <div class="stat"><div class="num" data-target="25000" data-suffix="+">0</div><div class="lbl">People reached through cancer awareness initiatives</div></div>
+      <div class="stat"><div class="num" data-target="5000" data-suffix="+">0</div><div class="lbl">Patients screened for early detection</div></div>
+      <div class="stat"><div class="num" data-target="500" data-suffix="+">0</div><div class="lbl">Students supported through education</div></div>
+      <div class="stat"><div class="num" data-target="15" data-suffix="+">0</div><div class="lbl">Years of service to communities across India</div></div>
+    </div>
+    <p class="footnote">[ All figures above are placeholders pending client confirmation ]</p>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="stories">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Stories of hope</span>
+      <h2>Stories of Hope</h2>
+      <p style="color:var(--slate);margin-top:1rem">The truest measure of our work is found in the lives it touches. These are the voices of the people at the heart of Life Again Foundation.</p>
+    </div>
+    <div class="story-list">
+      <div class="story">
+        <div class="qmark">&ldquo;</div>
+        <div>
+          <div class="label">A Survivor's Journey</div>
+          <blockquote>Life Again Foundation gave me more than treatment — it gave me the belief that I could live fully again.</blockquote>
+          <div class="who">— [ Beneficiary name, location ]</div>
+        </div>
+      </div>
+      <div class="story">
+        <div class="qmark">&ldquo;</div>
+        <div>
+          <div class="label">Early Detection That Changed Everything</div>
+          <blockquote>The awareness camp in our community helped detect my mother's illness early. We will always be grateful.</blockquote>
+          <div class="who">— [ Beneficiary name, location ]</div>
+        </div>
+      </div>
+      <div class="story">
+        <div class="qmark">&ldquo;</div>
+        <div>
+          <div class="label">A Future Reclaimed</div>
+          <blockquote>With the Foundation's support, I was able to continue my education. Today I can stand on my own feet.</blockquote>
+          <div class="who">— [ Beneficiary name, location ]</div>
+        </div>
+      </div>
+    </div>
+    <p class="story-note">[ Replace all testimonials with real, consent-given beneficiary stories before publishing ]</p>
+  </div>
+</section>
+
+<!-- FOUNDER'S VOICE -->
+<section class="voice">
+  <div class="wrap voice-grid">
+    <div class="voice-photo">[ Founder photo — Dr. Gautami Tadimalla speaking ]</div>
+    <div>
+      <span class="eyebrow">Our founder's voice</span>
+      <h2>Carrying the message, near and far</h2>
+      <p>As a cancer survivor herself, Dr. Gautami Tadimalla has carried the Foundation's message to national and global platforms — including the Union for International Cancer Control (UICC) and World Cancer Day — sharing her lived experience to inspire early detection, equitable care, and hope. Her advocacy continues to bring attention and dignity to the cause of cancer patients across India.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IN THE MEDIA -->
+<section class="media-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">In the media</span>
+      <h2>In the Media</h2>
+      <p style="color:var(--slate);margin-top:1rem">The work of Life Again Foundation and its founder has been featured across leading platforms and forums dedicated to health, cancer awareness, and social impact.</p>
+    </div>
+    <div class="media-grid">
+      <div class="media-card">
+        <div class="mic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v18l-3-2-3 2-3-2-3 2-3-2-3 2Z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div>
+        <h3>Media Features &amp; Recognition</h3>
+        <p>Press articles, interviews, and features covering the Foundation's work and its founder.</p>
+        <span class="ph">[ Add verified press articles, interviews, and features ]</span>
+      </div>
+      <div class="media-card">
+        <div class="mic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.5-3.5L9 20"/></svg></div>
+        <h3>Galleries</h3>
+        <p>Moments from camps, events, and campaigns across our communities.</p>
+        <span class="ph">[ Add photo galleries from camps, events, and campaigns ]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="finalcta">
+  <div class="wrap">
+    <h2>Be Part of the Next Story</h2>
+    <p>Every story of hope began with someone who decided to help. The next one could begin with you.</p>
+    <div class="row">
+      <a href="donate.html" class="btn btn-light">Donate</a>
+      <a href="get-involved.html" class="btn btn-outline">Become an LA Warrior</a>
+      <a href="donate.html#contact" class="btn btn-outline">Share Your Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-contact">
+        <a href="index.html" class="logo"><span class="mark">LA</span> Life Again Foundation</a>
+        <p>32/33, 6th Street, Sri Venkateswara Nagar, Kottivakkam, Chennai – 600041</p>
+        <p>📞 +91 8939070809</p>
+        <p>✉️ info@lifeagainfoundation.org</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 8a3 3 0 0 0-2-2c-2-.5-8-.5-8-.5s-6 0-8 .5a3 3 0 0 0-2 2 31 31 0 0 0 0 8 3 3 0 0 0 2 2c2 .5 8 .5 8 .5s6 0 8-.5a3 3 0 0 0 2-2 31 31 0 0 0 0-8z"/><path d="m10 15 5-3-5-3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="our-work.html">Our Work</a></li>
+          <li><a href="impact.html">Impact &amp; Stories</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="get-involved.html">Volunteer</a></li>
+          <li><a href="get-involved.html">CSR Partnership</a></li>
+          <li><a href="donate.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay connected</h4>
+        <p style="font-size:.92rem">Updates, stories, and upcoming camps.</p>
+        <div class="news">
+          <input type="email" placeholder="Your email" aria-label="Email">
+          <button class="btn btn-primary" style="padding:.7rem 1.2rem">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      © 2026 Life Again Foundation. Registered charitable trust. Donations eligible for 80G tax exemption. · [ Registration details to be confirmed ]
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hdr=document.getElementById('hdr');
+  addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>10));
+  document.getElementById('burger').onclick=()=>document.getElementById('menu').classList.toggle('open');
+  document.querySelectorAll('#menu a').forEach(a=>a.onclick=()=>document.getElementById('menu').classList.remove('open'));
+  const fmt=n=>n>=1000?Math.floor(n/1000)+(n%1000?'.'+Math.round((n%1000)/100):'')+'K':n;
+  const animate=el=>{
+    const target=+el.dataset.target,suf=el.dataset.suffix||'',dur=1400,t0=performance.now();
+    const step=t=>{const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3),val=Math.floor(e*target);
+      el.textContent=(target>=1000?fmt(val):val)+suf;
+      if(p<1)requestAnimationFrame(step);else el.textContent=(target>=1000?fmt(target):target)+suf;};
+    requestAnimationFrame(step);
+  };
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}}),{threshold:.5});
+  document.querySelectorAll('.stat .num').forEach(n=>io.observe(n));
+
+  // Scroll-reveal
+  const rv=document.querySelectorAll('.pillar,.prog,.ic-card,.quote,.story,.val,.mv-card,.media-card,.info-card,.stat,.way-grid,.donate-card,.form-card,.reach-item');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    rv.forEach(el=>el.classList.add('reveal'));
+    const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}}),{threshold:.12});
+    rv.forEach(el=>rio.observe(el));
+  }
+</script>
+</body>
+</html>
