@@ -1,6 +1,27 @@
 {
   "projects": [
     {
+      "id": "food-o-live-mqn8f4ed",
+      "name": "Food O Live",
+      "description": "Food Delivery Apllication representing trust, complete visibility of kitchen and No More additional Charges.",
+      "shortDesc": "Food Delivery Apllication representing trust, complete visibility of kitchen and No More additional Charges.",
+      "createdAt": "2026-06-21T03:33:35.365Z",
+      "docs": [],
+      "prototypes": [
+        {
+          "name": "Complete UI Prototype Design",
+          "slug": "complete-ui-prototype-design",
+          "entryFile": "Food O Live Prototype (standalone) (2).html",
+          "files": [
+            {
+              "name": "Food O Live Prototype (standalone) (2).html",
+              "path": "projects/food-o-live-mqn8f4ed/prototypes/complete-ui-prototype-design/Food O Live Prototype (standalone) (2).html"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "life-again-foundation-website-mqlrs9pc",
       "name": "Life Again Foundation Website",
       "description": "Life Again Foundation Website",
