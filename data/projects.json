@@ -1,6 +1,38 @@
 {
   "projects": [
     {
+      "id": "event-ticketing-saas-platform-mra5hejz",
+      "name": "Event Ticketing SAAS Platform",
+      "description": "Event Ticketing SAAS Platform",
+      "shortDesc": "Event Ticketing SAAS Platform",
+      "createdAt": "2026-07-07T04:30:05.039Z",
+      "docs": [],
+      "prototypes": [
+        {
+          "name": "Auth Module Walthough Document",
+          "slug": "auth-module-walthough-document",
+          "entryFile": "auth_walkthrough.html",
+          "files": [
+            {
+              "name": "auth_walkthrough.html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/auth-module-walthough-document/auth_walkthrough.html"
+            }
+          ]
+        },
+        {
+          "name": "Auth Module UI Prototype",
+          "slug": "auth-module-ui-prototype",
+          "entryFile": "EventSphere Auth (standalone).html",
+          "files": [
+            {
+              "name": "EventSphere Auth (standalone).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/auth-module-ui-prototype/EventSphere Auth (standalone).html"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "food-o-live-mqn8f4ed",
       "name": "Food O Live",
       "description": "Food Delivery Apllication representing trust, complete visibility of kitchen and No More additional Charges.",
