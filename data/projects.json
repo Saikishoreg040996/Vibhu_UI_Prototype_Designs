@@ -73,17 +73,18 @@
       "docs": [],
       "prototypes": [
         {
-          "name": "Complete UI Prototype Design",
+          "name": "Complete UI prototype Design",
           "slug": "complete-ui-prototype-design",
-          "entryFile": "Food O Live Prototype (standalone) (2).html",
+          "entryFile": "Food O Live Prototype (standalone) (3).html",
           "files": [
             {
-              "name": "Food O Live Prototype (standalone) (2).html",
-              "path": "projects/food-o-live-mqn8f4ed/prototypes/complete-ui-prototype-design/Food O Live Prototype (standalone) (2).html"
+              "name": "Food O Live Prototype (standalone) (3).html",
+              "path": "projects/food-o-live-mqn8f4ed/prototypes/complete-ui-prototype-design/Food O Live Prototype (standalone) (3).html"
             }
           ]
         }
-      ]
+      ],
+      "updatedAt": "2026-07-14T17:49:19.197Z"
     },
     {
       "id": "life-again-foundation-website-mqlrs9pc",
