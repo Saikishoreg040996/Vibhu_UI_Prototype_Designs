@@ -1,6 +1,38 @@
 {
   "projects": [
     {
+      "id": "nutal-patel-insurance-website-design-mrkxi8ul",
+      "name": "Nutal Patel Insurance Website Design",
+      "description": "Nutal Patel Insurance Website Design",
+      "shortDesc": "Nutal Patel Insurance Website Design",
+      "createdAt": "2026-07-14T17:32:15.310Z",
+      "docs": [],
+      "prototypes": [
+        {
+          "name": "Home Page Template Reference 1",
+          "slug": "home-page-template-reference-1",
+          "entryFile": "Patel Insurance.html",
+          "files": [
+            {
+              "name": "Patel Insurance.html",
+              "path": "projects/nutal-patel-insurance-website-design-mrkxi8ul/prototypes/home-page-template-reference-1/Patel Insurance.html"
+            }
+          ]
+        },
+        {
+          "name": "Home Page Template Reference 2",
+          "slug": "home-page-template-reference-2",
+          "entryFile": "index (5).html",
+          "files": [
+            {
+              "name": "index (5).html",
+              "path": "projects/nutal-patel-insurance-website-design-mrkxi8ul/prototypes/home-page-template-reference-2/index (5).html"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "event-ticketing-saas-platform-mra5hejz",
       "name": "Event Ticketing SAAS Platform",
       "description": "Event Ticketing SAAS Platform",
