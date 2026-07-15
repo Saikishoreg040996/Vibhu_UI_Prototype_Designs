@@ -41,28 +41,51 @@
       "docs": [],
       "prototypes": [
         {
-          "name": "Auth Module Walthough Document",
-          "slug": "auth-module-walthough-document",
+          "name": "Organizer Auth Module Walkthrough Documentation",
+          "slug": "organizer-auth-module-walkthrough-documentation",
           "entryFile": "auth_walkthrough.html",
           "files": [
             {
               "name": "auth_walkthrough.html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/auth-module-walthough-document/auth_walkthrough.html"
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/organizer-auth-module-walkthrough-documentation/auth_walkthrough.html"
             }
           ]
         },
         {
-          "name": "Auth Module UI Prototype",
-          "slug": "auth-module-ui-prototype",
+          "name": "Organizer Auth Module UI Prototype Designs",
+          "slug": "organizer-auth-module-ui-prototype-designs",
           "entryFile": "EventSphere Auth (standalone).html",
           "files": [
             {
               "name": "EventSphere Auth (standalone).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/auth-module-ui-prototype/EventSphere Auth (standalone).html"
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/organizer-auth-module-ui-prototype-designs/EventSphere Auth (standalone).html"
+            }
+          ]
+        },
+        {
+          "name": "Super Admin Auth Module Walkthough Documentation",
+          "slug": "super-admin-auth-module-walkthough-documentation",
+          "entryFile": "platform_admin_auth_walkthrough.html",
+          "files": [
+            {
+              "name": "platform_admin_auth_walkthrough.html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-auth-module-walkthough-documentation/platform_admin_auth_walkthrough.html"
+            }
+          ]
+        },
+        {
+          "name": "Super Admin Auth Module UI Prototype",
+          "slug": "super-admin-auth-module-ui-prototype",
+          "entryFile": "EventSphere Platform Auth (standalone).html",
+          "files": [
+            {
+              "name": "EventSphere Platform Auth (standalone).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-auth-module-ui-prototype/EventSphere Platform Auth (standalone).html"
             }
           ]
         }
-      ]
+      ],
+      "updatedAt": "2026-07-15T18:08:27.494Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
