@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EventSphere Platform Admin — Sign-In Walkthrough (Plain English)</title>
+<style>
+  :root{
+    --brand:#2E5BBA; --ink:#1C2433; --muted:#5B6472; --line:#E2E6ED;
+    --canvas:#F6F8FB; --card:#FFFFFF; --accent:#E07B39; --ok:#2E9E6B; --warn:#E0A23A; --danger:#D14B47;
+    --steel:#243044;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--canvas);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+  .wrap{max-width:880px;margin:0 auto;padding:48px 24px 80px}
+  header.hero{background:var(--steel);color:#fff;border-radius:20px;padding:36px 32px}
+  header.hero .badge{display:inline-block;font-size:11px;letter-spacing:.14em;font-weight:700;
+    background:rgba(255,255,255,.14);padding:5px 11px;border-radius:20px;margin-bottom:12px}
+  header.hero h1{margin:0 0 6px;font-size:30px;letter-spacing:-.4px}
+  header.hero p{margin:0;opacity:.9;font-size:16px}
+  .lead{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:20px 0 8px}
+  .lead strong{color:var(--brand)}
+  .callout{background:#FFF7EC;border:1px solid #F0D6B4;border-left:4px solid var(--accent);
+    border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0}
+  .callout h4{margin:0 0 6px;font-size:15px;color:#8A4F16}
+  .callout p{margin:0;font-size:15px}
+  h2.section{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+    margin:44px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+  .screen{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:24px 26px;margin:16px 0;box-shadow:0 1px 2px rgba(20,36,51,.04)}
+  .screen h3{margin:0 0 4px;font-size:21px;display:flex;align-items:center;gap:10px}
+  .num{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;
+    background:var(--steel);color:#fff;border-radius:8px;font-size:15px;font-weight:700;padding:0 6px}
+  .where{color:var(--muted);font-size:14px;margin:0 0 14px 40px}
+  .screen h4{margin:18px 0 6px;font-size:14px;color:var(--brand);text-transform:uppercase;letter-spacing:.04em}
+  ul{margin:6px 0;padding-left:22px} li{margin:5px 0}
+  .story{background:var(--canvas);border-left:3px solid var(--steel);border-radius:0 10px 10px 0;
+    padding:12px 16px;margin:10px 0 4px;font-style:italic;color:#31435c}
+  .states li::marker{color:var(--accent)}
+  .tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;margin-left:6px;vertical-align:middle}
+  .tag.ok{background:#E6F4EC;color:var(--ok)} .tag.warn{background:#FBEFD8;color:#9A6B12}
+  .tag.err{background:#F7E4E3;color:var(--danger)}
+  .flowbox{background:var(--card);border:1px dashed var(--steel);border-radius:14px;padding:20px 24px;margin:14px 0}
+  .flowbox b{color:var(--steel)}
+  .arrow{color:var(--accent);font-weight:700}
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:15px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#EEF2F8;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  footer{margin-top:50px;color:var(--muted);font-size:13px;text-align:center}
+  @media print{body{background:#fff}.screen,.lead,.callout{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="badge">INTERNAL ACCESS ONLY</span>
+  <h1>EventSphere Platform Admin — Getting In</h1>
+  <p>A plain-English walkthrough of the sign-in screens for our own staff console. No tech knowledge needed.</p>
+</header>
+
+<div class="lead">
+  This document explains how <strong>EventSphere staff</strong> sign in to the Platform Admin console —
+  the internal tool our team uses to run the whole business: approving organizer documents, releasing
+  payouts, suspending accounts, and setting commission rates.
+  <br><br>
+  Think of the organizer sign-in as the <strong>front door of a shop</strong> — anyone can walk up and
+  create an account. This console is the <strong>bank vault at the back</strong>. Different rules apply:
+  nobody signs themselves up, everybody proves who they are twice, and every single action is recorded.
+</div>
+
+<div class="callout">
+  <h4>The one big difference to remember</h4>
+  <p>There is <b>no "Sign Up" button anywhere</b>. You cannot create a platform admin account yourself.
+  Someone already on the team must invite you. This is deliberate — it's the main thing protecting the vault.</p>
+</div>
+
+<!-- BIG PICTURE -->
+<h2 class="section">The Big Picture — Two Ways In</h2>
+<div class="flowbox">
+  <p style="margin:0 0 10px"><b>Path 1 — Brand-new admin (first time ever):</b></p>
+  <p style="margin:0 0 18px">
+    Receives an emailed invite <span class="arrow">→</span> Accepts invitation &amp; sets password
+    <span class="arrow">→</span> <b>Must</b> set up two-factor security <span class="arrow">→</span> Saves backup codes
+    <span class="arrow">→</span> Console
+  </p>
+  <p style="margin:0 0 10px"><b>Path 2 — Existing admin (every normal day):</b></p>
+  <p style="margin:0">
+    Log in with email + password <span class="arrow">→</span> Enter 6-digit code from phone app
+    <span class="arrow">→</span> Console
+  </p>
+  <p style="margin:16px 0 0;color:var(--muted);font-size:14px">
+    Plus a few "something went wrong" screens: forgot password, session timed out, and access denied.
+  </p>
+</div>
+
+<!-- 1 LOGIN -->
+<h2 class="section">Path 2 · Everyday Sign-In</h2>
+<div class="screen">
+  <h3><span class="num">1</span> Log In</h3>
+  <p class="where">The first screen any staff member sees.</p>
+  <div class="story">"I'm on the EventSphere ops team. I need to get into the console to review today's KYC queue."</div>
+  <h4>What they see and can do</h4>
+  <ul>
+    <li>A clear header: <b>"EventSphere Platform Admin — INTERNAL ACCESS ONLY."</b> No marketing, no
+        friendly welcome — it's obvious this isn't a customer page.</li>
+    <li>Type their <b>work email</b> and <b>password</b>. The eye icon shows/hides the password.</li>
+    <li>Press <b>Continue</b>.</li>
+    <li>Or use <b>Sign in with corporate SSO</b> (company single sign-on) instead.</li>
+    <li>Tap <b>Forgot password?</b> if needed.</li>
+    <li>A padlock notice warns: every sign-in attempt is recorded, including IP address and device.</li>
+    <li>The footer repeats: <i>sessions are logged and audited · unauthorized access is prohibited.</i></li>
+  </ul>
+  <h4>What the screen looks like in different situations</h4>
+  <table>
+    <tr><th>Situation</th><th>What the person sees</th></tr>
+    <tr><td><b>Normal</b> <span class="tag ok">ready</span></td><td>Clean form, waiting for details.</td></tr>
+    <tr><td><b>Wrong details</b> <span class="tag err">error</span></td><td>"Sign-in failed — your email or password is incorrect." Notice it never says <i>which</i> one was wrong — that's on purpose, so an outsider can't discover which emails exist.</td></tr>
+    <tr><td><b>Too many tries</b> <span class="tag err">locked</span></td><td>"Account temporarily locked — try again in 14 min 52 s, or contact your security administrator."</td></tr>
+    <tr><td><b>Account switched off</b> <span class="tag err">error</span></td><td>"Account deactivated — contact a platform super-admin to restore access." (Used when someone leaves the team.)</td></tr>
+    <tr><td><b>Unknown network</b> <span class="tag warn">blocked</span></td><td>"You are connecting from an unrecognized network (203.0.113.44). This attempt has been logged." Signing in from an unexpected place gets stopped and recorded.</td></tr>
+    <tr><td><b>Loading</b></td><td>Spinner while details are checked.</td></tr>
+  </table>
+</div>
+
+<!-- 2 2FA -->
+<div class="screen">
+  <h3><span class="num">2</span> Two-Factor Check (the 6-digit code)</h3>
+  <p class="where">Appears straight after a correct password — every single time. There is no way to skip it.</p>
+  <div class="story">"My password was right. Now the console asks for the 6-digit code from the authenticator app on my phone."</div>
+  <h4>What they can do</h4>
+  <ul>
+    <li>Type the <b>6-digit authenticator code</b>. The screen shows which account it's for
+        (e.g. <i>r.kulkarni@eventsphere.com</i>).</li>
+    <li>Optionally tick <b>"Trust this device for 7 days"</b> — note it says clearly this is
+        <i>shorter than standard accounts</i>, and they'll still be asked again on any new device or network.</li>
+    <li>Press <b>Verify</b>.</li>
+    <li>If their phone is lost: <b>"Can't access your app? Use a backup code."</b></li>
+  </ul>
+  <h4>Situations</h4>
+  <table>
+    <tr><th>Situation</th><th>What the person sees</th></tr>
+    <tr><td><b>Normal</b> <span class="tag ok">ready</span></td><td>Code box, ready to type.</td></tr>
+    <tr><td><b>Wrong code</b> <span class="tag err">error</span></td><td>"That code didn't match. Check your authenticator app and try again."</td></tr>
+    <tr><td><b>Code too old</b> <span class="tag err">error</span></td><td>"That code is no longer valid. Enter the current 6-digit code." (Codes refresh every 30 seconds.)</td></tr>
+    <tr><td><b>Backup-code mode</b></td><td>Swaps to: "Enter one of the single-use backup codes you saved during setup," with a link back to the app.</td></tr>
+    <tr><td><b>Too many wrong codes</b> <span class="tag err">locked</span></td><td>"Verification locked. This challenge is locked for 15 minutes."</td></tr>
+    <tr><td><b>Success</b> <span class="tag ok">done</span></td><td>Straight into the console.</td></tr>
+  </table>
+</div>
+
+<!-- 3 ENROLLMENT -->
+<h2 class="section">Path 1 · A Brand-New Admin Joins</h2>
+<div class="screen">
+  <h3><span class="num">3</span> Accept Your Admin Invitation</h3>
+  <p class="where">Where a new admin's journey starts — from a link in their email.</p>
+  <div class="story">"Ravi added me to the platform team. I clicked the invite in my email and now I set up my account."</div>
+  <h4>What they see and can do</h4>
+  <ul>
+    <li><b>Who invited them</b> — e.g. "Invited by Ravi Kulkarni · Platform super-admin."</li>
+    <li><b>What powers they're getting</b> — e.g. "ROLE · Platform operator," with tags like
+        <i>Tenant governance</i> and <i>KYC · payouts</i>. So it's clear up front what they'll be able to do.</li>
+    <li>Type their <b>full name</b> and <b>create a password</b>. A strength meter and checklist appear:
+        <b>12+ characters, upper &amp; lower, a number, a symbol</b> — stricter than the organizer side (which asks for 8+).</li>
+    <li>Press <b>Accept &amp; set up 2FA</b>.</li>
+    <li>A note warns them plainly: they <i>will</i> be required to configure two-factor before reaching the console.</li>
+  </ul>
+  <h4>Situations</h4>
+  <table>
+    <tr><th>Situation</th><th>What the person sees</th></tr>
+    <tr><td><b>Valid invite</b> <span class="tag ok">ready</span></td><td>Form ready, showing inviter and role.</td></tr>
+    <tr><td><b>Expired</b> <span class="tag warn">warning</span></td><td>"This invitation has expired — admin invitations are valid for 72 hours. Ask the super-admin who invited you to send a new one."</td></tr>
+    <tr><td><b>Revoked</b> <span class="tag err">error</span></td><td>"This invitation was revoked — access was withdrawn before you accepted."</td></tr>
+    <tr><td><b>Already used</b></td><td>"Your account is already active. Sign in with the credentials you set up."</td></tr>
+  </table>
+</div>
+
+<div class="screen">
+  <h3><span class="num">4</span> Set Up Two-Factor (Required, First Sign-In)</h3>
+  <p class="where">Immediately after accepting the invite. There is no skip button.</p>
+  <div class="story">"Before I can see anything, I have to connect my authenticator app. The screen says it's mandatory."</div>
+  <h4>What they can do</h4>
+  <ul>
+    <li>Read the banner: <b>"Required · first sign-in"</b> — "Two-factor is mandatory for every platform admin."</li>
+    <li><b>Scan a QR code</b> with their authenticator app.</li>
+    <li>Or use the <b>manual key</b> shown on screen (e.g. <i>JBSW Y3DP EHPK 3PXP GEZC</i>) with a <b>Copy</b> button.</li>
+    <li>Helpful note: works with Google Authenticator, 1Password, Authy, or any similar app.</li>
+    <li>Type the <b>6-digit code</b> to prove it worked, then press <b>Confirm &amp; continue</b>.</li>
+  </ul>
+  <h4>Then — Save Your Backup Codes</h4>
+  <ul>
+    <li>A list of one-time codes appears (e.g. <i>4K2P-9QX7, 7M3D-1AZ8, B6VH-52NR…</i>).</li>
+    <li>The screen is blunt: <b>"Store these somewhere safe. Each code works once if you lose access to your
+        authenticator. They won't be shown again."</b></li>
+    <li>They can copy or download them, and must tick to confirm they've saved them before continuing.</li>
+  </ul>
+  <h4>Situations</h4>
+  <ul class="states">
+    <li><b>Scan &amp; confirm</b> <span class="tag ok">normal</span> — QR + key + code box.</li>
+    <li><b>Wrong code</b> <span class="tag err">error</span> — try again.</li>
+    <li><b>Backup codes</b> — the one-time list, shown once only.</li>
+    <li><b>Loading</b> — brief spinner.</li>
+  </ul>
+</div>
+
+<!-- 5 FORGOT -->
+<h2 class="section">Side-Doors · When Things Go Wrong</h2>
+<div class="screen">
+  <h3><span class="num">5</span> Forgot Password</h3>
+  <p class="where">From the "Forgot password?" link on the login screen.</p>
+  <div class="story">"I can't remember my password. I'll ask for a reset link."</div>
+  <h4>What they can do</h4>
+  <ul>
+    <li>Type their <b>work email</b>, press <b>Send reset link</b>, or go <b>Back to sign in</b>.</li>
+  </ul>
+  <h4>Situations</h4>
+  <table>
+    <tr><th>Situation</th><th>What the person sees</th></tr>
+    <tr><td><b>Sent</b> <span class="tag ok">done</span></td><td>"<b>If</b> an admin account exists for that address, we've sent password reset instructions. The link expires in 30 minutes." Note the careful wording — it never confirms whether the account is real. That's intentional security.</td></tr>
+    <tr><td><b>Resend cooldown</b></td><td>"You can resend in 42s" — stops the button being spammed.</td></tr>
+  </table>
+</div>
+
+<div class="screen">
+  <h3><span class="num">6</span> Reset Password</h3>
+  <p class="where">After clicking the reset link in the email.</p>
+  <div class="story">"I clicked the link. Now I pick a new password."</div>
+  <h4>What they can do</h4>
+  <ul>
+    <li>Type a <b>new password</b> (strength meter, strict rules) and <b>confirm</b> it. Press <b>Update password</b>.</li>
+  </ul>
+  <h4>Situations</h4>
+  <table>
+    <tr><th>Situation</th><th>What the person sees</th></tr>
+    <tr><td><b>Mismatch</b> <span class="tag err">error</span></td><td>"Passwords don't match — both fields must be identical before you can continue."</td></tr>
+    <tr><td><b>Link expired</b> <span class="tag err">error</span></td><td>"For security, reset links expire after 30 minutes. Request a new one."</td></tr>
+    <tr><td><b>Success</b> <span class="tag ok">done</span></td><td>"Password updated. <b>Two-factor verification is still required at sign-in.</b>" — resetting a password does not bypass the 6-digit code.</td></tr>
+  </table>
+</div>
+
+<!-- 7 SESSION -->
+<div class="screen">
+  <h3><span class="num">7</span> Session Ended</h3>
+  <p class="where">Shown when someone gets signed out.</p>
+  <div class="story">"I stepped away for a coffee. When I came back, the console had signed me out."</div>
+  <h4>Two versions</h4>
+  <table>
+    <tr><th>Situation</th><th>What the person sees</th></tr>
+    <tr><td><b>Idle timeout</b> <span class="tag warn">timed out</span></td><td>"For security, this privileged session ended after <b>10 minutes</b> of inactivity. Re-authenticate to continue." It even remembers where they were — e.g. "Return to <i>System health</i> after re-auth." (10 minutes is much shorter than the organizer dashboard, because this console can move money.)</td></tr>
+    <tr><td><b>Forced logout</b> <span class="tag err">error</span></td><td>"You were signed out — a platform super-admin ended your session remotely. If you believe this was a mistake, contact your security administrator." Used if someone needs to be cut off immediately.</td></tr>
+  </table>
+</div>
+
+<!-- 8 DENIED -->
+<div class="screen">
+  <h3><span class="num">8</span> Access Denied</h3>
+  <p class="where">Shown when a signed-in person reaches the console but isn't allowed in.</p>
+  <div class="story">"I'm logged into EventSphere, but I'm not on the platform team — I landed on the admin console by mistake."</div>
+  <h4>What they see and can do</h4>
+  <ul>
+    <li>"You're signed in, but your account doesn't have platform super-admin permissions. This console is restricted."</li>
+    <li>A warning: <b>"This access attempt has been logged and reported to security."</b></li>
+    <li>Two ways out: <b>Back to your dashboard</b> or <b>Sign in as a different user</b>.</li>
+  </ul>
+</div>
+
+<!-- COMPARISON -->
+<h2 class="section">How This Differs From Organizer Sign-In</h2>
+<div class="screen">
+  <table>
+    <tr><th>&nbsp;</th><th>Organizer (customers)</th><th>Platform Admin (our staff)</th></tr>
+    <tr><td><b>Sign up</b></td><td>Anyone can register</td><td><b>Nobody</b> — invite only</td></tr>
+    <tr><td><b>Google / Facebook login</b></td><td>Yes</td><td>No — corporate SSO only</td></tr>
+    <tr><td><b>Two-factor</b></td><td>Optional</td><td><b>Mandatory, always</b></td></tr>
+    <tr><td><b>Password rule</b></td><td>8+ characters</td><td>12+ characters</td></tr>
+    <tr><td><b>Trust this device</b></td><td>30 days</td><td>7 days</td></tr>
+    <tr><td><b>Idle timeout</b></td><td>Longer</td><td>10 minutes</td></tr>
+    <tr><td><b>Look and feel</b></td><td>Welcoming, testimonials, "trusted by 2,400+ organizers"</td><td>Plain and serious. No marketing. "Internal access only."</td></tr>
+  </table>
+</div>
+
+<!-- SUMMARY -->
+<h2 class="section">One-Line Summary of Every Screen</h2>
+<div class="screen">
+  <ul>
+    <li><b>1. Log In</b> — staff sign in with work email + password.</li>
+    <li><b>2. Two-Factor Check</b> — the mandatory 6-digit code, every time.</li>
+    <li><b>3. Accept Invitation</b> — a new admin sets up their account from an invite.</li>
+    <li><b>4. Two-Factor Setup</b> — forced on first sign-in, ends with backup codes.</li>
+    <li><b>5. Forgot Password</b> — request a reset link.</li>
+    <li><b>6. Reset Password</b> — choose a new one (2FA still applies).</li>
+    <li><b>7. Session Ended</b> — timed out after 10 minutes, or cut off by another admin.</li>
+    <li><b>8. Access Denied</b> — you're signed in but not allowed here; it's been logged.</li>
+  </ul>
+</div>
+
+<div class="lead" style="margin-top:24px">
+  <b>A note on devices.</b> These screens work on phones, tablets, laptops and desktops, but they're built
+  laptop-and-desktop first — this is an office tool our team uses at their desks, not something organizers
+  open on the go.
+</div>
+
+<footer>
+  EventSphere · Platform Admin Authentication Prototype · Plain-English team walkthrough
+</footer>
+
+</div>
+</body>
+</html>
