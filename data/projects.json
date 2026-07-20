@@ -83,9 +83,31 @@
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-auth-module-ui-prototype/EventSphere Platform Auth (standalone).html"
             }
           ]
+        },
+        {
+          "name": "Organizer Manage Events Module UI Prototype",
+          "slug": "organizer-manage-events-module-ui-prototype",
+          "entryFile": "EventSphere Events (standalone) (2).html",
+          "files": [
+            {
+              "name": "EventSphere Events (standalone) (2).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/organizer-manage-events-module-ui-prototype/EventSphere Events (standalone) (2).html"
+            }
+          ]
+        },
+        {
+          "name": "Super Admin Portal UI Prototype",
+          "slug": "super-admin-portal-ui-prototype",
+          "entryFile": "EventSphere SuperAdmin (standalone) (2).html",
+          "files": [
+            {
+              "name": "EventSphere SuperAdmin (standalone) (2).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-portal-ui-prototype/EventSphere SuperAdmin (standalone) (2).html"
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-07-15T18:08:27.494Z"
+      "updatedAt": "2026-07-20T06:21:11.206Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
