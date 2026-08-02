@@ -92,6 +92,10 @@
             {
               "name": "EventSphere Events (standalone) (2).html",
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/organizer-manage-events-module-ui-prototype/EventSphere Events (standalone) (2).html"
+            },
+            {
+              "name": "EventSphere Events (standalone) (3).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/organizer-manage-events-module-ui-prototype/EventSphere Events (standalone) (3).html"
             }
           ]
         },
@@ -129,7 +133,7 @@
           ]
         }
       ],
-      "updatedAt": "2026-08-02T06:42:44.817Z"
+      "updatedAt": "2026-08-02T13:12:35.366Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
