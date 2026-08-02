@@ -105,9 +105,31 @@
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-portal-ui-prototype/EventSphere SuperAdmin (standalone) (2).html"
             }
           ]
+        },
+        {
+          "name": "Organizer Pickup Points and Manage Event Calendar",
+          "slug": "organizer-pickup-points-and-manage-event-calenda",
+          "entryFile": "EventSphere Calendar (standalone) (1).html",
+          "files": [
+            {
+              "name": "EventSphere Calendar (standalone) (1).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/organizer-pickup-points-and-manage-event-calenda/EventSphere Calendar (standalone) (1).html"
+            }
+          ]
+        },
+        {
+          "name": "Manage Organizer Coupons",
+          "slug": "manage-organizer-coupons",
+          "entryFile": "EventSphere Coupons (standalone) (1).html",
+          "files": [
+            {
+              "name": "EventSphere Coupons (standalone) (1).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/manage-organizer-coupons/EventSphere Coupons (standalone) (1).html"
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-07-20T06:21:11.206Z"
+      "updatedAt": "2026-08-02T06:42:44.817Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
