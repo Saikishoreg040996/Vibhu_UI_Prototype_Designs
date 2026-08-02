@@ -326,6 +326,81 @@
       color: var(--amber); background: rgba(255,170,0,0.06); border-color: rgba(255,170,0,0.2);
     }
     .ei-btn-undo:hover { background: rgba(255,170,0,0.12); border-color: rgba(255,170,0,0.4); }
+    .ei-btn-edit {
+      color: #b06bff; background: rgba(123,47,247,0.07); border-color: var(--border2);
+    }
+    .ei-btn-edit:hover { background: rgba(123,47,247,0.14); border-color: rgba(123,47,247,0.45); }
+
+    .existing-item.is-open {
+      border-color: rgba(123,47,247,0.35);
+      border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+      margin-bottom: 0;
+    }
+    .ei-mod-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 1px;
+      color: var(--amber); padding: 2px 8px; border-radius: 4px;
+      background: rgba(255,170,0,0.1); border: 1px solid rgba(255,170,0,0.25);
+      flex-shrink: 0;
+    }
+
+    /* ── Inline prototype editor (edit modal) ── */
+    .proto-editor {
+      background: rgba(123,47,247,0.05);
+      border: 1px solid rgba(123,47,247,0.35); border-top: none;
+      border-radius: 0 0 9px 9px;
+      padding: 16px; margin-bottom: 6px;
+    }
+    .proto-editor-grid {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 12px; margin-bottom: 14px;
+    }
+    .proto-editor-grid .form-group { margin-bottom: 0; }
+    .proto-editor-label {
+      font-family: 'Orbitron', sans-serif; font-size: 9px; font-weight: 700;
+      color: var(--text2); letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 8px; display: block;
+    }
+    .form-select {
+      width: 100%; background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 11px 14px; color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 13px;
+      outline: none; transition: all 0.2s; cursor: pointer;
+    }
+    .form-select:focus { border-color: rgba(0,212,255,0.38); background: rgba(0,212,255,0.03); }
+    .form-select option { background: var(--bg2); color: var(--text); }
+
+    .pe-file {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 7px; padding: 7px 11px; margin-bottom: 5px;
+    }
+    .pe-file.pending-delete {
+      background: rgba(255,45,120,0.06); border-color: rgba(255,45,120,0.25); opacity: 0.75;
+    }
+    .pe-file.pending-delete .pe-file-name { text-decoration: line-through; color: var(--text2); }
+    .pe-file.is-new { background: rgba(0,255,136,0.04); border-color: rgba(0,255,136,0.18); }
+    .pe-file-name {
+      font-size: 11px; color: var(--text); flex: 1; min-width: 0;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .pe-chip {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
+      padding: 2px 7px; border-radius: 4px; flex-shrink: 0;
+    }
+    .pe-chip-entry { background: rgba(0,255,136,0.1); color: var(--green); border: 1px solid rgba(0,255,136,0.22); }
+    .pe-chip-new   { background: rgba(0,255,136,0.08); color: var(--green); border: 1px solid rgba(0,255,136,0.2); }
+    .pe-file-btn {
+      background: none; border: none; cursor: pointer; flex-shrink: 0;
+      font-size: 11px; padding: 2px 6px; border-radius: 5px;
+      color: var(--text2); transition: all 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .pe-file-btn:hover { color: var(--pink); background: rgba(255,45,120,0.1); }
+    .pe-file-btn.undo { color: var(--amber); }
+    .pe-file-btn.undo:hover { color: var(--amber); background: rgba(255,170,0,0.12); }
+    .pe-file-btn[disabled] { opacity: 0.35; cursor: not-allowed; }
+    .pe-file-btn[disabled]:hover { color: var(--text2); background: none; }
+    .pe-note { font-size: 10px; color: var(--text2); line-height: 1.6; margin-top: 8px; }
 
     /* ── Divider label inside edit modal ── */
     .edit-section-divider {
@@ -767,6 +842,10 @@
 
       <!-- ── Prototypes section ── -->
       <div class="edit-section-divider" style="margin-top:24px">UI Prototypes</div>
+      <p class="form-hint" style="margin:-4px 0 10px">
+        Use <strong style="color:#b06bff">✎ Edit</strong> to rename a prototype, switch its entry file,
+        or add, replace and remove individual files.
+      </p>
       <div id="edit_existingProtos"></div>
       <div id="edit_protoEntries" style="margin-top:8px"></div>
       <button type="button" class="add-proto-btn" onclick="Edit.addProtoEntry()"
@@ -1026,15 +1105,18 @@ const Edit = {
   newDocFiles:    [],
   docsToDelete:   [],   // doc objects { name, path } marked for deletion
   protosToDelete: [],   // proto objects { name, slug, files } marked for deletion
+  protoEdits:     {},   // slug → staged edits { name, entryFile, delFiles, newFiles }
   protoSeq:       0,
+  _openProto:      null, // slug of the prototype whose inline editor is expanded
   _currentProject: null,
 
   // ── Populate modal with a project ──
-  load(p) {
+  load(p, focusProtoSlug) {
     this.reset();
     this._currentProject = p;
     this.renderExistingDocs();
     this.renderExistingProtos();
+    if (focusProtoSlug) this.openProtoEditor(focusProtoSlug);
   },
 
   // ── Existing docs list ──
@@ -1083,37 +1165,256 @@ const Edit = {
     if (!protos.length) { el.innerHTML = ''; return; }
 
     el.innerHTML = protos.map((pt, i) => {
-      const pending = this.protosToDelete.some(x => x.slug === pt.slug);
+      const pending  = this.protosToDelete.some(x => x.slug === pt.slug);
+      const open     = !pending && this._openProto === pt.slug;
+      const modified = !pending && !!this.protoDraftChanges(pt);
+      const draft    = this.protoEdits[pt.slug];
+      const shownName  = (modified && draft?.name?.trim()) || pt.name;
+      const shownEntry = (modified && draft?.entryFile) || pt.entryFile;
+      const fileCount  = this._draftFileCount(pt);
+
       return `
-        <div class="existing-item${pending ? ' pending-delete' : ''}" id="eiproto_${i}">
+        <div class="existing-item${pending ? ' pending-delete' : ''}${open ? ' is-open' : ''}" id="eiproto_${i}">
           <div class="existing-item-info">
             <span>💻</span>
-            <div>
-              <div class="existing-item-name">${FH._esc(pt.name)}</div>
-              <div class="existing-item-meta">${pt.files?.length || 0} file(s) · Entry: ${FH._esc(pt.entryFile)}</div>
+            <div style="min-width:0">
+              <div class="existing-item-name">${FH._esc(shownName)}</div>
+              <div class="existing-item-meta">${fileCount} file(s) · Entry: ${FH._esc(shownEntry)}</div>
             </div>
-            ${pending ? '<span class="ei-del-label">WILL DELETE</span>' : ''}
+            ${pending  ? '<span class="ei-del-label">WILL DELETE</span>' : ''}
+            ${modified ? '<span class="ei-mod-label">EDITED</span>'      : ''}
           </div>
           <div class="existing-item-actions">
-            ${!pending ? `<button class="ei-btn ei-btn-view"
-                onclick="UI.viewProto('${FH._esc(p.id)}','${FH._esc(pt.slug)}','${FH._esc(pt.name)}','${FH._esc(pt.entryFile)}')">↗ Preview</button>` : ''}
+            ${!pending ? `<button class="ei-btn ei-btn-edit" onclick="Edit.toggleProtoEditor(${i})">
+                ${open ? '▲ Close' : '✎ Edit'}</button>` : ''}
+            ${!pending ? `<button class="ei-btn ei-btn-view" onclick="Edit.previewProto(${i})">↗ Preview</button>` : ''}
             ${pending
               ? `<button class="ei-btn ei-btn-undo" onclick="Edit.unmarkProto('${FH._esc(pt.slug)}')">↩ Undo</button>`
               : `<button class="ei-btn ei-btn-delete" onclick="Edit.markProto('${FH._esc(pt.slug)}')">🗑 Delete</button>`}
           </div>
-        </div>`;
+        </div>
+        ${open ? this._protoEditorHtml(pt, i) : ''}`;
     }).join('');
   },
 
   markProto(slug) {
     const pt = (this._currentProject?.prototypes || []).find(x => x.slug === slug);
     if (pt && !this.protosToDelete.some(x => x.slug === slug)) this.protosToDelete.push(pt);
+    if (this._openProto === slug) this._openProto = null;
     this.renderExistingProtos();
   },
 
   unmarkProto(slug) {
     this.protosToDelete = this.protosToDelete.filter(x => x.slug !== slug);
     this.renderExistingProtos();
+  },
+
+  previewProto(i) {
+    const p  = this._currentProject;
+    const pt = (p?.prototypes || [])[i];
+    if (pt) UI.viewProto(p.id, pt.slug, pt.name, pt.entryFile);
+  },
+
+  // ══════════════════════════════════════════════════════════════
+  // EDIT AN EXISTING PROTOTYPE — rename, re-point entry file,
+  // remove individual files, add or replace files.
+  // All changes are staged here and applied by Projects.update().
+  // The folder slug is intentionally never changed so that existing
+  // published prototype URLs keep working.
+  // ══════════════════════════════════════════════════════════════
+
+  // Staged draft for one prototype, created lazily on first edit
+  _draft(slug) {
+    if (!this.protoEdits[slug]) {
+      const pt = (this._currentProject?.prototypes || []).find(x => x.slug === slug) || {};
+      this.protoEdits[slug] = {
+        name:      pt.name      || '',
+        entryFile: pt.entryFile || '',
+        delFiles:  [],   // paths of existing files marked for removal
+        newFiles:  []    // File objects to upload into this prototype folder
+      };
+    }
+    return this.protoEdits[slug];
+  },
+
+  // Files that will exist after the staged changes are applied
+  _draftFiles(pt) {
+    const d       = this.protoEdits[pt.slug];
+    const kept    = (pt.files || []).filter(f => !(d?.delFiles || []).includes(f.path));
+    const newOnes = (d?.newFiles || []).map(f => ({ name: f.name, path: null }));
+    // an uploaded file with the same name overwrites the existing one
+    const names   = new Set(newOnes.map(f => f.name));
+    return [...kept.filter(f => !names.has(f.name)), ...newOnes];
+  },
+
+  _draftFileCount(pt) { return this._draftFiles(pt).length; },
+
+  toggleProtoEditor(i) {
+    const pt = (this._currentProject?.prototypes || [])[i];
+    if (!pt) return;
+    this._openProto = this._openProto === pt.slug ? null : pt.slug;
+    if (this._openProto) this._draft(pt.slug);
+    this.renderExistingProtos();
+  },
+
+  openProtoEditor(slug) {
+    const list = this._currentProject?.prototypes || [];
+    if (!list.some(x => x.slug === slug)) return;
+    this._openProto = slug;
+    this._draft(slug);
+    this.renderExistingProtos();
+    document.getElementById('edit_existingProtos')
+      ?.querySelector('.proto-editor')
+      ?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  },
+
+  _protoEditorHtml(pt, i) {
+    const d       = this._draft(pt.slug);
+    const files   = pt.files || [];
+    const entries = this._draftFiles(pt).map(f => f.name);
+    // keep the current selection selectable even if its file was just removed
+    const options = entries.includes(d.entryFile) ? entries : [d.entryFile, ...entries].filter(Boolean);
+
+    const existingRows = files.map((f, fi) => {
+      const pending  = d.delFiles.includes(f.path);
+      const replaced = d.newFiles.some(n => n.name === f.name);
+      const isEntry  = f.name === d.entryFile && !pending;
+      return `
+        <div class="pe-file${pending ? ' pending-delete' : ''}">
+          <span class="pe-file-name">${FH._icon(f.name)} ${FH._esc(f.name)}</span>
+          ${isEntry   ? '<span class="pe-chip pe-chip-entry">ENTRY</span>' : ''}
+          ${replaced  ? '<span class="pe-chip pe-chip-new">REPLACED</span>' : ''}
+          ${pending
+            ? `<button class="pe-file-btn undo" onclick="Edit.unmarkProtoFile(${i},${fi})">↩ Undo</button>`
+            : `<button class="pe-file-btn" onclick="Edit.markProtoFile(${i},${fi})"
+                 ${isEntry ? 'disabled title="Point the entry file elsewhere before removing this file"' : ''}>✕</button>`}
+        </div>`;
+    }).join('');
+
+    const newRows = d.newFiles.map((f, ni) => `
+      <div class="pe-file is-new">
+        <span class="pe-file-name">${FH._icon(f.name)} ${FH._esc(f.name)}</span>
+        <span class="pe-chip pe-chip-new">NEW</span>
+        <span class="file-item-size">${FH._size(f.size)}</span>
+        <button class="pe-file-btn" onclick="Edit.removeProtoEditFile(${i},${ni})">✕</button>
+      </div>`).join('');
+
+    return `
+      <div class="proto-editor" id="peditor_${i}">
+        <div class="proto-editor-grid">
+          <div class="form-group">
+            <label class="proto-editor-label">Prototype Name</label>
+            <input class="form-input" id="pe_name_${i}" value="${FH._esc(d.name)}"
+                   placeholder="Prototype name"
+                   oninput="Edit.setProtoName(${i}, this.value)">
+          </div>
+          <div class="form-group">
+            <label class="proto-editor-label">Entry File</label>
+            <select class="form-select" onchange="Edit.setProtoEntry(${i}, this.value)">
+              ${options.map(n => `<option value="${FH._esc(n)}"${n === d.entryFile ? ' selected' : ''}>${FH._esc(n)}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+
+        <label class="proto-editor-label">Files</label>
+        ${existingRows || (newRows ? '' : '<p class="pe-note">This prototype has no files recorded.</p>')}
+        ${newRows}
+
+        <div class="upload-zone" style="padding:16px;margin-top:10px">
+          <input type="file"
+                 accept=".html,.htm,.css,.js,.mjs,.json,.png,.jpg,.jpeg,.svg,.ico,.woff,.woff2,.ttf,.eot,.gif,.webp,.map"
+                 multiple onchange="Edit.onProtoEditFiles(${i}, this.files); this.value='';">
+          <span class="upload-icon" style="font-size:20px;margin-bottom:4px">⬆</span>
+          <div class="upload-text">Add or replace files — drop or <strong>browse</strong></div>
+          <div class="upload-hint">Same file name replaces the existing file</div>
+        </div>
+        <p class="pe-note">
+          The prototype folder <code style="color:#b06bff">${FH._esc(pt.slug)}</code> stays the same, so the
+          published link keeps working. Changes are applied when you press <strong>Save Changes</strong>.
+        </p>
+      </div>`;
+  },
+
+  setProtoName(i, value) {
+    const pt = (this._currentProject?.prototypes || [])[i];
+    if (pt) this._draft(pt.slug).name = value;   // no re-render — keeps input focus
+  },
+
+  setProtoEntry(i, value) {
+    const pt = (this._currentProject?.prototypes || [])[i];
+    if (!pt) return;
+    this._draft(pt.slug).entryFile = value;
+    this.renderExistingProtos();
+  },
+
+  markProtoFile(i, fileIndex) {
+    const pt = (this._currentProject?.prototypes || [])[i];
+    const f  = pt?.files?.[fileIndex];
+    if (!pt || !f) return;
+    const d = this._draft(pt.slug);
+    if (f.name === d.entryFile) {
+      UI.toast('Point the entry file elsewhere before removing it', 'warning');
+      return;
+    }
+    if (!d.delFiles.includes(f.path)) d.delFiles.push(f.path);
+    this.renderExistingProtos();
+  },
+
+  unmarkProtoFile(i, fileIndex) {
+    const pt = (this._currentProject?.prototypes || [])[i];
+    const f  = pt?.files?.[fileIndex];
+    if (!pt || !f) return;
+    const d = this._draft(pt.slug);
+    d.delFiles = d.delFiles.filter(p => p !== f.path);
+    this.renderExistingProtos();
+  },
+
+  onProtoEditFiles(i, files) {
+    const pt = (this._currentProject?.prototypes || [])[i];
+    if (!pt) return;
+    const d     = this._draft(pt.slug);
+    const added = Array.from(files);
+    const names = new Set(added.map(f => f.name));
+    d.newFiles  = [...d.newFiles.filter(f => !names.has(f.name)), ...added];
+    // a re-added file should no longer be queued for deletion
+    const readded = new Set((pt.files || []).filter(f => names.has(f.name)).map(f => f.path));
+    d.delFiles = d.delFiles.filter(p => !readded.has(p));
+    this.renderExistingProtos();
+  },
+
+  removeProtoEditFile(i, fileIndex) {
+    const pt = (this._currentProject?.prototypes || [])[i];
+    if (!pt) return;
+    const d = this._draft(pt.slug);
+    d.newFiles.splice(fileIndex, 1);
+    this.renderExistingProtos();
+  },
+
+  // Returns the staged change-set for a prototype, or null when untouched
+  protoDraftChanges(pt) {
+    const d = this.protoEdits[pt.slug];
+    if (!d) return null;
+
+    const name    = d.name.trim() || pt.name;
+    const entry   = d.entryFile   || pt.entryFile;
+    const changed = name !== pt.name || entry !== pt.entryFile
+                 || d.delFiles.length > 0 || d.newFiles.length > 0;
+    if (!changed) return null;
+
+    return {
+      slug:      pt.slug,
+      name,
+      entryFile: entry,
+      delFiles:  (pt.files || []).filter(f => d.delFiles.includes(f.path)),
+      newFiles:  d.newFiles
+    };
+  },
+
+  collectProtoEdits() {
+    return (this._currentProject?.prototypes || [])
+      .filter(pt => !this.protosToDelete.some(x => x.slug === pt.slug))
+      .map(pt => this.protoDraftChanges(pt))
+      .filter(Boolean);
   },
 
   // ── New doc files to upload ──
@@ -1205,7 +1506,9 @@ const Edit = {
     this.newDocFiles    = [];
     this.docsToDelete   = [];
     this.protosToDelete = [];
+    this.protoEdits     = {};
     this.protoSeq       = 0;
+    this._openProto      = null;
     this._currentProject = null;
     document.getElementById('edit_docFileList').innerHTML  = '';
     document.getElementById('edit_protoEntries').innerHTML = '';
@@ -1334,23 +1637,30 @@ const Projects = {
     const idx = _projects.findIndex(p => p.id === id);
     if (idx === -1) { UI.toast('Project not found', 'error'); return; }
 
-    const delDocs   = Edit.docsToDelete;
-    const delProtos = Edit.protosToDelete;
-    const newDocs   = Edit.newDocFiles;
-    const newProtos = Edit.collectNewProtos();
+    const delDocs    = Edit.docsToDelete;
+    const delProtos  = Edit.protosToDelete;
+    const newDocs    = Edit.newDocFiles;
+    const newProtos  = Edit.collectNewProtos();
+    const protoEdits = Edit.collectProtoEdits();
 
-    const delFileCount = delDocs.length + delProtos.reduce((s, p) => s + (p.files?.length || 0), 0);
-    const addFileCount = newDocs.length + newProtos.reduce((s, p) => s + p.files.length, 0);
-    const total = delFileCount + addFileCount + 1;
+    const delFileCount  = delDocs.length + delProtos.reduce((s, p) => s + (p.files?.length || 0), 0);
+    const addFileCount  = newDocs.length + newProtos.reduce((s, p) => s + p.files.length, 0);
+    const editFileCount = protoEdits.reduce((s, e) => s + e.delFiles.length + e.newFiles.length, 0);
+    const total = delFileCount + addFileCount + editFileCount + 1;
     let   done  = 0;
 
     UI.showLoading('Applying changes…');
 
     try {
-      let meta = {
-        ..._projects[idx], name, description: desc,
+      // Clone nested collections so a mid-way failure cannot leave
+      // the in-memory project index partially mutated.
+      const src  = _projects[idx];
+      let   meta = {
+        ...src, name, description: desc,
         shortDesc: desc.length > 148 ? desc.substring(0,148)+'…' : desc,
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
+        docs:       (src.docs || []).map(d => ({ ...d })),
+        prototypes: (src.prototypes || []).map(p => ({ ...p, files: (p.files || []).map(f => ({ ...f })) }))
       };
 
       // ── 1. Delete marked documents from GitHub ──
@@ -1377,7 +1687,40 @@ const Projects = {
         meta.prototypes = (meta.prototypes || []).filter(p => !delSlugs.has(p.slug));
       }
 
-      // ── 3. Upload new documents ──
+      // ── 3. Apply edits to existing prototypes ──
+      for (const ed of protoEdits) {
+        const target = (meta.prototypes || []).find(p => p.slug === ed.slug);
+        if (!target) continue;
+
+        UI.setStep(`Updating "${ed.name}"…`);
+
+        // Remove files the user dropped from this prototype
+        for (const f of ed.delFiles) {
+          await GH.deleteFile(f.path, `prototype: remove ${f.name}`);
+          UI.setProgress(Math.round((++done / total) * 100));
+        }
+        const gone = new Set(ed.delFiles.map(f => f.path));
+        target.files = (target.files || []).filter(f => !gone.has(f.path));
+
+        // Upload added / replaced files into the same prototype folder
+        for (const file of ed.newFiles) {
+          const b64 = await FH.toBase64(file);
+          const fp  = `projects/${id}/prototypes/${ed.slug}/${file.name}`;
+          await GH.put(fp, b64, `prototype: update ${file.name}`);
+          if (!target.files.some(f => f.path === fp)) target.files.push({ name: file.name, path: fp });
+          UI.setProgress(Math.round((++done / total) * 100));
+        }
+
+        target.name = ed.name;
+        // Never leave the entry pointing at a file that no longer exists
+        target.entryFile = target.files.some(f => f.name === ed.entryFile)
+          ? ed.entryFile
+          : (target.files.find(f => /\.html?$/i.test(f.name))?.name
+             || target.files[0]?.name
+             || target.entryFile);
+      }
+
+      // ── 4. Upload new documents ──
       if (newDocs.length) {
         UI.setStep('Uploading new documents…');
         for (const file of newDocs) {
@@ -1392,7 +1735,7 @@ const Projects = {
         }
       }
 
-      // ── 4. Upload new prototypes ──
+      // ── 5. Upload new prototypes ──
       for (const proto of newProtos) {
         const pslug = this.slug(proto.name) || `prototype-${Date.now().toString(36)}`;
         UI.setStep(`Uploading "${proto.name}"…`);
@@ -1411,7 +1754,7 @@ const Projects = {
         meta.prototypes.push(pData);
       }
 
-      // ── 5. Write updated index ──
+      // ── 6. Write updated index ──
       UI.setStep('Saving project index…');
       _projects[idx] = meta;
       await this._writeIndex();
@@ -1525,7 +1868,8 @@ const UI = {
     document.body.style.overflow = '';
   },
 
-  openEdit(projectId) {
+  // focusProtoSlug — optional: opens straight into that prototype's editor
+  openEdit(projectId, focusProtoSlug) {
     const p = _projects.find(x => x.id === projectId);
     if (!p) return;
 
@@ -1539,8 +1883,13 @@ const UI = {
     document.getElementById('edit_name').value = p.name;
     document.getElementById('edit_desc').value = p.description;
 
-    Edit.load(p);
+    Edit.load(p, focusProtoSlug);
     this.openModal('editModal');
+  },
+
+  editProto(projectId, protoSlug) {
+    this.closeModal('detailModal');
+    this.openEdit(projectId, protoSlug);
   },
 
   openAddProject() {
@@ -1594,6 +1943,10 @@ const UI = {
               <button class="btn-primary" style="padding:8px 16px;font-size:11px"
                       onclick="UI.viewProto('${this._esc(p.id)}','${this._esc(pt.slug)}','${this._esc(pt.name)}','${this._esc(pt.entryFile)}')">
                 ↗ Preview Design
+              </button>
+              <button class="card-edit-btn" style="padding:8px 14px;font-size:11px"
+                      onclick="UI.editProto('${this._esc(p.id)}','${this._esc(pt.slug)}')">
+                ✏ Edit
               </button>
               <a class="btn-ghost" style="padding:8px 16px;font-size:11px;text-decoration:none"
                  href="${GH.rawUrl(`projects/${p.id}/prototypes/${this._esc(pt.slug)}/${this._esc(pt.entryFile)}`)}"
