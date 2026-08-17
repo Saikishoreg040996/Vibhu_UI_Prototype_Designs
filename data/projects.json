@@ -127,9 +127,20 @@
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/manage-organizer-coupons/EventSphere Coupons (standalone) (1).html"
             }
           ]
+        },
+        {
+          "name": "B2B Organizer Onboarding Workflow",
+          "slug": "b2b-organizer-onboarding-workflow",
+          "entryFile": "EventSphere Onboarding (standalone) (4).html",
+          "files": [
+            {
+              "name": "EventSphere Onboarding (standalone) (4).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-onboarding-workflow/EventSphere Onboarding (standalone) (4).html"
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-08-02T13:14:33.668Z"
+      "updatedAt": "2026-08-17T19:18:54.755Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
