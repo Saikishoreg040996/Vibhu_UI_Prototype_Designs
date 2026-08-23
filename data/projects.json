@@ -142,11 +142,11 @@
         {
           "name": "Project Style Guide UI Prototype",
           "slug": "project-style-guide-ui-prototype",
-          "entryFile": "EventSphere Styleguide.dc.html",
+          "entryFile": "EventSphere Styleguide (standalone).html",
           "files": [
             {
-              "name": "EventSphere Styleguide.dc.html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/project-style-guide-ui-prototype/EventSphere Styleguide.dc.html"
+              "name": "EventSphere Styleguide (standalone).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/project-style-guide-ui-prototype/EventSphere Styleguide (standalone).html"
             }
           ]
         },
@@ -162,7 +162,7 @@
           ]
         }
       ],
-      "updatedAt": "2026-08-23T03:51:45.548Z"
+      "updatedAt": "2026-08-23T03:59:11.268Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
