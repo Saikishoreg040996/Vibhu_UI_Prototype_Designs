@@ -149,9 +149,20 @@
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/project-style-guide-ui-prototype/EventSphere Styleguide.dc.html"
             }
           ]
+        },
+        {
+          "name": "B2B Organizer complete UI prototype design",
+          "slug": "b2b-organizer-complete-ui-prototype-design",
+          "entryFile": "EventSphere Prototype (standalone).html",
+          "files": [
+            {
+              "name": "EventSphere Prototype (standalone).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype-design/EventSphere Prototype (standalone).html"
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-08-23T03:47:20.716Z"
+      "updatedAt": "2026-08-23T03:51:45.548Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
