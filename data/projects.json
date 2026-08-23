@@ -138,9 +138,20 @@
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-onboarding-workflow/EventSphere Onboarding (standalone) (4).html"
             }
           ]
+        },
+        {
+          "name": "Project Style Guide UI Prototype",
+          "slug": "project-style-guide-ui-prototype",
+          "entryFile": "EventSphere Styleguide.dc.html",
+          "files": [
+            {
+              "name": "EventSphere Styleguide.dc.html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/project-style-guide-ui-prototype/EventSphere Styleguide.dc.html"
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-08-17T19:18:54.755Z"
+      "updatedAt": "2026-08-23T03:47:20.716Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
