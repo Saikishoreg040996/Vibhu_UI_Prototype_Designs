@@ -160,9 +160,28 @@
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype-design/EventSphere Prototype (standalone).html"
             }
           ]
+        },
+        {
+          "name": "EventSphere Project Tracker",
+          "slug": "eventsphere-project-tracker",
+          "entryFile": "index.html",
+          "files": [
+            {
+              "name": "index.html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/eventsphere-project-tracker/index.html"
+            },
+            {
+              "name": "README.md",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/eventsphere-project-tracker/README.md"
+            },
+            {
+              "name": "status.json",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/eventsphere-project-tracker/status.json"
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-08-23T03:59:11.268Z"
+      "updatedAt": "2026-09-03T11:02:24.500Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
