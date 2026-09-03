@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EventSphere · Pre-Go-Live Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111318; --ink-2:#4b5058; --ink-3:#8a9099;
+  --line:#e3e6ea; --line-2:#f1f3f5; --bg:#ffffff; --bg-2:#fafbfc;
+  --ns:#9aa1aa; --wip:#B45309; --qa:#3D3AE0; --done:#0F8B8D; --blk:#B91C1C;
+  --c-b2b:#3D3AE0; --c-sa:#334155; --c-al:#0F8B8D; --c-b2c:#B45309; --c-tp:#B91C1C; --c-xc:#6D28D9;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;letter-spacing:-.01em}
+.mono{font-family:var(--mono)}
+button{font:inherit;cursor:pointer}
+input,select{font:inherit;color:inherit}
+
+/* ---------- top bar ---------- */
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1500px;margin:0 auto;padding:14px 22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.brand h1{font-size:19px;margin:0;font-weight:700;text-transform:uppercase}
+.brand p{margin:2px 0 0;font-size:11px;color:var(--ink-3);font-family:var(--mono)}
+.spacer{flex:1}
+.kpi{display:flex;gap:22px;align-items:center}
+.kpi .n{font-family:'Space Grotesk';font-size:22px;font-weight:700;line-height:1}
+.kpi .l{font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono)}
+.gbar{width:220px;height:8px;border-radius:99px;background:var(--line-2);overflow:hidden;display:flex}
+.gbar i{display:block;height:100%}
+.btn{border:1px solid var(--line);background:#fff;border-radius:7px;padding:7px 13px;font-size:13px;font-weight:500;color:var(--ink-2)}
+.btn:hover{border-color:var(--ink-3);color:var(--ink)}
+.btn.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.pri:hover{background:#000}
+.btn.warn{border-color:var(--blk);color:var(--blk)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+
+/* ---------- controls ---------- */
+.controls{max-width:1500px;margin:0 auto;padding:12px 22px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line-2)}
+.chipset{display:flex;gap:6px;flex-wrap:wrap}
+.fchip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:5px 12px;font-size:12px;font-weight:500;color:var(--ink-2);display:flex;gap:7px;align-items:center}
+.fchip .dot{width:8px;height:8px;border-radius:99px;display:inline-block}
+.fchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.fchip .ct{font-family:var(--mono);font-size:10px;opacity:.6}
+#q{border:1px solid var(--line);border-radius:7px;padding:7px 11px;min-width:230px;background:#fff}
+#q:focus{outline:none;border-color:var(--ink-3)}
+
+/* ---------- table ---------- */
+main{max-width:1500px;margin:0 auto;padding:0 22px 90px}
+.sec{margin-top:34px}
+.sechead{display:flex;align-items:center;gap:12px;padding-bottom:9px;border-bottom:2px solid var(--ink)}
+.sechead h2{font-size:15px;margin:0;text-transform:uppercase;font-weight:700}
+.sechead .tag{font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+.sechead .accent{width:26px;height:4px;border-radius:2px}
+.sechead .pct{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink-2)}
+.grp{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:16px 0 6px;border-bottom:1px solid var(--line-2)}
+
+.hrow,.row{display:grid;grid-template-columns:64px minmax(320px,1fr) 300px 300px;gap:16px;align-items:start}
+.hrow{padding:10px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);position:sticky;top:66px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);z-index:20}
+.row{padding:13px 0;border-bottom:1px solid var(--line-2)}
+.row:hover{background:var(--bg-2)}
+.row.blocked{box-shadow:inset 3px 0 0 var(--blk)}
+.row.done{opacity:.62}
+.id{font-family:var(--mono);font-size:11px;color:var(--ink-3);padding-top:3px}
+.nm{font-weight:600;font-size:14px}
+.ds{font-size:12px;color:var(--ink-2);margin-top:2px}
+.dep{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);margin-top:5px}
+.flag{display:inline-block;font-family:var(--mono);font-size:9px;background:#FFF4E5;color:#8a5300;border:1px solid #f0d9b5;border-radius:4px;padding:1px 5px;margin-left:7px;vertical-align:middle}
+
+.cell{display:flex;flex-direction:column;gap:7px}
+.track{display:flex;gap:5px}
+.st{border:1.4px solid var(--line);background:#fff;border-radius:6px;width:100%;padding:6px 0;font-family:var(--mono);font-size:10px;font-weight:500;color:var(--ink-3);letter-spacing:.04em}
+.st:hover{border-color:var(--ink-3)}
+.st.on{color:#fff}
+.st.on[data-s=NS]{background:var(--ns);border-color:var(--ns)}
+.st.on[data-s=WIP]{background:var(--wip);border-color:var(--wip)}
+.st.on[data-s=QA]{background:var(--qa);border-color:var(--qa)}
+.st.on[data-s=DONE]{background:var(--done);border-color:var(--done)}
+.st.on[data-s=BLK]{background:var(--blk);border-color:var(--blk)}
+.meta{display:flex;gap:6px}
+.meta input{border:none;border-bottom:1px solid var(--line);background:transparent;padding:3px 2px;font-family:var(--mono);font-size:11px;width:100%}
+.meta input:focus{outline:none;border-bottom-color:var(--ink)}
+.na{font-family:var(--mono);font-size:11px;color:var(--ink-3);border:1px dashed var(--line);border-radius:6px;padding:9px 0;text-align:center}
+.note{grid-column:2/-1;margin-top:8px}
+.note input{width:100%;border:1px solid #f3d3d3;background:#FFF7F7;border-radius:6px;padding:7px 10px;font-size:12px}
+.note input:focus{outline:none;border-color:var(--blk)}
+.sign{grid-column:3/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.sign div{border-bottom:1px solid var(--ink);padding-top:22px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase}
+
+/* ---------- footer / dialog ---------- */
+footer{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);z-index:40}
+.fbar{max-width:1500px;margin:0 auto;padding:10px 22px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.lg{display:flex;gap:12px;align-items:center}
+.lg span{display:flex;gap:5px;align-items:center}
+.lg i{width:9px;height:9px;border-radius:3px;display:inline-block}
+dialog{border:1px solid var(--line);border-radius:12px;padding:0;max-width:520px;width:92%;box-shadow:0 24px 70px rgba(0,0,0,.22)}
+dialog::backdrop{background:rgba(10,12,16,.45)}
+.dlg{padding:22px}
+.dlg h3{margin:0 0 4px;font-size:16px}
+.dlg p{margin:0 0 16px;font-size:12.5px;color:var(--ink-2)}
+.fld{margin-bottom:11px}
+.fld label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+.fld input{width:100%;border:1px solid var(--line);border-radius:7px;padding:8px 10px;font-family:var(--mono);font-size:12px}
+.fld input:focus{outline:none;border-color:var(--ink)}
+.dlgact{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+.msg{font-family:var(--mono);font-size:11px;padding:8px 10px;border-radius:6px;margin-top:12px;display:none}
+.msg.ok{display:block;background:#EAF7F7;color:#0b6b6d}
+.msg.err{display:block;background:#FDF0F0;color:#9c1c1c}
+.hint{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);line-height:1.6}
+
+@media print{
+  header,footer,.controls,dialog{display:none!important}
+  body{font-size:10pt}
+  main{padding:0;max-width:none}
+  .row,.hrow{grid-template-columns:52px 1fr 210px 210px}
+  .sec{break-inside:auto}
+  .row{break-inside:avoid;page-break-inside:avoid}
+  .st{padding:4px 0}
+  .meta input{border-bottom:1px solid #999}
+}
+@media(max-width:1100px){
+  .hrow{display:none}
+  .row{grid-template-columns:1fr;gap:10px}
+  .cell::before{content:attr(data-lbl);font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--ink-3)}
+  .note,.sign{grid-column:1/-1}
+  .sign{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <div class="brand">
+      <h1>EventSphere · Pre-Go-Live</h1>
+      <p>Beta · free access · known organizers</p>
+    </div>
+    <div class="spacer"></div>
+    <div class="kpi">
+      <div><div class="n" id="kDone">0%</div><div class="l">Complete</div></div>
+      <div><div class="n" id="kBlk">0</div><div class="l">Blocked</div></div>
+      <div><div class="n" id="kTot">0</div><div class="l">Tracks</div></div>
+      <div class="gbar" id="gbar"></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn" id="bCfg">Repo</button>
+    <button class="btn" id="bPull">Pull</button>
+    <button class="btn pri" id="bPush">Push</button>
+    <button class="btn" id="bExp">Export</button>
+    <button class="btn" id="bImp">Import</button>
+    <button class="btn" onclick="window.print()">Print</button>
+  </div>
+  <div class="controls">
+    <input id="q" placeholder="Search module, dependency, owner…">
+    <div class="chipset" id="surfaceFilters"></div>
+    <div class="spacer"></div>
+    <div class="chipset" id="statusFilters"></div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="fbar">
+    <div class="lg">
+      <span><i style="background:var(--ns)"></i>NS</span>
+      <span><i style="background:var(--wip)"></i>WIP</span>
+      <span><i style="background:var(--qa)"></i>QA</span>
+      <span><i style="background:var(--done)"></i>DONE</span>
+      <span><i style="background:var(--blk)"></i>BLOCKED</span>
+    </div>
+    <div class="spacer" style="flex:1"></div>
+    <div id="syncState">Local only — not synced</div>
+    <div id="dirty"></div>
+  </div>
+</footer>
+
+<dialog id="dCfg"><div class="dlg">
+  <h3>Repository gateway</h3>
+  <p>Read is public. Writing commits <span class="mono">status.json</span> back to the repo — that needs a fine-grained PAT with <span class="mono">Contents: Read&nbsp;and&nbsp;write</span> on this repo only.</p>
+  <div class="fld"><label>Owner</label><input id="cOwner" placeholder="your-org"></div>
+  <div class="fld"><label>Repo</label><input id="cRepo" placeholder="eventsphere-tracker"></div>
+  <div class="fld"><label>Branch</label><input id="cBranch" placeholder="main"></div>
+  <div class="fld"><label>Path</label><input id="cPath" placeholder="status.json"></div>
+  <div class="fld"><label>Token (stored in this browser only)</label><input id="cTok" type="password" placeholder="github_pat_…"></div>
+  <div class="fld"><label>Your name (commit author label)</label><input id="cWho" placeholder="ravi"></div>
+  <div class="hint">Never commit the token. Each engineer generates their own and pastes it once per browser.</div>
+  <div class="msg" id="cMsg"></div>
+  <div class="dlgact">
+    <button class="btn" id="cClear">Clear token</button>
+    <button class="btn" onclick="dCfg.close()">Close</button>
+    <button class="btn pri" id="cSave">Save</button>
+  </div>
+</div></dialog>
+
+<dialog id="dImp"><div class="dlg">
+  <h3>Import status</h3>
+  <p>Paste a previously exported JSON payload. This replaces all current status values.</p>
+  <div class="fld"><textarea id="iTxt" style="width:100%;height:180px;border:1px solid var(--line);border-radius:7px;padding:10px;font-family:var(--mono);font-size:11px"></textarea></div>
+  <div class="msg" id="iMsg"></div>
+  <div class="dlgact">
+    <button class="btn" onclick="dImp.close()">Cancel</button>
+    <button class="btn pri" id="iGo">Replace</button>
+  </div>
+</div></dialog>
+
+<script>
+/* ============ 1. MODULE INVENTORY ============ */
+/* tuple: [id, name, description, dependencies, scope]  scope: 0=both 1=backend-only 2=frontend-only 3=signoff */
+const SURFACES = [
+{k:'B2B',label:'B2B Organizer Dashboard',tag:'Angular SPA',color:'var(--c-b2b)',groups:[
+ ['Access & Setup',[
+  ['B2B-01','Auth & session','Login, signup, forgot password, session refresh','Identity service, email provider',0],
+  ['B2B-02','Organizer onboarding wizard (8 steps)','Business profile, KYC, payout, AirLinks, channels, subscription, team, review','KYC provider, PG onboarding, plan catalog',0],
+  ['B2B-03','Home dashboard + deferred checklist','Resume skipped onboarding steps','Onboarding state API',0],
+  ['B2B-04','Team & RBAC','Owner, Admin, Manager, Agent, Marketing, Support','Auth, permission matrix',0]]],
+ ['Catalog',[
+  ['B2B-05','Event / Experience creation','9 accordion sections across 7 event types','Taxonomy API, media storage',0],
+  ['B2B-06','Batches / departures / inventory','Polymorphic inventory across all 7 event types','Event schema discriminator',0],
+  ['B2B-07','Taxonomy consumption','Event type, category, sub-category, tags','Super Admin taxonomy',0],
+  ['B2B-08','Media & gallery upload','Images, cover, itinerary documents','Object storage, CDN',0],
+  ['B2B-09','Save as Template + clone event','','Event schema',0]]],
+ ['Sell',[
+  ['B2B-10','Coupons & promotion rules','Scope selector, conditional rule fields','Booking engine',0],
+  ['B2B-11','Pricing, tax & GST configuration','','Tax master',0],
+  ['B2B-12','Booking list + booking detail','','Booking API',0],
+  ['B2B-13','Manual / offline booking entry','Agent role','Booking API, RBAC',0]]],
+ ['Operate',[
+  ['B2B-14','Calendar view','','Batches API',0],
+  ['B2B-15','Manifest generation + export','','Booking API',0],
+  ['B2B-16','Check-in','QR primary, manual toggle fallback, offline queue','Flutter app, sync API',0],
+  ['B2B-17','Guides / team assignment CRUD','','Team module',0],
+  ['B2B-18','Vehicles CRUD + assignment','','Manifest',0]]],
+ ['Money',[
+  ['B2B-19','Payments dashboard','Collected, pending, refunds','PG webhooks',0],
+  ['B2B-20','Payouts & reconciliation view','','Payout engine, Super Admin approval',0],
+  ['B2B-21','Subscription & billing','Plan, invoices, GST','Plan catalog, PG',0],
+  ['B2B-22','Add-on entitlement visibility','Post-purchase ownership state','Entitlement service',0]]],
+ ['Grow & Support',[
+  ['B2B-23','Reports & analytics','','Reporting store',0],
+  ['B2B-24','Notifications centre','In-app, email, WhatsApp','Comms service',0],
+  ['B2B-25','Settings & organizer profile','','Tenant API',0],
+  ['B2B-26','Help / support ticket raise','','Support console',0]]]]},
+
+{k:'SA',label:'Super Admin Portal',tag:'Angular SPA',color:'var(--c-sa)',groups:[
+ ['Platform Access',[
+  ['SA-01','Admin auth + admin role matrix','','Identity service',0],
+  ['SA-02','Audit log viewer','','Audit trail service',0]]],
+ ['Tenants',[
+  ['SA-03','Tenant list, detail, suspend / activate','','Tenant API',0],
+  ['SA-04','KYC review queue','Approve, reject, request re-upload','KYC provider',0],
+  ['SA-05','Organizer impersonation','Support access, fully logged','Auth, audit',0]]],
+ ['Taxonomy',[
+  ['SA-06','Event Types master','7 fixed structural types','Event schema',0],
+  ['SA-07','Categories master','','',0],
+  ['SA-08','Sub-categories master','','Categories',0],
+  ['SA-09','Tags governance','Approve organizer-created tags','Categories',0]]],
+ ['Commerce Config',[
+  ['SA-10','Subscription plan catalog','INR pricing, feature gates','Entitlement service',0],
+  ['SA-11','Add-on catalog','Social automation modules as paid add-ons','Entitlement service',0],
+  ['SA-12','Commission configuration','Per plan / per vertical','Booking engine',0],
+  ['SA-13','Trial policy config for add-ons','OPEN COMMERCIAL DECISION','Entitlement service',0,1]]],
+ ['Money Ops',[
+  ['SA-14','Payout approval queue','','PG payouts, KYC status',0],
+  ['SA-15','Reconciliation & settlement reports','','PG webhooks',0],
+  ['SA-16','Refunds & dispute handling','','PG, booking API',0],
+  ['SA-17','TDS / invoice compliance exports','','Tax master',0]]],
+ ['Content & Comms',[
+  ['SA-18','Listing moderation / approval queue','','Event API',0],
+  ['SA-19','Comms template manager','Email, SMS, WhatsApp','Comms service, WABA templates',0],
+  ['SA-20','Platform banners & homepage curation','','B2C marketplace',0]]],
+ ['Control',[
+  ['SA-21','Feature flags & entitlement overrides','','Entitlement service',0],
+  ['SA-22','Platform-wide analytics dashboard','','Reporting store',0],
+  ['SA-23','Support console','Tickets, SLA','Notification service',0]]]]},
+
+{k:'AL',label:'AirLinks D2C Storefront',tag:'Angular Universal SSR',color:'var(--c-al)',groups:[
+ ['Storefront',[
+  ['AL-01','Storefront theme & branding config','Organizer-side controls','B2B onboarding step',0],
+  ['AL-02','Subdomain provisioning + custom domain mapping','','DNS, SSL automation',1],
+  ['AL-03','SSR rendering pipeline + hydration','','Node SSR host',0],
+  ['AL-04','SEO layer','Meta, OpenGraph, schema.org Event, canonical','Event API',0],
+  ['AL-05','Sitemap + robots per storefront','','SSR',1]]],
+ ['Commerce',[
+  ['AL-06','Storefront home / listing grid','','Event API',0],
+  ['AL-07','Experience detail page','Itinerary, batches, pricing','Event, inventory API',0],
+  ['AL-08','Availability & batch selection','','Inventory locks (Redis)',0],
+  ['AL-09','Checkout','Participant details, DPDP consent capture','Booking API',0],
+  ['AL-10','Payment flow + failure / retry states','','Payment gateway',0],
+  ['AL-11','Booking confirmation + e-ticket with QR','','Ticketing service',0],
+  ['AL-12','Coupon application at checkout','','Coupons module',0]]],
+ ['Ops',[
+  ['AL-13','Analytics & pixel injection','GA4, Meta','Consent layer',0],
+  ['AL-14','Cache strategy + CDN invalidation on event edit','','CDN',1],
+  ['AL-15','Storefront policy pages','Refund, T&C, privacy','Legal content',2]]]]},
+
+{k:'B2C',label:'B2C Public Marketplace',tag:'Angular Universal SSR',color:'var(--c-b2c)',groups:[
+ ['Foundation',[
+  ['B2C-01','SSR shell + hydration + performance budget','','SSR host',0],
+  ['B2C-02','Home / discovery page','','Search index',0],
+  ['B2C-03','Search + filters','Date, price, city, category, difficulty','Search index',0]]],
+ ['SEO Surfaces',[
+  ['B2C-04','City landing pages','','SSR, taxonomy',0],
+  ['B2C-05','Category / sub-category landing pages','','Taxonomy',0],
+  ['B2C-06','Event detail page','','Event API',0],
+  ['B2C-16','Sitemap, robots, structured data','','SSR',1]]],
+ ['Purchase',[
+  ['B2C-07','Batch availability & seat selection','','Inventory locks',0],
+  ['B2C-08','Cart + guest checkout','','Booking API',0],
+  ['B2C-10','Payments + failure recovery','','Payment gateway',0],
+  ['B2C-11','E-ticket delivery','Email, WhatsApp, download','Comms service',0]]],
+ ['Customer',[
+  ['B2C-09','Customer account','Bookings, tickets, cancel / reschedule','Auth, booking API',0],
+  ['B2C-12','Reviews & ratings','Gated on verified check-in','Check-in data',0],
+  ['B2C-13','Wishlist / save for later','','Customer auth',0],
+  ['B2C-14','Notification preferences + unsubscribe','','Comms service, DPDP',0],
+  ['B2C-15','Static & legal pages','About, contact, refund, privacy, grievance officer','Legal content',2]]]]},
+
+{k:'TP',label:'Third-Party & Infrastructure',tag:'Launch blockers',color:'var(--c-tp)',groups:[
+ ['Payments & Compliance',[
+  ['TP-01','Payment gateway — PA licensed','Razorpay / Cashfree, live keys','Business KYC',0],
+  ['TP-02','Split payments / route to organizer','','PG onboarding',1],
+  ['TP-03','Payout rails + settlement schedule','','PG',1],
+  ['TP-04','KYC / PAN / GSTIN verification provider','','Vendor contract',0],
+  ['TP-05','GST invoicing + TDS handling','Sections 194J, 194C, 194R','Finance sign-off',0],
+  ['TP-06','RBI PA Directions compliance review','','Legal',1],
+  ['TP-07','DPDP Act 2023','Consent capture, retention, grievance officer','Legal',0]]],
+ ['Comms Channels',[
+  ['TP-08','WhatsApp Business Platform','BSP account, template approvals','Meta verification',0],
+  ['TP-09','WhatsApp cost pass-through / markup config','OPEN COMMERCIAL DECISION','Commercial decision',0,1],
+  ['TP-10','Instagram Graph API','Comment-to-DM permissions, 24h window compliance','Meta app review',0],
+  ['TP-11','Transactional email','Domain auth — SPF, DKIM, DMARC','DNS',1],
+  ['TP-12','SMS provider + DLT template registration','','TRAI DLT',1]]],
+ ['Platform',[
+  ['TP-13','Cloud infra provisioning','Compute, VPC, secrets manager','',1],
+  ['TP-14','PostgreSQL','Schema, migrations, backups, PITR','ERD freeze',1],
+  ['TP-15','MongoDB','Collections, indexes, backups','ERD freeze',1],
+  ['TP-16','Redis','Cache, inventory locks, rate limits','',1],
+  ['TP-17','Object storage + CDN','','',1],
+  ['TP-18','Domain, DNS, wildcard SSL for AirLinks','','Registrar',1],
+  ['TP-19','CI/CD pipelines','4 web surfaces + Flutter build','Repos',0],
+  ['TP-20','Error tracking + APM + log aggregation','','Infra',0],
+  ['TP-21','Analytics stack','GA4, server-side events','Consent layer',0],
+  ['TP-22','Maps / geocoding provider','','',0],
+  ['TP-23','Flutter app release','Store listings, signing, release channels','Play / App Store accounts',0]]]]},
+
+{k:'XC',label:'Cross-Cutting & Beta Gate',tag:'All surfaces',color:'var(--c-xc)',groups:[
+ ['Platform Services',[
+  ['XC-01','API gateway + versioning','','',1],
+  ['XC-02','Identity & token service across 4 surfaces','','',0],
+  ['XC-03','Multi-tenant isolation + row-level scoping','','ERD freeze',1],
+  ['XC-04','Entitlement service','Plan gates + add-on ownership','Plan catalog',0],
+  ['XC-05','Notification / comms orchestration service','','Email, SMS, WABA',1],
+  ['XC-06','Audit trail across all mutations','','',1],
+  ['XC-07','Search indexing pipeline','','Event API',1],
+  ['XC-08','Shared Angular workspace library','SPA + SSR reuse','Design system freeze',2],
+  ['XC-09','Design system tokens + component library','','Prototype sign-off',2],
+  ['XC-10','Error, empty, loading & offline states','All surfaces','Design system',2]]],
+ ['Beta Gate — must be green before free beta',[
+  ['XC-11','Seed data sanity','INR, +91, Indian geography across all environments','All surfaces',0],
+  ['XC-12','End-to-end smoke','Onboard → create → publish → book → pay → check-in → payout','All modules',0],
+  ['XC-13','Load test on booking + inventory lock path','','Redis, booking API',1],
+  ['XC-14','Security review','Authz matrix, IDOR, tenant leakage, rate limits','All APIs',0],
+  ['XC-15','Backup + restore drill','','Databases',1],
+  ['XC-16','Rollback plan + feature-flag kill switches','','Feature flags',0],
+  ['XC-17','Legal pack live','T&C, privacy, refund, cancellation, grievance','Legal',2],
+  ['XC-18','Support runbook + escalation path','','Support console',0],
+  ['XC-19','Onboarding collateral for pilot organizers','','',2],
+  ['XC-20','Go / No-Go sign-off','Product · Eng · Design · Finance · Legal','All above',3]]]]}
+];
+
+const STATES=['NS','WIP','QA','DONE','BLK'];
+const SCOPE={0:'both',1:'be',2:'fe',3:'sign'};
+
+/* ============ 2. STATE ============ */
+let state={};           // id -> {be,fe,owner_be,owner_fe,eta_be,eta_fe,note}
+let sha=null;           // github file sha for conflict-safe writes
+let dirty=false;
+let filters={surface:new Set(),status:new Set(),q:''};
+const cfg=loadCfg();
+
+const ALL=[];
+SURFACES.forEach(s=>s.groups.forEach(g=>g[1].forEach(it=>ALL.push({...rowOf(it),surface:s.k}))));
+function rowOf(t){return{id:t[0],name:t[1],desc:t[2],dep:t[3],scope:SCOPE[t[4]||0],open:!!t[5]}}
+ALL.forEach(r=>{state[r.id]={be:'NS',fe:'NS',owner_be:'',owner_fe:'',eta_be:'',eta_fe:'',note:''}});
+
+function loadCfg(){try{return JSON.parse(localStorage.getItem('es_cfg')||'{}')}catch{return{}}}
+function saveCfg(){try{localStorage.setItem('es_cfg',JSON.stringify(cfg))}catch{}}
+
+/* ============ 3. RENDER ============ */
+const app=document.getElementById('app');
+
+function tracks(r){
+  const out=[];
+  if(r.scope==='both'||r.scope==='be')out.push('be');
+  if(r.scope==='both'||r.scope==='fe')out.push('fe');
+  return out;
+}
+function stats(list){
+  let total=0,done=0,blk=0,wip=0,qa=0;
+  list.forEach(r=>{
+    if(r.scope==='sign')return;
+    tracks(r).forEach(t=>{
+      total++;const v=state[r.id][t];
+      if(v==='DONE')done++;else if(v==='BLK')blk++;else if(v==='WIP')wip++;else if(v==='QA')qa++;
+    });
+  });
+  return{total,done,blk,wip,qa,ns:total-done-blk-wip-qa};
+}
+function matches(r,sKey){
+  if(filters.surface.size&&!filters.surface.has(sKey))return false;
+  if(filters.status.size){
+    const vals=tracks(r).map(t=>state[r.id][t]);
+    if(!vals.some(v=>filters.status.has(v)))return false;
+  }
+  if(filters.q){
+    const hay=(r.id+' '+r.name+' '+r.desc+' '+r.dep+' '+state[r.id].owner_be+' '+state[r.id].owner_fe).toLowerCase();
+    if(!hay.includes(filters.q))return false;
+  }
+  return true;
+}
+
+function cellHtml(r,t){
+  const lbl=t==='be'?'Backend':'Frontend';
+  if(!tracks(r).includes(t))return `<div class="cell" data-lbl="${lbl}"><div class="na">N / A</div></div>`;
+  const cur=state[r.id][t];
+  const btns=STATES.map(s=>`<button class="st ${cur===s?'on':''}" data-s="${s}" data-id="${r.id}" data-t="${t}">${s}</button>`).join('');
+  return `<div class="cell" data-lbl="${lbl}">
+    <div class="track">${btns}</div>
+    <div class="meta">
+      <input placeholder="owner" value="${esc(state[r.id]['owner_'+t])}" data-f="owner_${t}" data-id="${r.id}">
+      <input placeholder="eta dd/mm" value="${esc(state[r.id]['eta_'+t])}" data-f="eta_${t}" data-id="${r.id}">
+    </div>
+  </div>`;
+}
+function esc(v){return String(v||'').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+
+function render(){
+  app.innerHTML='';
+  SURFACES.forEach(s=>{
+    const visible=[];
+    s.groups.forEach(g=>g[1].forEach(t=>{const r=rowOf(t);if(matches(r,s.k))visible.push(r)}));
+    if(!visible.length)return;
+    const all=[];s.groups.forEach(g=>g[1].forEach(t=>all.push(rowOf(t))));
+    const st=stats(all);
+    const pct=st.total?Math.round(st.done/st.total*100):0;
+
+    const sec=document.createElement('section');sec.className='sec';
+    sec.innerHTML=`<div class="sechead">
+        <span class="accent" style="background:${s.color}"></span>
+        <h2>${s.label}</h2>
+        <span class="tag">${s.tag}</span>
+        <span class="pct">${st.done}/${st.total} tracks · ${pct}%${st.blk?` · ${st.blk} blocked`:''}</span>
+      </div>
+      <div class="hrow"><div>ID</div><div>Item</div><div>Backend</div><div>Frontend</div></div>`;
+
+    s.groups.forEach(g=>{
+      const rows=g[1].map(rowOf).filter(r=>matches(r,s.k));
+      if(!rows.length)return;
+      const gh=document.createElement('div');gh.className='grp';gh.textContent=g[0];sec.appendChild(gh);
+      rows.forEach(r=>{
+        const v=state[r.id];
+        const isBlk=v.be==='BLK'||v.fe==='BLK';
+        const isDone=tracks(r).every(t=>v[t]==='DONE');
+        const el=document.createElement('div');
+        el.className='row'+(isBlk?' blocked':'')+(isDone?' done':'');
+        let right;
+        if(r.scope==='sign'){
+          right=`<div class="sign">${['Product','Engineering','Design','Finance','Legal'].map(x=>`<div>${x}</div>`).join('')}</div>`;
+        }else{
+          right=cellHtml(r,'be')+cellHtml(r,'fe');
+        }
+        el.innerHTML=`<div class="id">${r.id}</div>
+          <div><div class="nm">${r.name}${r.open?'<span class="flag">OPEN DECISION</span>':''}</div>
+            ${r.desc?`<div class="ds">${r.desc}</div>`:''}
+            ${r.dep?`<div class="dep">DEP: ${r.dep}</div>`:''}</div>
+          ${right}
+          ${isBlk?`<div class="note"><input placeholder="Blocker reason — who or what is it waiting on?" value="${esc(v.note)}" data-f="note" data-id="${r.id}"></div>`:''}`;
+        sec.appendChild(el);
+      });
+    });
+    app.appendChild(sec);
+  });
+  paintKpi();
+}
+
+function paintKpi(){
+  const st=stats(ALL);
+  document.getElementById('kDone').textContent=(st.total?Math.round(st.done/st.total*100):0)+'%';
+  document.getElementById('kBlk').textContent=st.blk;
+  document.getElementById('kTot').textContent=st.total;
+  const seg=[['done',st.done],['qa',st.qa],['wip',st.wip],['blk',st.blk],['ns',st.ns]];
+  document.getElementById('gbar').innerHTML=seg.map(([k,n])=>
+    `<i style="width:${st.total?n/st.total*100:0}%;background:var(--${k})"></i>`).join('');
+  document.getElementById('dirty').textContent=dirty?'● unsaved changes':'';
+  // counts on filter chips
+  document.querySelectorAll('#statusFilters .ct').forEach(e=>{
+    const s=e.dataset.s;let n=0;
+    ALL.forEach(r=>{if(r.scope!=='sign')tracks(r).forEach(t=>{if(state[r.id][t]===s)n++})});
+    e.textContent=n;
+  });
+}
+
+/* ============ 4. FILTERS ============ */
+const sf=document.getElementById('surfaceFilters');
+SURFACES.forEach(s=>{
+  const b=document.createElement('button');b.className='fchip';b.dataset.k=s.k;
+  b.innerHTML=`<span class="dot" style="background:${s.color}"></span>${s.k}`;
+  b.onclick=()=>{filters.surface.has(s.k)?filters.surface.delete(s.k):filters.surface.add(s.k);
+    b.classList.toggle('on');render()};
+  sf.appendChild(b);
+});
+const stf=document.getElementById('statusFilters');
+STATES.forEach(s=>{
+  const b=document.createElement('button');b.className='fchip';
+  b.innerHTML=`<span class="dot" style="background:var(--${s.toLowerCase()==='blk'?'blk':s.toLowerCase()})"></span>${s}<span class="ct mono" data-s="${s}">0</span>`;
+  b.onclick=()=>{filters.status.has(s)?filters.status.delete(s):filters.status.add(s);
+    b.classList.toggle('on');render()};
+  stf.appendChild(b);
+});
+let qt;document.getElementById('q').addEventListener('input',e=>{
+  clearTimeout(qt);qt=setTimeout(()=>{filters.q=e.target.value.trim().toLowerCase();render()},180)});
+
+/* ============ 5. EDITS ============ */
+app.addEventListener('click',e=>{
+  const b=e.target.closest('.st');if(!b)return;
+  state[b.dataset.id][b.dataset.t]=b.dataset.s;
+  dirty=true;render();
+});
+app.addEventListener('input',e=>{
+  const i=e.target.closest('input[data-f]');if(!i)return;
+  state[i.dataset.id][i.dataset.f]=i.value;dirty=true;
+  document.getElementById('dirty').textContent='● unsaved changes';
+});
+
+/* ============ 6. GITHUB GATEWAY ============ */
+const API='https://api.github.com';
+function ghHeaders(auth){
+  const h={'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+  if(auth&&cfg.token)h['Authorization']='Bearer '+cfg.token;
+  return h;
+}
+function setSync(t,cls){const e=document.getElementById('syncState');e.textContent=t;e.style.color=cls==='err'?'var(--blk)':cls==='ok'?'var(--done)':'var(--ink-3)'}
+
+async function pull(silent){
+  if(!cfg.owner||!cfg.repo){if(!silent)setSync('Configure repo first','err');return}
+  try{
+    setSync('Pulling…');
+    const url=`${API}/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(cfg.path||'status.json')}?ref=${encodeURIComponent(cfg.branch||'main')}`;
+    const res=await fetch(url,{headers:ghHeaders(true),cache:'no-store'});
+    if(res.status===404){sha=null;setSync('No status.json yet — Push to create it');return}
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const j=await res.json();sha=j.sha;
+    const payload=JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g,'')))));
+    applyPayload(payload);dirty=false;render();
+    setSync(`Synced · ${payload.updatedAt||'—'} · by ${payload.updatedBy||'—'}`,'ok');
+  }catch(err){setSync('Pull failed: '+err.message,'err')}
+}
+
+async function push(){
+  if(!cfg.token){setSync('Token required to push','err');dCfg.showModal();return}
+  try{
+    setSync('Pushing…');
+    const payload={version:1,updatedAt:new Date().toISOString().slice(0,16).replace('T',' '),updatedBy:cfg.who||'unknown',items:state};
+    const body={message:`chore(tracker): status update by ${cfg.who||'unknown'}`,
+      content:btoa(unescape(encodeURIComponent(JSON.stringify(payload,null,2)))),
+      branch:cfg.branch||'main'};
+    if(sha)body.sha=sha;
+    const url=`${API}/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(cfg.path||'status.json')}`;
+    const res=await fetch(url,{method:'PUT',headers:{...ghHeaders(true),'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(res.status===409){setSync('Conflict — someone pushed first. Pull, redo, push.','err');return}
+    if(!res.ok){const t=await res.text();throw new Error(res.status+' '+t.slice(0,120))}
+    const j=await res.json();sha=j.content.sha;dirty=false;paintKpi();
+    setSync(`Pushed · ${payload.updatedAt} · by ${payload.updatedBy}`,'ok');
+  }catch(err){setSync('Push failed: '+err.message,'err')}
+}
+
+function applyPayload(p){
+  if(!p||!p.items)return;
+  Object.keys(state).forEach(id=>{if(p.items[id])state[id]={...state[id],...p.items[id]}});
+}
+
+/* first load: try public raw read without token so viewers see status */
+(async function boot(){
+  render();
+  if(cfg.owner&&cfg.repo){await pull(true)}
+  else{
+    try{
+      const r=await fetch('./status.json',{cache:'no-store'});
+      if(r.ok){applyPayload(await r.json());render();setSync('Loaded local status.json (read-only)','ok')}
+    }catch{}
+  }
+})();
+
+/* ============ 7. DIALOGS & IO ============ */
+const dCfg=document.getElementById('dCfg'),dImp=document.getElementById('dImp');
+document.getElementById('bCfg').onclick=()=>{
+  cOwner.value=cfg.owner||'';cRepo.value=cfg.repo||'';cBranch.value=cfg.branch||'main';
+  cPath.value=cfg.path||'status.json';cTok.value=cfg.token||'';cWho.value=cfg.who||'';
+  dCfg.showModal();
+};
+document.getElementById('cSave').onclick=()=>{
+  Object.assign(cfg,{owner:cOwner.value.trim(),repo:cRepo.value.trim(),branch:cBranch.value.trim()||'main',
+    path:cPath.value.trim()||'status.json',token:cTok.value.trim(),who:cWho.value.trim()});
+  saveCfg();const m=document.getElementById('cMsg');m.className='msg ok';m.textContent='Saved to this browser.';
+  pull(true);
+};
+document.getElementById('cClear').onclick=()=>{cfg.token='';cTok.value='';saveCfg();
+  const m=document.getElementById('cMsg');m.className='msg ok';m.textContent='Token cleared.'};
+document.getElementById('bPull').onclick=()=>pull(false);
+document.getElementById('bPush').onclick=push;
+document.getElementById('bExp').onclick=()=>{
+  const payload={version:1,updatedAt:new Date().toISOString().slice(0,16).replace('T',' '),updatedBy:cfg.who||'unknown',items:state};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='status.json';a.click();
+};
+document.getElementById('bImp').onclick=()=>{iTxt.value='';dImp.showModal()};
+document.getElementById('iGo').onclick=()=>{
+  const m=document.getElementById('iMsg');
+  try{applyPayload(JSON.parse(iTxt.value));dirty=true;render();dImp.close()}
+  catch(e){m.className='msg err';m.textContent='Invalid JSON: '+e.message}
+};
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
+</script>
+</body>
+</html>
