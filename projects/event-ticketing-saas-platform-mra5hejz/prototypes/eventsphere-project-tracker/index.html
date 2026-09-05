@@ -187,7 +187,7 @@ dialog::backdrop{background:rgba(10,12,16,.45)}
   <div class="fld"><label>Owner</label><input id="cOwner" placeholder="your-org"></div>
   <div class="fld"><label>Repo</label><input id="cRepo" placeholder="eventsphere-tracker"></div>
   <div class="fld"><label>Branch</label><input id="cBranch" placeholder="main"></div>
-  <div class="fld"><label>Path</label><input id="cPath" placeholder="status.json"></div>
+  <div class="fld"><label>Path <span class="mono">(repo-relative, pre-filled)</span></label><input id="cPath" placeholder="projects/&lt;project&gt;/prototypes/&lt;prototype&gt;/status.json"></div>
   <div class="fld"><label>Token (stored in this browser only)</label><input id="cTok" type="password" placeholder="github_pat_…"></div>
   <div class="fld"><label>Your name (commit author label)</label><input id="cWho" placeholder="ravi"></div>
   <div class="hint">Never commit the token. Each engineer generates their own and pastes it once per browser.</div>
@@ -383,6 +383,13 @@ let state={};           // id -> {be,fe,owner_be,owner_fe,eta_be,eta_fe,note}
 let sha=null;           // github file sha for conflict-safe writes
 let dirty=false;
 let filters={surface:new Set(),status:new Set(),q:''};
+
+/* Repo coordinates are baked in — nothing to type. These are public facts (they match
+   `git remote`), so they are safe to commit. The PAT is deliberately NOT here: this file is
+   served publicly from GitHub Pages, so a token committed here would be world-readable. */
+const REPO={owner:'Saikishoreg040996',repo:'Vibhu_UI_Prototype_Designs',branch:'main',
+  path:'projects/event-ticketing-saas-platform-mra5hejz/prototypes/eventsphere-project-tracker/status.json'};
+const DEFAULT_PATH=REPO.path;
 const cfg=loadCfg();
 
 const ALL=[];
@@ -390,7 +397,13 @@ SURFACES.forEach(s=>s.groups.forEach(g=>g[1].forEach(it=>ALL.push({...rowOf(it),
 function rowOf(t){return{id:t[0],name:t[1],desc:t[2],dep:t[3],scope:SCOPE[t[4]||0],open:!!t[5]}}
 ALL.forEach(r=>{state[r.id]={be:'NS',fe:'NS',owner_be:'',owner_fe:'',eta_be:'',eta_fe:'',note:''}});
 
-function loadCfg(){try{return JSON.parse(localStorage.getItem('es_cfg')||'{}')}catch{return{}}}
+function loadCfg(){
+  let saved={};
+  try{saved=JSON.parse(localStorage.getItem('es_cfg')||'{}')}catch{}
+  // 'status.json' was the old root-level default and points at a file that does not exist.
+  if(!saved.path||saved.path==='status.json')delete saved.path;
+  return{...REPO,...saved};
+}
 function saveCfg(){try{localStorage.setItem('es_cfg',JSON.stringify(cfg))}catch{}}
 
 /* ============ 3. RENDER ============ */
@@ -541,6 +554,8 @@ app.addEventListener('input',e=>{
 
 /* ============ 6. GITHUB GATEWAY ============ */
 const API='https://api.github.com';
+/* Encode per path segment: the Contents API takes literal slashes between segments. */
+function ghPath(p){return String(p||DEFAULT_PATH).split('/').filter(Boolean).map(encodeURIComponent).join('/')}
 function ghHeaders(auth){
   const h={'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
   if(auth&&cfg.token)h['Authorization']='Bearer '+cfg.token;
@@ -552,7 +567,7 @@ async function pull(silent){
   if(!cfg.owner||!cfg.repo){if(!silent)setSync('Configure repo first','err');return}
   try{
     setSync('Pulling…');
-    const url=`${API}/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(cfg.path||'status.json')}?ref=${encodeURIComponent(cfg.branch||'main')}`;
+    const url=`${API}/repos/${cfg.owner}/${cfg.repo}/contents/${ghPath(cfg.path)}?ref=${encodeURIComponent(cfg.branch||'main')}`;
     const res=await fetch(url,{headers:ghHeaders(true),cache:'no-store'});
     if(res.status===404){sha=null;setSync('No status.json yet — Push to create it');return}
     if(!res.ok)throw new Error('HTTP '+res.status);
@@ -564,6 +579,7 @@ async function pull(silent){
 }
 
 async function push(){
+  if(!cfg.owner||!cfg.repo){setSync('Configure owner and repo first','err');dCfg.showModal();return}
   if(!cfg.token){setSync('Token required to push','err');dCfg.showModal();return}
   try{
     setSync('Pushing…');
@@ -572,7 +588,7 @@ async function push(){
       content:btoa(unescape(encodeURIComponent(JSON.stringify(payload,null,2)))),
       branch:cfg.branch||'main'};
     if(sha)body.sha=sha;
-    const url=`${API}/repos/${cfg.owner}/${cfg.repo}/contents/${encodeURIComponent(cfg.path||'status.json')}`;
+    const url=`${API}/repos/${cfg.owner}/${cfg.repo}/contents/${ghPath(cfg.path)}`;
     const res=await fetch(url,{method:'PUT',headers:{...ghHeaders(true),'Content-Type':'application/json'},body:JSON.stringify(body)});
     if(res.status===409){setSync('Conflict — someone pushed first. Pull, redo, push.','err');return}
     if(!res.ok){const t=await res.text();throw new Error(res.status+' '+t.slice(0,120))}
@@ -586,9 +602,24 @@ function applyPayload(p){
   Object.keys(state).forEach(id=>{if(p.items[id])state[id]={...state[id],...p.items[id]}});
 }
 
+/* Local dev only: read the PAT from a gitignored file so nobody has to paste it each time.
+   Kept in memory — never written to localStorage, never committed. */
+async function loadLocalCreds(){
+  if(cfg.token)return;
+  if(!/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname))return;
+  try{
+    const r=await fetch('./tracker.local.json',{cache:'no-store'});
+    if(!r.ok)return;
+    const j=await r.json();
+    if(j.token)cfg.token=j.token;
+    if(j.who&&!cfg.who)cfg.who=j.who;
+  }catch{}
+}
+
 /* first load: try public raw read without token so viewers see status */
 (async function boot(){
   render();
+  await loadLocalCreds();
   if(cfg.owner&&cfg.repo){await pull(true)}
   else{
     try{
@@ -602,12 +633,12 @@ function applyPayload(p){
 const dCfg=document.getElementById('dCfg'),dImp=document.getElementById('dImp');
 document.getElementById('bCfg').onclick=()=>{
   cOwner.value=cfg.owner||'';cRepo.value=cfg.repo||'';cBranch.value=cfg.branch||'main';
-  cPath.value=cfg.path||'status.json';cTok.value=cfg.token||'';cWho.value=cfg.who||'';
+  cPath.value=cfg.path||DEFAULT_PATH;cTok.value=cfg.token||'';cWho.value=cfg.who||'';
   dCfg.showModal();
 };
 document.getElementById('cSave').onclick=()=>{
   Object.assign(cfg,{owner:cOwner.value.trim(),repo:cRepo.value.trim(),branch:cBranch.value.trim()||'main',
-    path:cPath.value.trim()||'status.json',token:cTok.value.trim(),who:cWho.value.trim()});
+    path:cPath.value.trim()||DEFAULT_PATH,token:cTok.value.trim(),who:cWho.value.trim()});
   saveCfg();const m=document.getElementById('cMsg');m.className='msg ok';m.textContent='Saved to this browser.';
   pull(true);
 };

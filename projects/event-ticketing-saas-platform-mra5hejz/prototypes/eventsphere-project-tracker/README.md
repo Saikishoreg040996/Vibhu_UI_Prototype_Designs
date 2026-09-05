@@ -5,9 +5,38 @@ independently for **backend** and **frontend**.
 
 ## Deploy
 
-1. Push `index.html` + `status.json` to a repo.
-2. Settings → Pages → Source: `main` / root.
-3. Open `https://<owner>.github.io/<repo>/`.
+This tracker ships inside the designs repo, in a sub-folder — it is **not** at the repo root.
+Pages already serves it at
+`https://designs.vibhusolutions.com/projects/event-ticketing-saas-platform-mra5hejz/prototypes/eventsphere-project-tracker/`.
+
+## Configuration
+
+Owner, repo, branch and path are **baked into `index.html`** (the `REPO` constant) and match
+`git remote`. There is nothing to fill in — the page pulls live status on load. A browser that
+still has the old root-level `status.json` path saved in localStorage is migrated automatically.
+
+The only thing not in the repo is the **token**, and that is deliberate: this folder is served
+publicly from GitHub Pages, so a PAT committed into `index.html` would be readable by anyone who
+opens the page. GitHub also scans public pushes and auto-revokes tokens it finds.
+
+### Supplying the token
+
+**Local development** — create `tracker.local.json` next to `index.html`:
+
+```json
+{ "token": "github_pat_...", "who": "your-name" }
+```
+
+It is covered by the root `.gitignore`, and is read **only** when the page is served from
+`localhost` / `127.0.0.1`, held in memory, never written to localStorage. Serve over `http://`,
+not `file://` — a `file://` origin blocks both `localStorage` and the boot fetch.
+
+**Published site** — click **Repo** once and paste your own PAT. It stays in that browser's
+localStorage. Each engineer uses their own token, scoped `Contents: Read and write` on this
+repo only.
+
+Serve over `http://` — not `file://`. Opening the page from disk gives it an opaque origin, so
+`localStorage` (where the config lives) and the `./status.json` boot read are both blocked.
 
 ## Read vs write
 

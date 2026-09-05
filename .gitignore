@@ -1,0 +1,4 @@
+# Local-only tracker credentials. Never commit a PAT — this repo is published
+# publicly via GitHub Pages at designs.vibhusolutions.com.
+tracker.local.json
+**/tracker.local.json
