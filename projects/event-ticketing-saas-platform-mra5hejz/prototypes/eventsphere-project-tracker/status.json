@@ -1,6 +1,1114 @@
 {
   "version": 1,
-  "updatedAt": "",
-  "updatedBy": "",
-  "items": {}
+  "updatedAt": "2026-09-05 07:33",
+  "updatedBy": "Saikishore",
+  "items": {
+    "B2B-01": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-02": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-03": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-04": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-05": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-06": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-07": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-08": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-09": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-10": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-11": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-12": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-13": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-14": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-15": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-16": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-17": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-18": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-19": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-20": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-21": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-22": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-23": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-24": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-25": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2B-26": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-01": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-02": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-03": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-04": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-05": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-06": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-07": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-08": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-09": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-10": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-11": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-12": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-13": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-14": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-15": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-16": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-17": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-18": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-19": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-20": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-21": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-22": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "SA-23": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-01": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-02": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-03": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-04": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-05": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-06": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-07": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-08": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-09": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-10": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-11": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-12": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-13": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-14": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "AL-15": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-01": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-02": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-03": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-04": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-05": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-06": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-16": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-07": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-08": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-10": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-11": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-09": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-12": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-13": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-14": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "B2C-15": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-01": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-02": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-03": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-04": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-05": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-06": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-07": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-08": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-09": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-10": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-11": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-12": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-13": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-14": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-15": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-16": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-17": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-18": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-19": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-20": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-21": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-22": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "TP-23": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-01": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-02": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-03": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-04": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-05": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-06": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-07": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-08": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-09": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-10": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-11": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-12": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-13": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-14": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-15": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-16": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-17": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-18": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-19": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    },
+    "XC-20": {
+      "be": "NS",
+      "fe": "NS",
+      "owner_be": "",
+      "owner_fe": "",
+      "eta_be": "",
+      "eta_fe": "",
+      "note": ""
+    }
+  }
 }
