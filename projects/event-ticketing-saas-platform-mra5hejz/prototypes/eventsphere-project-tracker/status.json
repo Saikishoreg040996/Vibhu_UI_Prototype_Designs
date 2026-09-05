@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-05 07:33",
+  "updatedAt": "2026-09-05 07:34",
   "updatedBy": "Saikishore",
   "items": {
     "B2B-01": {
-      "be": "WIP",
+      "be": "DONE",
       "fe": "NS",
       "owner_be": "",
       "owner_fe": "",
