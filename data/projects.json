@@ -113,9 +113,31 @@
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/eventsphere-project-tracker/status.json"
             }
           ]
+        },
+        {
+          "name": "B2B Organizer Onboarding Workflow UI Prototype",
+          "slug": "b2b-organizer-onboarding-workflow-ui-prototype",
+          "entryFile": "EventSphere Onboarding latest (standalone).html",
+          "files": [
+            {
+              "name": "EventSphere Onboarding latest (standalone).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-onboarding-workflow-ui-prototype/EventSphere Onboarding latest (standalone).html"
+            }
+          ]
+        },
+        {
+          "name": "Super Admin Complete UI Prototype",
+          "slug": "super-admin-complete-ui-prototype",
+          "entryFile": "EventSphere SuperAdmin (standalone) (3).html",
+          "files": [
+            {
+              "name": "EventSphere SuperAdmin (standalone) (3).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-complete-ui-prototype/EventSphere SuperAdmin (standalone) (3).html"
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-09-07T14:59:12.431Z"
+      "updatedAt": "2026-09-07T15:08:37.969Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
