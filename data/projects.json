@@ -135,9 +135,20 @@
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-complete-ui-prototype/EventSphere SuperAdmin (standalone) (3).html"
             }
           ]
+        },
+        {
+          "name": "B2B Organizer Complete UI Prototype",
+          "slug": "b2b-organizer-complete-ui-prototype",
+          "entryFile": "EventSphere Prototype (standalone) (3).html",
+          "files": [
+            {
+              "name": "EventSphere Prototype (standalone) (3).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype/EventSphere Prototype (standalone) (3).html"
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-09-07T15:08:37.969Z"
+      "updatedAt": "2026-09-07T15:45:50.653Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
