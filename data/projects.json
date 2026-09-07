@@ -85,61 +85,6 @@
           ]
         },
         {
-          "name": "Organizer Manage Events Module UI Prototype",
-          "slug": "organizer-manage-events-module-ui-prototype",
-          "entryFile": "EventSphere Events (standalone) (3).html",
-          "files": [
-            {
-              "name": "EventSphere Events (standalone) (3).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/organizer-manage-events-module-ui-prototype/EventSphere Events (standalone) (3).html"
-            }
-          ]
-        },
-        {
-          "name": "Super Admin Portal UI Prototype",
-          "slug": "super-admin-portal-ui-prototype",
-          "entryFile": "EventSphere SuperAdmin (standalone) (2).html",
-          "files": [
-            {
-              "name": "EventSphere SuperAdmin (standalone) (2).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-portal-ui-prototype/EventSphere SuperAdmin (standalone) (2).html"
-            }
-          ]
-        },
-        {
-          "name": "Organizer Pickup Points and Manage Event Calendar",
-          "slug": "organizer-pickup-points-and-manage-event-calenda",
-          "entryFile": "EventSphere Calendar (standalone) (1).html",
-          "files": [
-            {
-              "name": "EventSphere Calendar (standalone) (1).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/organizer-pickup-points-and-manage-event-calenda/EventSphere Calendar (standalone) (1).html"
-            }
-          ]
-        },
-        {
-          "name": "Manage Organizer Coupons",
-          "slug": "manage-organizer-coupons",
-          "entryFile": "EventSphere Coupons (standalone) (1).html",
-          "files": [
-            {
-              "name": "EventSphere Coupons (standalone) (1).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/manage-organizer-coupons/EventSphere Coupons (standalone) (1).html"
-            }
-          ]
-        },
-        {
-          "name": "B2B Organizer Onboarding Workflow",
-          "slug": "b2b-organizer-onboarding-workflow",
-          "entryFile": "EventSphere Onboarding (standalone) (4).html",
-          "files": [
-            {
-              "name": "EventSphere Onboarding (standalone) (4).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-onboarding-workflow/EventSphere Onboarding (standalone) (4).html"
-            }
-          ]
-        },
-        {
           "name": "Project Style Guide UI Prototype",
           "slug": "project-style-guide-ui-prototype",
           "entryFile": "EventSphere Styleguide (standalone).html",
@@ -147,17 +92,6 @@
             {
               "name": "EventSphere Styleguide (standalone).html",
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/project-style-guide-ui-prototype/EventSphere Styleguide (standalone).html"
-            }
-          ]
-        },
-        {
-          "name": "B2B Organizer complete UI prototype design",
-          "slug": "b2b-organizer-complete-ui-prototype-design",
-          "entryFile": "EventSphere Prototype (standalone).html",
-          "files": [
-            {
-              "name": "EventSphere Prototype (standalone).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype-design/EventSphere Prototype (standalone).html"
             }
           ]
         },
@@ -181,7 +115,7 @@
           ]
         }
       ],
-      "updatedAt": "2026-09-03T11:02:24.500Z"
+      "updatedAt": "2026-09-07T14:59:12.431Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
