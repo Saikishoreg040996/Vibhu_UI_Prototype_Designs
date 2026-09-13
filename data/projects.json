@@ -117,11 +117,11 @@
         {
           "name": "B2B Organizer Onboarding Workflow UI Prototype",
           "slug": "b2b-organizer-onboarding-workflow-ui-prototype",
-          "entryFile": "EventSphere Onboarding.html",
+          "entryFile": "EventSphere Onboarding (1).html",
           "files": [
             {
-              "name": "EventSphere Onboarding.html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-onboarding-workflow-ui-prototype/EventSphere Onboarding.html"
+              "name": "EventSphere Onboarding (1).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-onboarding-workflow-ui-prototype/EventSphere Onboarding (1).html"
             }
           ]
         },
@@ -148,7 +148,7 @@
           ]
         }
       ],
-      "updatedAt": "2026-09-11T03:55:17.999Z"
+      "updatedAt": "2026-09-13T18:35:11.970Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
