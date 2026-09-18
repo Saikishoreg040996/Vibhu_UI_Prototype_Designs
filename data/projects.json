@@ -146,9 +146,20 @@
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype/EventSphere Prototype (standalone) (4).html"
             }
           ]
+        },
+        {
+          "name": "B2B Organizer Airlink Builder UI Prototype",
+          "slug": "b2b-organizer-airlink-builder-ui-prototype",
+          "entryFile": "EventSphere AirLinks Builder (standalone) (1).html",
+          "files": [
+            {
+              "name": "EventSphere AirLinks Builder (standalone) (1).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-airlink-builder-ui-prototype/EventSphere AirLinks Builder (standalone) (1).html"
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-09-18T03:34:00.428Z"
+      "updatedAt": "2026-09-18T03:35:14.472Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
