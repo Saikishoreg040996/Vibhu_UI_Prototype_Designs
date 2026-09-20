@@ -128,11 +128,11 @@
         {
           "name": "Super Admin Complete UI Prototype",
           "slug": "super-admin-complete-ui-prototype",
-          "entryFile": "EventSphere SuperAdmin (standalone) (3).html",
+          "entryFile": "EventSphere SuperAdmin (standalone) (5).html",
           "files": [
             {
-              "name": "EventSphere SuperAdmin (standalone) (3).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-complete-ui-prototype/EventSphere SuperAdmin (standalone) (3).html"
+              "name": "EventSphere SuperAdmin (standalone) (5).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-complete-ui-prototype/EventSphere SuperAdmin (standalone) (5).html"
             }
           ]
         },
@@ -150,16 +150,16 @@
         {
           "name": "B2B Organizer Airlink Builder UI Prototype",
           "slug": "b2b-organizer-airlink-builder-ui-prototype",
-          "entryFile": "EventSphere AirLinks Builder (standalone) (1).html",
+          "entryFile": "EventSphere AirLinks Builder (standalone) (2).html",
           "files": [
             {
-              "name": "EventSphere AirLinks Builder (standalone) (1).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-airlink-builder-ui-prototype/EventSphere AirLinks Builder (standalone) (1).html"
+              "name": "EventSphere AirLinks Builder (standalone) (2).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-airlink-builder-ui-prototype/EventSphere AirLinks Builder (standalone) (2).html"
             }
           ]
         }
       ],
-      "updatedAt": "2026-09-20T12:41:33.766Z"
+      "updatedAt": "2026-09-20T13:28:19.509Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
