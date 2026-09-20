@@ -139,11 +139,11 @@
         {
           "name": "B2B Organizer Complete UI Prototype",
           "slug": "b2b-organizer-complete-ui-prototype",
-          "entryFile": "EventSphere Prototype (standalone) (4).html",
+          "entryFile": "EventSphere Prototype (standalone) (5).html",
           "files": [
             {
-              "name": "EventSphere Prototype (standalone) (4).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype/EventSphere Prototype (standalone) (4).html"
+              "name": "EventSphere Prototype (standalone) (5).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype/EventSphere Prototype (standalone) (5).html"
             }
           ]
         },
@@ -159,7 +159,7 @@
           ]
         }
       ],
-      "updatedAt": "2026-09-18T03:35:14.472Z"
+      "updatedAt": "2026-09-20T12:41:33.766Z"
     },
     {
       "id": "food-o-live-mqn8f4ed",
