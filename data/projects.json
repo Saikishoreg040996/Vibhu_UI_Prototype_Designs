@@ -272,13 +272,7 @@
       "description": "Maintain the daily sales, estimates, expenses based on every location and staff.",
       "shortDesc": "Maintain the daily sales, estimates, expenses based on every location and staff.",
       "createdAt": "2026-06-20T02:56:42.957Z",
-      "docs": [
-        {
-          "name": "Edutech_AI_Development_Sequencing_Plan.docx",
-          "path": "projects/escape2explore-billing-application-mqlrnuml/docs/Edutech_AI_Development_Sequencing_Plan.docx",
-          "type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-        }
-      ],
+      "docs": [],
       "prototypes": [
         {
           "name": "Complete UI Prototype Design",
@@ -292,14 +286,7 @@
           ]
         }
       ],
-      "updatedAt": "2026-09-21T08:45:50.197Z",
-      "access": {
-        "algorithm": "PBKDF2-SHA256",
-        "iterations": 210000,
-        "salt": "9AjTn538pGkSjFKIIXEVBw==",
-        "hash": "zTOSHEiWqSxT/Sk0cZ0fNnLr09i3kUkbz/pyB0sgePQ=",
-        "updatedAt": "2026-09-21T08:45:51.677Z"
-      }
+      "updatedAt": "2026-09-21T08:50:23.643Z"
     }
   ]
 }
