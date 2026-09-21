@@ -263,6 +263,7 @@
     }
     .cbadge-doc  { background:rgba(0,255,136,0.08); color:var(--green); border:1px solid rgba(0,255,136,0.18); }
     .cbadge-proto{ background:rgba(123,47,247,0.1); color:#b06bff;     border:1px solid rgba(123,47,247,0.2); }
+    .cbadge-lock { background:rgba(255,170,0,0.08); color:var(--amber); border:1px solid rgba(255,170,0,0.22); }
 
     .card-actions { display: flex; align-items: center; gap: 10px; }
 
@@ -657,6 +658,25 @@
     .dt-date  { background:rgba(0,212,255,0.08); color:var(--cyan); border:1px solid var(--border); }
     .dt-docs  { background:rgba(0,255,136,0.06); color:var(--green); border:1px solid rgba(0,255,136,0.15); }
     .dt-proto { background:rgba(123,47,247,0.08); color:#b06bff; border:1px solid var(--border2); }
+    .dt-lock  { background:rgba(255,170,0,0.08); color:var(--amber); border:1px solid rgba(255,170,0,0.22); }
+
+    /* ── Project access password ── */
+    .access-status {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      background: rgba(255,255,255,0.025); border: 1px solid var(--border);
+      border-radius: 9px; padding: 10px 14px; margin-bottom: 12px;
+      font-size: 12px; color: var(--text2);
+    }
+    .access-status.is-protected { border-color: rgba(255,170,0,0.25); background: rgba(255,170,0,0.04); }
+    .access-status.is-removing  { border-color: rgba(255,45,120,0.25); background: rgba(255,45,120,0.06); }
+    .access-status strong { color: var(--text); }
+    .access-grid {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 12px;
+    }
+    .access-grid .form-group { margin-bottom: 0; }
+    .unlock-project { font-size: 13px; color: var(--text2); margin-bottom: 16px; line-height: 1.6; }
+    .unlock-project strong { color: var(--text); }
+    .unlock-error { font-size: 11px; color: var(--pink); margin-top: 7px; min-height: 16px; }
 
     /* ── Responsive ── */
     @media(max-width:760px) {
@@ -769,6 +789,21 @@
       </div>
 
       <div class="form-group">
+        <label class="form-label">Access Password (optional)</label>
+        <div class="access-grid">
+          <div class="form-group">
+            <input class="form-input" id="proj_pw" type="password" autocomplete="new-password"
+                   placeholder="Password">
+          </div>
+          <div class="form-group">
+            <input class="form-input" id="proj_pw2" type="password" autocomplete="new-password"
+                   placeholder="Confirm password">
+          </div>
+        </div>
+        <div class="form-hint">Leave blank to keep the project open. Viewers must enter this password to read project details.</div>
+      </div>
+
+      <div class="form-group">
         <label class="form-label">Project Documents (PDF / DOC)</label>
         <div class="upload-zone" id="docZone">
           <input type="file" id="docInput" accept=".pdf,.doc,.docx" multiple
@@ -808,6 +843,33 @@
   </div>
 </div>
 
+<!-- ═══════════════════════ UNLOCK PROJECT MODAL ═══════════════════════ -->
+<div class="modal-overlay" id="unlockModal">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-header">
+      <span class="modal-title">🔒 Protected Project</span>
+      <button class="modal-close" onclick="UI.closeModal('unlockModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="unlock-project">
+        <strong id="unlockProjectName"></strong> is password protected.
+        Enter the password shared with you to view the project details.
+      </p>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label" for="unlock_pw">Password</label>
+        <input class="form-input" id="unlock_pw" type="password" autocomplete="current-password"
+               placeholder="Enter project password"
+               onkeydown="if(event.key==='Enter') Access.submit()">
+        <div class="unlock-error" id="unlockError"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="UI.closeModal('unlockModal')">Cancel</button>
+      <button class="btn-primary" id="unlockBtn" onclick="Access.submit()">🔓 Unlock</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════════ EDIT PROJECT MODAL ═══════════════════════ -->
 <div class="modal-overlay" id="editModal">
   <div class="modal" style="max-width:700px">
@@ -827,6 +889,10 @@
         <textarea class="form-textarea" id="edit_desc" style="min-height:110px"
           placeholder="Project description…"></textarea>
       </div>
+
+      <!-- ── Access password section ── -->
+      <div class="edit-section-divider">Access Password</div>
+      <div id="edit_access"></div>
 
       <!-- ── Documents section ── -->
       <div class="edit-section-divider">Documents</div>
@@ -974,6 +1040,141 @@ const GH = {
 };
 
 // ════════════════════════════════════════════════════════════════
+// PROJECT ACCESS — per-project password gate for "Read More".
+// Admins (a GitHub token with push access to the repo) bypass the
+// gate and can set, reset or remove a project's password.
+// Only a salted PBKDF2-SHA256 hash is stored in the project index
+// (project.access); the plain password never leaves the browser.
+// ════════════════════════════════════════════════════════════════
+const Access = {
+  ITERATIONS:   210000,
+  MIN_LENGTH:   6,
+  _SESSION_KEY: 'vsd_unlocked',   // projectId → hash, cleared when the tab closes
+  _admin:       false,
+  _pending:     null,             // { id, onUnlock } for the open unlock prompt
+
+  // ── Admin detection ──
+  // A stored token alone is not trusted: it must actually have write access.
+  async verifyAdmin() {
+    this._admin = false;
+    if (!Config.hasToken()) return false;
+    try {
+      const repo = await GH.req('');
+      this._admin = !!repo?.permissions?.push;
+    } catch (err) {
+      console.warn('Could not verify GitHub token permissions', err);
+    }
+    return this._admin;
+  },
+
+  isAdmin() { return this._admin; },
+
+  // ── Gate checks ──
+  isProtected(p) { return !!p?.access?.hash; },
+
+  isUnlocked(p) { return this._unlockedMap()[p.id] === p.access?.hash; },
+
+  canView(p) { return !this.isProtected(p) || this.isAdmin() || this.isUnlocked(p); },
+
+  _unlockedMap() {
+    try { return JSON.parse(sessionStorage.getItem(this._SESSION_KEY)) || {}; }
+    catch { return {}; }
+  },
+
+  // Keyed on the hash so resetting the password re-locks existing sessions
+  _remember(p) {
+    try {
+      const map = this._unlockedMap();
+      map[p.id] = p.access.hash;
+      sessionStorage.setItem(this._SESSION_KEY, JSON.stringify(map));
+    } catch { /* storage unavailable — unlock lasts until the next check */ }
+  },
+
+  // ── Password validation (set / reset forms) ──
+  // Returns an error message, or null when the pair is acceptable.
+  validateNew(password, confirm) {
+    if (password.length < this.MIN_LENGTH) return `Password must be at least ${this.MIN_LENGTH} characters`;
+    if (password !== confirm)              return 'Passwords do not match';
+    return null;
+  },
+
+  // ── Hashing ──
+  async createRecord(password) {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    return {
+      algorithm:  'PBKDF2-SHA256',
+      iterations: this.ITERATIONS,
+      salt:       this._b64(salt),
+      hash:       await this._derive(password, salt, this.ITERATIONS),
+      updatedAt:  new Date().toISOString()
+    };
+  },
+
+  async verify(p, password) {
+    const a    = p.access;
+    const hash = await this._derive(password, this._unb64(a.salt), a.iterations || this.ITERATIONS);
+    return this._safeEqual(hash, a.hash);
+  },
+
+  async _derive(password, salt, iterations) {
+    const key  = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
+    const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt, iterations }, key, 256);
+    return this._b64(new Uint8Array(bits));
+  },
+
+  _safeEqual(a, b) {
+    if (a.length !== b.length) return false;
+    let diff = 0;
+    for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+    return diff === 0;
+  },
+
+  _b64(bytes) { return btoa(String.fromCharCode(...bytes)); },
+  _unb64(s)   { return Uint8Array.from(atob(s), c => c.charCodeAt(0)); },
+
+  // ── Unlock prompt ──
+  requestAccess(projectId, onUnlock) {
+    const p = _projects.find(x => x.id === projectId);
+    if (!p) return;
+    this._pending = { id: projectId, onUnlock: onUnlock || (() => UI.openDetail(projectId)) };
+    document.getElementById('unlockProjectName').textContent = p.name;
+    document.getElementById('unlockError').textContent = '';
+    const input = document.getElementById('unlock_pw');
+    input.value = '';
+    UI.openModal('unlockModal');
+    setTimeout(() => input.focus(), 50);
+  },
+
+  async submit() {
+    const pending = this._pending;
+    const p       = pending && _projects.find(x => x.id === pending.id);
+    if (!p) return;
+
+    const input = document.getElementById('unlock_pw');
+    const error = document.getElementById('unlockError');
+    const btn   = document.getElementById('unlockBtn');
+    if (!input.value) { error.textContent = 'Enter the project password'; input.focus(); return; }
+
+    btn.disabled = true;
+    error.textContent = '';
+    const ok = await this.verify(p, input.value).catch(err => { console.error(err); return false; });
+    btn.disabled = false;
+
+    if (!ok) {
+      error.textContent = 'Incorrect password. Please try again.';
+      input.select();
+      return;
+    }
+
+    this._remember(p);
+    this._pending = null;
+    input.value = '';
+    UI.closeModal('unlockModal');
+    pending.onUnlock();
+  }
+};
+
+// ════════════════════════════════════════════════════════════════
 // FILE HANDLERS
 // ════════════════════════════════════════════════════════════════
 const FH = {
@@ -1067,7 +1268,7 @@ const FH = {
 
   reset() {
     this.docFiles = []; this.protoSeq = 0;
-    ['proj_name','proj_desc'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+    ['proj_name','proj_desc','proj_pw','proj_pw2'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
     document.getElementById('docFileList').innerHTML   = '';
     document.getElementById('protoEntries').innerHTML  = '';
     const inp = document.getElementById('docInput'); if(inp) inp.value='';
@@ -1107,6 +1308,7 @@ const Edit = {
   protosToDelete: [],   // proto objects { name, slug, files } marked for deletion
   protoEdits:     {},   // slug → staged edits { name, entryFile, delFiles, newFiles }
   protoSeq:       0,
+  removeAccess:   false, // true when the project password is staged for removal
   _openProto:      null, // slug of the prototype whose inline editor is expanded
   _currentProject: null,
 
@@ -1114,9 +1316,60 @@ const Edit = {
   load(p, focusProtoSlug) {
     this.reset();
     this._currentProject = p;
+    this.renderAccess();
     this.renderExistingDocs();
     this.renderExistingProtos();
     if (focusProtoSlug) this.openProtoEditor(focusProtoSlug);
+  },
+
+  // ── Access password (set / reset / remove) ──
+  renderAccess() {
+    const p         = this._currentProject;
+    const isLocked  = Access.isProtected(p);
+    const removing  = isLocked  && this.removeAccess;
+    const since     = isLocked  && p.access.updatedAt ? new Date(p.access.updatedAt) : null;
+    const sinceTxt  = since && !isNaN(since) ? ` · last set ${since.toLocaleDateString()}` : '';
+
+    const status = removing
+      ? `<span>🔓 Password will be <strong>removed</strong> — anyone can view this project.</span>
+         <button class="ei-btn ei-btn-undo" onclick="Edit.toggleRemoveAccess()">↩ Undo</button>`
+      : isLocked
+        ? `<span>🔒 <strong>Password protected</strong>${FH._esc(sinceTxt)}</span>
+           <button class="ei-btn ei-btn-delete" onclick="Edit.toggleRemoveAccess()">🗑 Remove</button>`
+        : `<span>🔓 <strong>Not protected</strong> — anyone can view this project.</span>`;
+
+    document.getElementById('edit_access').innerHTML = `
+      <div class="access-status${removing ? ' is-removing' : isLocked  ? ' is-protected' : ''}">${status}</div>
+      ${removing ? '' : `
+        <div class="access-grid">
+          <div class="form-group">
+            <input class="form-input" id="edit_pw" type="password" autocomplete="new-password"
+                   placeholder="${isLocked  ? 'New password' : 'Set a password'}">
+          </div>
+          <div class="form-group">
+            <input class="form-input" id="edit_pw2" type="password" autocomplete="new-password"
+                   placeholder="Confirm password">
+          </div>
+        </div>
+        <p class="form-hint">${isLocked
+          ? 'Enter a new password to reset it. Leave blank to keep the current password.'
+          : 'Leave blank to keep the project open.'}</p>`}`;
+  },
+
+  toggleRemoveAccess() {
+    this.removeAccess = !this.removeAccess;
+    this.renderAccess();
+  },
+
+  // Staged access change: null (untouched), { action:'set', password },
+  // { action:'remove' } or { error } when the form is invalid
+  collectAccess() {
+    if (this.removeAccess && Access.isProtected(this._currentProject)) return { action: 'remove' };
+    const pw  = document.getElementById('edit_pw')?.value  || '';
+    const pw2 = document.getElementById('edit_pw2')?.value || '';
+    if (!pw && !pw2) return null;
+    const error = Access.validateNew(pw, pw2);
+    return error ? { error } : { action: 'set', password: pw };
   },
 
   // ── Existing docs list ──
@@ -1508,8 +1761,10 @@ const Edit = {
     this.protosToDelete = [];
     this.protoEdits     = {};
     this.protoSeq       = 0;
+    this.removeAccess   = false;
     this._openProto      = null;
     this._currentProject = null;
+    document.getElementById('edit_access').innerHTML       = '';
     document.getElementById('edit_docFileList').innerHTML  = '';
     document.getElementById('edit_protoEntries').innerHTML = '';
     document.getElementById('edit_existingDocs').innerHTML    = '';
@@ -1544,12 +1799,17 @@ const Projects = {
     const name = document.getElementById('proj_name').value.trim();
     const desc = document.getElementById('proj_desc').value.trim();
 
+    const pw   = document.getElementById('proj_pw').value;
+    const pw2  = document.getElementById('proj_pw2').value;
+
     if (!name || !desc) { UI.toast('Project name and description are required', 'error'); return; }
     if (!Config.hasToken()) {
       document.getElementById('tokenBanner').style.display = 'flex';
       UI.toast('Enter your GitHub token in the banner above', 'warning');
       return;
     }
+    const pwError = (pw || pw2) ? Access.validateNew(pw, pw2) : null;
+    if (pwError) { UI.toast(pwError, 'error'); return; }
 
     const protos = FH.collectProtos();
     const id     = this.slug(name) + '-' + Date.now().toString(36);
@@ -1568,6 +1828,7 @@ const Projects = {
         createdAt: new Date().toISOString(),
         docs: [], prototypes: []
       };
+      if (pw) meta.access = await Access.createRecord(pw);
 
       // Upload documents
       if (docCount) {
@@ -1636,6 +1897,9 @@ const Projects = {
 
     const idx = _projects.findIndex(p => p.id === id);
     if (idx === -1) { UI.toast('Project not found', 'error'); return; }
+
+    const accessChange = Edit.collectAccess();
+    if (accessChange?.error) { UI.toast(accessChange.error, 'error'); return; }
 
     const delDocs    = Edit.docsToDelete;
     const delProtos  = Edit.protosToDelete;
@@ -1754,7 +2018,11 @@ const Projects = {
         meta.prototypes.push(pData);
       }
 
-      // ── 6. Write updated index ──
+      // ── 6. Apply access password change ──
+      if (accessChange?.action === 'set')    meta.access = await Access.createRecord(accessChange.password);
+      if (accessChange?.action === 'remove') delete meta.access;
+
+      // ── 7. Write updated index ──
       UI.setStep('Saving project index…');
       _projects[idx] = meta;
       await this._writeIndex();
@@ -1800,6 +2068,7 @@ const Render = {
     const dt  = isNaN(d) ? '' : d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
     const docs = p.docs?.length     ? `<span class="cbadge cbadge-doc">📄 ${p.docs.length}</span>` : '';
     const pts  = p.prototypes?.length ? `<span class="cbadge cbadge-proto">💻 ${p.prototypes.length}</span>` : '';
+    const lock = Access.isProtected(p) ? `<span class="cbadge cbadge-lock">🔒 Protected</span>` : '';
     return `
       <div class="project-card">
         <div class="card-top">
@@ -1809,7 +2078,7 @@ const Render = {
         <div class="card-title">${this._esc(p.name)}</div>
         <div class="card-desc">${this._esc(p.shortDesc || p.description)}</div>
         <div class="card-footer">
-          <div class="card-badges">${docs}${pts}</div>
+          <div class="card-badges">${docs}${pts}${lock}</div>
           <div class="card-actions">
             <button class="card-edit-btn" onclick="UI.openEdit('${this._esc(p.id)}')">✏ Edit</button>
             <button class="read-more" onclick="UI.openDetail('${this._esc(p.id)}')">Read More →</button>
@@ -1879,6 +2148,12 @@ const UI = {
       return;
     }
 
+    // A stored token that lacks write access must not bypass the password gate
+    if (!Access.canView(p)) {
+      Access.requestAccess(p.id, () => this.openEdit(projectId, focusProtoSlug));
+      return;
+    }
+
     document.getElementById('edit_id').value   = p.id;
     document.getElementById('edit_name').value = p.name;
     document.getElementById('edit_desc').value = p.description;
@@ -1906,6 +2181,8 @@ const UI = {
   openDetail(projectId) {
     const p = _projects.find(x => x.id === projectId);
     if (!p) return;
+
+    if (!Access.canView(p)) { Access.requestAccess(p.id); return; }
 
     document.getElementById('detailTitle').textContent = p.name;
     document.getElementById('detailBody').innerHTML = this._buildDetail(p);
@@ -1961,6 +2238,7 @@ const UI = {
           <span class="detail-tag dt-date">Created: ${this._esc(ds)}</span>
           <span class="detail-tag dt-docs">${(p.docs||[]).length} Document(s)</span>
           <span class="detail-tag dt-proto">${(p.prototypes||[]).length} Prototype(s)</span>
+          ${Access.isProtected(p) ? '<span class="detail-tag dt-lock">🔒 Password Protected</span>' : ''}
         </div>
         <button class="card-edit-btn" style="padding:6px 14px;font-size:12px"
                 onclick="UI.closeModal('detailModal');UI.openEdit('${this._esc(p.id)}')">
@@ -2038,7 +2316,7 @@ const App = {
     Config.showBannerIfNeeded();
     UI.showLoading('Loading projects from GitHub…');
     try {
-      await Projects.load();
+      await Promise.all([Projects.load(), Access.verifyAdmin()]);
       Render.all();
     } catch (err) {
       console.error(err);
