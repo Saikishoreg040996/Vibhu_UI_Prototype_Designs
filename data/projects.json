@@ -1,6 +1,34 @@
 {
   "projects": [
     {
+      "id": "edutech-school-management-crm-mub00tur",
+      "name": "Edutech School Management CRM",
+      "description": "Edutech School Management CRM",
+      "shortDesc": "Edutech School Management CRM",
+      "createdAt": "2026-09-21T08:44:06.820Z",
+      "docs": [],
+      "prototypes": [
+        {
+          "name": "Complete Project UI Prototype Design",
+          "slug": "complete-project-ui-prototype-design",
+          "entryFile": "Edutech.AI Super Admin Portal - Offline.html",
+          "files": [
+            {
+              "name": "Edutech.AI Super Admin Portal - Offline.html",
+              "path": "projects/edutech-school-management-crm-mub00tur/prototypes/complete-project-ui-prototype-design/Edutech.AI Super Admin Portal - Offline.html"
+            }
+          ]
+        }
+      ],
+      "access": {
+        "algorithm": "PBKDF2-SHA256",
+        "iterations": 210000,
+        "salt": "+xoHEBfXgMxoPaIQJ5JdLg==",
+        "hash": "FIDToZtCzCHoD7ejnhsj4Qh+0qsiwG5hyH2HUziAo+E=",
+        "updatedAt": "2026-09-21T08:44:07.048Z"
+      }
+    },
+    {
       "id": "nutal-patel-insurance-website-design-mrkxi8ul",
       "name": "Nutal Patel Insurance Website Design",
       "description": "Nutal Patel Insurance Website Design",
