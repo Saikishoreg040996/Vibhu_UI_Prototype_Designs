@@ -174,11 +174,15 @@
         {
           "name": "B2B Organizer Complete UI Prototype",
           "slug": "b2b-organizer-complete-ui-prototype",
-          "entryFile": "EventSphere Prototype (standalone) (6).html",
+          "entryFile": "EventSphere Prototype (standalone) (7).html",
           "files": [
             {
               "name": "EventSphere Prototype (standalone) (6).html",
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype/EventSphere Prototype (standalone) (6).html"
+            },
+            {
+              "name": "EventSphere Prototype (standalone) (7).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype/EventSphere Prototype (standalone) (7).html"
             }
           ]
         },
@@ -194,7 +198,7 @@
           ]
         }
       ],
-      "updatedAt": "2026-10-07T07:40:25.481Z",
+      "updatedAt": "2026-10-23T05:40:43.145Z",
       "access": {
         "algorithm": "PBKDF2-SHA256",
         "iterations": 210000,
