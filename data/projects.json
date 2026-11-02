@@ -174,31 +174,27 @@
         {
           "name": "B2B Organizer Complete UI Prototype",
           "slug": "b2b-organizer-complete-ui-prototype",
-          "entryFile": "EventSphere Prototype (standalone) (7).html",
+          "entryFile": "EventSphere Prototype (standalone) (9).html",
           "files": [
             {
-              "name": "EventSphere Prototype (standalone) (6).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype/EventSphere Prototype (standalone) (6).html"
-            },
-            {
-              "name": "EventSphere Prototype (standalone) (7).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype/EventSphere Prototype (standalone) (7).html"
+              "name": "EventSphere Prototype (standalone) (9).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-complete-ui-prototype/EventSphere Prototype (standalone) (9).html"
             }
           ]
         },
         {
           "name": "B2B Organizer Airlink Builder UI Prototype",
           "slug": "b2b-organizer-airlink-builder-ui-prototype",
-          "entryFile": "EventSphere AirLinks Builder (standalone) (2).html",
+          "entryFile": "EventSphere AirLinks Builder (standalone) (4).html",
           "files": [
             {
-              "name": "EventSphere AirLinks Builder (standalone) (2).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-airlink-builder-ui-prototype/EventSphere AirLinks Builder (standalone) (2).html"
+              "name": "EventSphere AirLinks Builder (standalone) (4).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-airlink-builder-ui-prototype/EventSphere AirLinks Builder (standalone) (4).html"
             }
           ]
         }
       ],
-      "updatedAt": "2026-11-02T05:20:09.962Z",
+      "updatedAt": "2026-11-02T05:22:16.031Z",
       "access": {
         "algorithm": "PBKDF2-SHA256",
         "iterations": 210000,
