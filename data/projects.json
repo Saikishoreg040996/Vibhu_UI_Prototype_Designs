@@ -192,9 +192,75 @@
               "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/b2b-organizer-airlink-builder-ui-prototype/EventSphere AirLinks Builder (standalone) (4).html"
             }
           ]
+        },
+        {
+          "name": "Airlink Home UI Prototype",
+          "slug": "airlink-home-ui-prototype",
+          "entryFile": "EventSphere AirLink Storefront (standalone) (3).html",
+          "files": [
+            {
+              "name": "EventSphere AirLink Storefront (standalone) (3).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/airlink-home-ui-prototype/EventSphere AirLink Storefront (standalone) (3).html"
+            }
+          ]
+        },
+        {
+          "name": "Airlink Event Listing UI Prototype",
+          "slug": "airlink-event-listing-ui-prototype",
+          "entryFile": "EventSphere AirLink Listing (standalone) (2).html",
+          "files": [
+            {
+              "name": "EventSphere AirLink Listing (standalone) (2).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/airlink-event-listing-ui-prototype/EventSphere AirLink Listing (standalone) (2).html"
+            }
+          ]
+        },
+        {
+          "name": "Airlink Event Details UI Prototype",
+          "slug": "airlink-event-details-ui-prototype",
+          "entryFile": "EventSphere AirLink Detail.html",
+          "files": [
+            {
+              "name": "EventSphere AirLink Detail.html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/airlink-event-details-ui-prototype/EventSphere AirLink Detail.html"
+            }
+          ]
+        },
+        {
+          "name": "Airlink Checkout UI Prototype",
+          "slug": "airlink-checkout-ui-prototype",
+          "entryFile": "EventSphere AirLink Checkout (standalone) (3).html",
+          "files": [
+            {
+              "name": "EventSphere AirLink Checkout (standalone) (3).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/airlink-checkout-ui-prototype/EventSphere AirLink Checkout (standalone) (3).html"
+            }
+          ]
+        },
+        {
+          "name": "Airlink Accounts Module UI Prototype",
+          "slug": "airlink-accounts-module-ui-prototype",
+          "entryFile": "EventSphere AirLink Account (standalone) (2).html",
+          "files": [
+            {
+              "name": "EventSphere AirLink Account (standalone) (2).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/airlink-accounts-module-ui-prototype/EventSphere AirLink Account (standalone) (2).html"
+            }
+          ]
+        },
+        {
+          "name": "Airlink Static Pages UI Prototype",
+          "slug": "airlink-static-pages-ui-prototype",
+          "entryFile": "EventSphere AirLink Pages (standalone) (3).html",
+          "files": [
+            {
+              "name": "EventSphere AirLink Pages (standalone) (3).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/airlink-static-pages-ui-prototype/EventSphere AirLink Pages (standalone) (3).html"
+            }
+          ]
         }
       ],
-      "updatedAt": "2026-11-02T05:22:16.031Z",
+      "updatedAt": "2026-11-02T05:28:02.079Z",
       "access": {
         "algorithm": "PBKDF2-SHA256",
         "iterations": 210000,
