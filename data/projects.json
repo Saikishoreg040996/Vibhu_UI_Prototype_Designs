@@ -163,11 +163,11 @@
         {
           "name": "Super Admin Complete UI Prototype",
           "slug": "super-admin-complete-ui-prototype",
-          "entryFile": "EventSphere SuperAdmin (standalone) (5).html",
+          "entryFile": "EventSphere SuperAdmin (standalone) (7).html",
           "files": [
             {
-              "name": "EventSphere SuperAdmin (standalone) (5).html",
-              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-complete-ui-prototype/EventSphere SuperAdmin (standalone) (5).html"
+              "name": "EventSphere SuperAdmin (standalone) (7).html",
+              "path": "projects/event-ticketing-saas-platform-mra5hejz/prototypes/super-admin-complete-ui-prototype/EventSphere SuperAdmin (standalone) (7).html"
             }
           ]
         },
@@ -198,7 +198,7 @@
           ]
         }
       ],
-      "updatedAt": "2026-10-23T05:40:43.145Z",
+      "updatedAt": "2026-11-02T05:20:09.962Z",
       "access": {
         "algorithm": "PBKDF2-SHA256",
         "iterations": 210000,
