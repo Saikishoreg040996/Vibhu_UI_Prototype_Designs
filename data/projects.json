@@ -17,11 +17,15 @@
         {
           "name": "Complete Project UI Prototype Design",
           "slug": "complete-project-ui-prototype-design",
-          "entryFile": "Edutech.AI MVP Build - Offline (Oct 4 2026 v4).html",
+          "entryFile": "edutech.html",
           "files": [
             {
               "name": "Edutech.AI MVP Build - Offline (Oct 4 2026 v4).html",
               "path": "projects/edutech-school-management-crm-mub00tur/prototypes/complete-project-ui-prototype-design/Edutech.AI MVP Build - Offline (Oct 4 2026 v4).html"
+            },
+            {
+              "name": "edutech.html",
+              "path": "projects/edutech-school-management-crm-mub00tur/prototypes/complete-project-ui-prototype-design/edutech.html"
             }
           ]
         }
@@ -33,7 +37,7 @@
         "hash": "FIDToZtCzCHoD7ejnhsj4Qh+0qsiwG5hyH2HUziAo+E=",
         "updatedAt": "2026-09-21T08:44:07.048Z"
       },
-      "updatedAt": "2026-10-10T04:36:32.868Z"
+      "updatedAt": "2026-11-17T05:01:55.706Z"
     },
     {
       "id": "nutal-patel-insurance-website-design-mrkxi8ul",
